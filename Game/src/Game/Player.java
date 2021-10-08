@@ -1,6 +1,6 @@
 package Game;
 
-/** name: String
+/* name: String
  * coins: int
  * animalOwned: int (förmodligen en per sorts animal senare - lionOwned, dogOwned osv)
  * foodOwned: int (förmodligen en per sorts mat senare - mixedOwned, meatOwned osv)
