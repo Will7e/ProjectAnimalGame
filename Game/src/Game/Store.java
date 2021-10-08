@@ -31,6 +31,6 @@ public class Store {
         this.meatPrice = meatPrice;
         this.mixedPrice = mixedPrice;
         this.vegPrice = vegPrice;
-        
+
     }
 }
