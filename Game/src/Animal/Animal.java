@@ -1,4 +1,4 @@
-package Resourses;
+package Animal;
 
 public class Animal {
 }
