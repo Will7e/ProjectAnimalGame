@@ -7,8 +7,10 @@ package Game;
  */
 
 public class Player {
-    String playerName;
-    int playerCoins;
-    int animalOwned;
-    int foodOwned;
+    private String playerName;
+    private int playerCoins = 100;
+    private List<Animal> ownAnimal;
+    private List<Food> ownFood;
+    private int currentAnimalOwn = 0;
+    private int currentFoodOwn = 0;
 }
