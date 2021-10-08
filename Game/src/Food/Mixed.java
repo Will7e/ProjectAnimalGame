@@ -1,4 +1,4 @@
 package Food;
 
-public class Mixed {
+public class Mixed extends Food {
 }
