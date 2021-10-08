@@ -7,4 +7,8 @@ package Game;
  */
 
 public class Player {
+    String playerName;
+    int playerCoins;
+    int animalOwned;
+    int foodOwned;
 }
