@@ -10,4 +10,6 @@ package Game;
  */
 
 public class Store {
+    private int animalPrice;
+    private int foodPrice;
 }
