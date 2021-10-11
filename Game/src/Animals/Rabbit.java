@@ -3,7 +3,8 @@ package Animals;
 public class Rabbit extends Animal{
     private String name = "Rabbit";
     private int health = 100;
-    private int age = 10;
+    private int startAge = 0;
+    private int maxAge = 10;
 
 
     @Override
@@ -28,12 +29,12 @@ public class Rabbit extends Animal{
 
     @Override
     public int getAge() {
-        return age;
+        return startAge;
     }
 
     @Override
     public int setAge() {
-        return age;
+        return startAge;
     }
 
 }

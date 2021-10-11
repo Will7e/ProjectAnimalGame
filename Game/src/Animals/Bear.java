@@ -3,7 +3,8 @@ package Animals;
 public class Bear extends Animal{
     private String name = "Bear";
     private int health = 100;
-    private int age = 50;
+    private int startAge = 0;
+    private int maxAge = 50;
 
     public Bear() {
         super();
@@ -33,12 +34,12 @@ public class Bear extends Animal{
 
     @Override
     public int getAge() {
-        return age;
+        return startAge;
     }
 
     @Override
     public int setAge() {
-        return age;
+        return startAge;
     }
 
 
