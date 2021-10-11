@@ -27,8 +27,15 @@ public class PrintMenus {
     }
 
     public static void playerChoiceMenu {
-        System.out.println("It's your turn to make a choice.");
+        System.out.println("It's your turn to make a move.");
         System.out.println("Here are your available resources:");
+        //Printa ut användarens aktuella resurser inkl pengar.
+        System.out.println("You can chose between the following options:");
+        System.out.println("1. Buy an animal. You can buy as many animals as you can afford.");
+        System.out.println("2. Buy food for your animals. You can buy as much food as you can afford.");
+        System.out.println("3. Feed an animal.");
+        System.out.println("4. Try to make two animals mate.");
+        System.out.println("5. Sell animals. You can sell one or more of your animals.");
     }
 
 
