@@ -1,8 +1,8 @@
 package Animals;
 
 public abstract class Animal {
-    public String genderMale = "Hane";
-    public String genderFemale = "Honan";
+    public String genderMale = "Male";
+    public String genderFemale = "Female";
 
     public abstract String getName();
     public abstract void foodToEat();
