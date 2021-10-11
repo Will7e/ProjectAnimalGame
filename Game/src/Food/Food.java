@@ -1,8 +1,8 @@
 package Food;
 
-abstract class Food {
-    private String foodName;
-    private int healthAddition;
-    private int foodAmount;
+public abstract class Food {
+    public abstract String getName();
+    public abstract double setHealthIncrease();
+
 
 }

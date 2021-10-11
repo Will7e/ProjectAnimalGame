@@ -1,8 +1,9 @@
 package Food;
 
-public class Meat extends Food {
-    private String name = "Meat";
+public class MixFood extends Food{
+    private String name = "MixFood";
     private double healthIncrease = 1.1;
+
 
     @Override
     public String getName() {
@@ -13,5 +14,4 @@ public class Meat extends Food {
     public double setHealthIncrease() {
         return Math.round(healthIncrease);
     }
-
 }
