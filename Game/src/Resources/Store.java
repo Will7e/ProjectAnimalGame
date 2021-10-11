@@ -1,4 +1,4 @@
-package Resourses;
+package Resources;
 
 public class Store {
     private final int dogPrice = 30;
