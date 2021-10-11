@@ -19,11 +19,17 @@ public class PrintMenus {
         System.out.println("How many players will participate (2-4)?");
     }
 
-    //Här vill vi kanske addera "player 1", "player 2" i printen för att förtydliga
+    // Här vill vi kanske addera "player 1", "player 2" i printen för att förtydliga
     // vilken spelare som ska mata in sitt namn.
 
     public static void playerNameMenu(){
-        System.out.println("Please enter your name.");
+        System.out.println("Please enter your name:");
     }
+
+    public static void playerChoiceMenu {
+        System.out.println("It's your turn to make a choice.");
+        System.out.println("Here are your available resources:");
+    }
+
 
 }
