@@ -17,6 +17,11 @@ public class Game {
         return playersList;
     }
 
+    public void addPlayer(Player player) {
+
+        
+    }
+
 
 
 }
