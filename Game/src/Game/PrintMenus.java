@@ -36,6 +36,9 @@ public class PrintMenus {
         System.out.println("3. Feed an animal.");
         System.out.println("4. Try to make two animals mate.");
         System.out.println("5. Sell animals. You can sell one or more of your animals.");
+        System.out.println("6. Save game to file.");
+        System.out.println("7. Save game to file and exit game.");
+        System.out.println("8. Exit game without saving.");
     }
 
 
