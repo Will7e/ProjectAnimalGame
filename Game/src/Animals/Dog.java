@@ -1,9 +1,12 @@
 package Animals;
 
 public class Dog extends Animal{
-    private String name = "Dog";
-    private int health = 100;
-    private int age = 20;
+    protected String name = "Dog";
+    protected int health = 100;
+    protected int maxAge = 20;
+    protected int currentStartAge = 0;
+    protected int breedingChance = 50;
+    protected String gender;
 
 
     @Override
@@ -24,12 +27,35 @@ public class Dog extends Animal{
         return health;
     }
     @Override
-    public int getAge() {
-        return age;
+    public int getMaxAge() {
+        return maxAge;
     }
 
     @Override
-    public int setAge() {
-        return age;
+    public int getCurrentStartAge() {
+        return currentStartAge;
     }
+
+    @Override
+    public void setCurrentStartAge(int currentStartAge) {
+        this.currentStartAge = currentStartAge;
+
+    }
+
+    @Override
+    public int getBreedingChance() {
+        return breedingChance;
+    }
+
+    @Override
+    public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
 }

@@ -1,8 +1,8 @@
 package Food;
 
 public class MixFood extends Food{
-    private String name = "MixFood";
-    private double healthIncrease = 1.1;
+    protected String name = "MixFood";
+    protected double healthIncrease = 1.1;
 
 
     @Override

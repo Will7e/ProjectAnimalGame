@@ -1,14 +1,12 @@
 package Animals;
 
 public class Bear extends Animal{
-    private String name = "Bear";
-    private int health = 100;
-    private int age = 50;
-
-    public Bear() {
-        super();
-    }
-
+    protected final String name = "Bear";
+    protected final int health = 100;
+    protected final int maxAge = 50;
+    protected int currentStartAge = 0;
+    protected int breedingChance = 50;
+    protected String gender;
 
     @Override
     public String getName() {
@@ -30,15 +28,35 @@ public class Bear extends Animal{
         return health;
     }
 
+    @Override
+    public int getMaxAge() {
+        return maxAge;
+    }
+
 
     @Override
-    public int getAge() {
-        return age;
+    public int getCurrentStartAge() {
+        return currentStartAge;
     }
 
     @Override
-    public int setAge() {
-        return age;
+    public void setCurrentStartAge(int currentStartAge) {
+        this.currentStartAge = currentStartAge;
+    }
+
+    @Override
+    public int getBreedingChance() {
+        return breedingChance;
+    }
+
+    @Override
+    public String getGender() {
+        return gender;
+    }
+
+    @Override
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 

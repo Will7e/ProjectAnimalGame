@@ -1,4 +1,4 @@
-package Game;
+package GameController;
 import Animals.Animal;
 import Food.Food;
 
@@ -6,33 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private String playerName;
-    private int playerCoins = 100;
+    private String name;
+    protected int playerCoins = 100;
     private List<Animal> ownAnimal;
     private List<Food> ownFood;
     private int currentAnimalOwn = 0;
     private int currentFoodOwn = 0;
 
     public Player(String name) {
-        this.playerName = name;
+        this.name = name;
         this.ownAnimal = new ArrayList<>();
         this.ownFood = new ArrayList<>();
     }
 
     public String getName() {
-        return playerName;
+        return name;
     }
 
     public void setName(String name) {
-        this.playerName = name;
+        this.name = name;
     }
 
     public int getCoins() {
         return playerCoins;
     }
 
-    public void setCoins(int coins) {
-        this.playerCoins = coins;
+    public void setCoins(int playerCoins) {
+        this.playerCoins = playerCoins;
     }
 
     public List<Animal> getOwnAnimal() {
@@ -52,4 +52,11 @@ public class Player {
     }
 
 
+    public int getCurrentAnimalOwn() {
+        return currentAnimalOwn;
+    }
+
+    public int getCurrentFoodOwn() {
+        return currentFoodOwn;
+    }
 }
