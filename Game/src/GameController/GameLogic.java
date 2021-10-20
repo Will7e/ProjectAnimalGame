@@ -12,9 +12,8 @@ public class GameLogic {
     public ArrayList<Player> playerList;
     protected Store store;
     private int playerAmount;
-    int playerShoppingInput;
-    int setGender;
     int round = 1;
+    int i;
 
 
     // konstruktorn
@@ -22,27 +21,26 @@ public class GameLogic {
         store = new Store();
         this.playerList = new ArrayList<>();
         startGame();
+
+
     }
 
     // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
-        int spin = 0;
         System.out.println("How many rounds do you want to play? ");
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 5 || input > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
-            do {
-
-                askAmountPlayers();
-                addPlayer();
+            askAmountPlayers();
+            addPlayer();
+            for (i = 1; i <= input; i++) {
                 playerChoice();
 
-                round++;
-                spin++;
-            } while (spin <= input);
+            }
         }
+
     }
 
     private void askAmountPlayers() {
@@ -61,7 +59,6 @@ public class GameLogic {
     public void addPlayer() {
         int i = 1;
         do {
-            System.out.println("Round" + round);
             System.out.println("Enter player" + i + "name");
             String name = scanner.nextLine();
             if (hasThisName(playerList, name)) {
@@ -82,53 +79,39 @@ public class GameLogic {
             }
         }
         return false;
-
     }
-
     //Case 1 - Buy animal / Set gender.
     public void playerChoice() {
         Iterator<Player> iterator = playerList.iterator();
         while (iterator.hasNext()) {
             Player player = iterator.next();
+            System.out.println("Round : " + i);
             System.out.println("Player :" + player.getName());
             System.out.println("What do you want to buy?");
-            System.out.println("1. Buy animals    2. Feed animals    3. Buy food");
+            System.out.println("1. Buy animals    2. Buy food   3. Feed animal");
             int input = scanner.nextInt();
-            switch (input) {
-                case 1:
-                    store.animalToBuy(player);
-                    break;
-                case 2:
-                    break;
-                case 3:
-                default:
-                    System.out.println(" Incorrect input");
-
+            if (input < 1 || input > 3) {
+                System.out.println("Choice between 1 - 3");
+            } else {
+                switch (input) {
+                    case 1:
+                        store.animalToBuy(player);
+                        break;
+                    case 2:
+                        store.buyFood(player);
+                        break;
+                    case 3:
+                    default:
+                        System.out.println(" Incorrect input");
+                }
             }
         }
-    }}
-
-
-    // INCOMPLETE method for picking which animal to feed.
-   /* public void feedAnimal() {
-        System.out.println("Which animal do you want to feed? ");
-
     }
-
-    // Prints foods to buy and price for players
-    public void buyFoodChoice() {
-        System.out.println("What food do you want to buy?");
-        System.out.println("1. Meat " + "   ( " + store.getMeatPrice() + " Coins)\n" +
-                "2. Mixfood " + "( " + store.getMixFoodPrice() + " Coins )\n" +
-                "3. Veggies " + "( " + store.getVeggiesPrice() + " Coins )");
-    }
-
-    public void setGenderChoice() {
-        System.out.println("Välj kön: 1. Male     2. Female");
-    }
+}
 
 
-}*/
+
+
 
 
 

@@ -23,7 +23,7 @@ public abstract class Animal {
     public abstract int getCurrentStartAge();
     public abstract void setCurrentStartAge(int currentStartAge);
     public abstract int getBreedingChance();
-    public abstract char   getGender();
+    public abstract char  getGender();
     public void setGender(char gender){
         this.gender = gender;
     }
