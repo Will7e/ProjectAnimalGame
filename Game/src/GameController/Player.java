@@ -39,7 +39,7 @@ public class Player {
         this.playerCoins = playerCoins;
     }
 
-    public List<Animal> getOwnAnimal() {
+    public ArrayList<Animal> getOwnAnimal() {
         return ownAnimal;
     }
 
@@ -47,5 +47,11 @@ public class Player {
         return ownFood;
     }
 
+
+    public void sellAnimal() {
+
+
+
+    }
 
 }

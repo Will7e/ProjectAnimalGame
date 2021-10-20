@@ -22,6 +22,7 @@ public class GameLogic {
         store = new Store();
         this.playerList = new ArrayList<>();
         startGame();
+
     }
 
     // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
@@ -38,6 +39,7 @@ public class GameLogic {
                 askAmountPlayers();
                 addPlayer();
                 playerChoice();
+
 
                 round++;
                 spin++;
@@ -92,19 +94,29 @@ public class GameLogic {
             Player player = iterator.next();
             System.out.println("Player :" + player.getName());
             System.out.println("What do you want to buy?");
-            System.out.println("1. Buy animals    2. Feed animals    3. Buy food");
+            System.out.println("1. Buy animals    2. Feed animals    3. Buy food    4. Sell animal");
+
             int input = scanner.nextInt();
             switch (input) {
                 case 1:
                     store.animalToBuy(player);
                     break;
-                case 2:
+
+                    case 2:
                     break;
+
                 case 3:
+                break;
+
+                case 4:
+                store.sellAnimal(player);
+
+
                 default:
                     System.out.println(" Incorrect input");
 
             }
+
         }
     }}
 

@@ -24,9 +24,7 @@ public class Store {
     private int input2;
 
     public Store() {
-        this.meat = new Meat();
-        this.mixFood = new MixFood();
-        this.veggies = new Veggies();
+
 
     }
 
@@ -77,7 +75,7 @@ public class Store {
             {
                 if (player.getCoins() < this.getBearPrice() * input2) {
                     System.out.println("no cash. You have to only" + player.getCoins());
-
+                    animalToBuy(player);
                 } else {
                     for (int i = 1; i <= input2; i++) {
                         System.out.println("Bear: " + i);
@@ -89,7 +87,7 @@ public class Store {
                     }
                     player.setCoins(player.getCoins() - getBearPrice()*input2);
                     System.out.println("You have "+ player.getCoins()+" left. ");
-                }
+                }   break;
             }
             case 2:
                 System.out.println("How many dogs do you want to buy");
@@ -109,7 +107,7 @@ public class Store {
                     }
                     player.setCoins(player.getCoins() - getDogPrice()*input2);
                     System.out.println("You have "+ player.getCoins()+" left. ");
-                }
+                }   break;
             }
             case 3:
                 System.out.println("How many horses do you want to buy");
@@ -129,7 +127,7 @@ public class Store {
                     }
                     player.setCoins(player.getCoins() - getHorsePrice()*input2);
                     System.out.println("You have "+ player.getCoins()+" left. ");
-                }
+                }   break;
             }
             case 4:
                 System.out.println("How many lions do you want to buy");
@@ -149,7 +147,7 @@ public class Store {
                     }
                     player.setCoins(player.getCoins() - getLionPrice()*input2);
                     System.out.println("You have "+ player.getCoins()+" left. ");
-                }
+                }   break;
             }
             case 5:
                 System.out.println("How many rabbits do you want to buy");
@@ -166,13 +164,40 @@ public class Store {
                         System.out.println("Gender: ");
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Rabbit(name, gender));
+
                     }
                     player.setCoins(player.getCoins() - getRabbitPrice()*input2);
                     System.out.println("You have "+ player.getCoins()+" left. ");
-                }
-                System.out.println();
+                }   break;
+
             }
         }
+
+
     }
+
+    public void sellAnimal(Player player) {
+
+
+        System.out.println(player.getName() + " You want to sell animals");
+
+        if (player.getOwnAnimal().size() == 0) {
+            System.out.println(player.getName() + " You dont own any animals");
+        }
+        else {
+
+        System.out.println("Which one will you sell?");
+
+
+       for (int i = 0; i < player.getOwnAnimal().size(); i++) {
+           System.out.println(player.getOwnAnimal().get(i).getName());
+       }
+
+        //for (int i = 0; i < player.getOwnAnimal().size(); i++) {
+          //  System.out.println(player.getOwnAnimal().get(i));
+        //}
+
+    }
+
 }
 
