@@ -2,9 +2,20 @@ package Animals;
 
 public abstract class Animal {
     protected String name;
-    protected String gender;
+    protected char gender;
+    public Animal(String name, char gender){
+        this.name = name;
+        this.gender = gender;
 
-    public abstract String getName();
+    }
+
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public abstract String getClassName();
     public abstract void foodToEat();
     public abstract int getHealth();
     public abstract int setHealth();
@@ -12,17 +23,10 @@ public abstract class Animal {
     public abstract int getCurrentStartAge();
     public abstract void setCurrentStartAge(int currentStartAge);
     public abstract int getBreedingChance();
-    public abstract String getGender();
-    public abstract void setGender(String gender);
-
-    public  boolean canBreed(Animal animal){
-        if (this.name.equalsIgnoreCase(animal.name) && this.gender == animal.gender){
-            return true;
-        }
-        return false;
+    public abstract char   getGender();
+    public void setGender(char gender){
+        this.gender = gender;
     }
-
-
 
 
 }

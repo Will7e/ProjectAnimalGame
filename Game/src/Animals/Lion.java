@@ -1,17 +1,25 @@
 package Animals;
 
 public class Lion extends Animal{
-    protected String name = "Lion";
+    protected String className = "Lion";
     protected int health = 100;
     protected int maxAge = 100;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
-    protected String gender;
+
+    public Lion(String name, char gender) {
+        super(name, gender);
+    }
 
 
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override
@@ -50,12 +58,12 @@ public class Lion extends Animal{
     }
 
     @Override
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
     @Override
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 

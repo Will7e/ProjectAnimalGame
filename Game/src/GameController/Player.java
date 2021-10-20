@@ -5,13 +5,17 @@ import Food.Food;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The player should be able to store his money, his owned animals and the food he/she owns.
+ * The player should also have a name.
+ * @author william, ridah, marcus
+ */
 public class Player {
     private String name;
     protected int playerCoins = 100;
-    private List<Animal> ownAnimal;
-    private List<Food> ownFood;
-    private int currentAnimalOwn = 0;
-    private int currentFoodOwn = 0;
+    private ArrayList<Animal> ownAnimal; // ArrayList
+    private ArrayList<Food> ownFood; // ArrayList, use size() to retrieve total amount of ...
+
 
     public Player(String name) {
         this.name = name;
@@ -43,20 +47,5 @@ public class Player {
         return ownFood;
     }
 
-    public void setCurrentAnimalOwn(int currentAnimalOwn) {
-        this.currentAnimalOwn = currentAnimalOwn;
-    }
 
-    public void setCurrentFoodOwn(int currentFoodOwn) {
-        this.currentFoodOwn = currentFoodOwn;
-    }
-
-
-    public int getCurrentAnimalOwn() {
-        return currentAnimalOwn;
-    }
-
-    public int getCurrentFoodOwn() {
-        return currentFoodOwn;
-    }
 }

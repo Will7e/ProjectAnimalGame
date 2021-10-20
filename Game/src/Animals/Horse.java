@@ -1,12 +1,17 @@
 package Animals;
 
 public class Horse extends Animal{
-    protected String name = "Horse";
+    protected String className = "Horse";
+    protected String name;
+
     protected int health = 100;
     protected int maxAge = 25;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
-    protected String gender;
+
+    public Horse(String name, char gender) {
+        super(name, gender);
+    }
 
 
     @Override
@@ -50,13 +55,16 @@ public class Horse extends Animal{
     }
 
     @Override
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
     @Override
-    public void  setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
+    }
+    public String getClassName() {
+        return className;
     }
 
 
