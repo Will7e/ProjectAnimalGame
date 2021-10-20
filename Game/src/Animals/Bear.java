@@ -1,19 +1,23 @@
 package Animals;
 
-public class Bear extends Animal{
+public class Bear extends Animal {
+
     private String name = "Bear";
     private int health = 100;
     private int startAge = 0;
     private int maxAge = 50;
+    private char gender;
+    protected int currentStartAge = 0;
+    protected int breedingChance = 50;
 
-    public Bear() {
-        super();
+    public Bear(String name, char gender) {
+        super(name, gender);
     }
 
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
@@ -23,24 +27,31 @@ public class Bear extends Animal{
 
     @Override
     public int getHealth() {
-        return health;
+        return 0;
     }
 
     @Override
     public int setHealth() {
-        return health;
+        return 0;
     }
-
 
     @Override
     public int getAge() {
-        return startAge;
+        return 0;
     }
 
     @Override
     public int setAge() {
-        return startAge;
+        return 0;
     }
 
+    @Override
+    public char setGender() {
+        return 0;
+    }
 
+    @Override
+    public char getGender() {
+        return 0;
+    }
 }

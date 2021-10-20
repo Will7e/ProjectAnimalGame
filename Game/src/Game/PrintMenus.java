@@ -26,7 +26,7 @@ public class PrintMenus {
         System.out.println("Please enter your name:");
     }
 
-    public static void playerChoiceMenu {
+    public static void playerChoiceMenu () {
         System.out.println("It's your turn to make a move.");
         System.out.println("Here are your available resources:");
         //Printa ut användarens aktuella resurser inkl pengar.

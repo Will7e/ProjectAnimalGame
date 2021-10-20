@@ -1,6 +1,7 @@
 package Resources;
 
 public class Store {
+
     private final int dogPrice = 30;
     private final int bearPrice = 80;
     private final int horsePrice = 50;
@@ -9,6 +10,8 @@ public class Store {
     private final int meatPrice = 10;
     private final int mixFoodPrice = 5;
     private final int veggiesPrice = 1;
+
+
 
     public int getDogPrice() {
         return dogPrice;
@@ -41,4 +44,5 @@ public class Store {
     public int getVeggiesPrice() {
         return veggiesPrice;
     }
-}
+
+    }

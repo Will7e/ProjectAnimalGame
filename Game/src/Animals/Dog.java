@@ -1,36 +1,57 @@
 package Animals;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
+
     private String name = "Dog";
     private int health = 100;
     private int startAge = 0;
     private int maxAge = 20;
+    private char gender;
 
+    public Dog(String name, char gender) {
+        super(name, gender);
+    }
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
     public void foodToEat() {
+
     }
+
     @Override
     public int getHealth() {
-        return health;
+        return 0;
     }
 
     @Override
     public int setHealth() {
-        return health;
+        return 0;
     }
+
     @Override
     public int getAge() {
-        return startAge;
+        return 0;
     }
 
     @Override
     public int setAge() {
-        return startAge;
+        return 0;
     }
+
+    @Override
+    public char setGender() {
+        return 0;
+    }
+
+    @Override
+    public char getGender() {
+        return 0;
+    }
+
 }
+
+

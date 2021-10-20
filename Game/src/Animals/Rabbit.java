@@ -1,15 +1,22 @@
 package Animals;
 
-public class Rabbit extends Animal{
+public class Rabbit extends Animal {
+
     private String name = "Rabbit";
     private int health = 100;
     private int startAge = 0;
     private int maxAge = 10;
+    private int currentStartAge = 0;
+    private int breedingChance = 50;
+    private char gender;
 
+    public Rabbit(String name, char gender) {
+        super(name, gender);
+    }
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
@@ -19,22 +26,38 @@ public class Rabbit extends Animal{
 
     @Override
     public int getHealth() {
-        return health;
+        return 0;
     }
 
     @Override
     public int setHealth() {
-        return health;
+        return 0;
     }
 
     @Override
     public int getAge() {
-        return startAge;
+        return 0;
     }
 
     @Override
     public int setAge() {
-        return startAge;
+        return 0;
     }
 
+    @Override
+    public char setGender() {
+        return 0;
+    }
+
+    @Override
+    public char getGender() {
+        return 0;
+    }
 }
+
+
+
+
+
+
+
