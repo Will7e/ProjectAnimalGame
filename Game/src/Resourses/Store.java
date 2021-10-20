@@ -13,7 +13,6 @@ public class Store {
     public Meat meat;
     public MixFood mixFood;
     public Veggies veggies;
-    public Player player;
     protected final int dogPrice = 30;
     protected final int bearPrice = 80;
     protected final int horsePrice = 50;
@@ -64,7 +63,7 @@ public class Store {
         return veggiesPrice;
     }
 
-    public void animalToBuy() {
+    public void animalToBuy(Player player) {
         System.out.println("1. Bear " + "   ( " + this.getBearPrice() + " Coins )\n" +
                 "2. Dog " + "    ( " + this.getDogPrice() + " Coins )\n" +
                 "3. Horse " + "  ( " + this.getHorsePrice() + " Coins )\n" +
@@ -88,6 +87,8 @@ public class Store {
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Bear(name, gender));
                     }
+                    player.setCoins(player.getCoins() - getBearPrice()*input2);
+                    System.out.println("You have "+ player.getCoins()+" left. ");
                 }
             }
             case 2:
@@ -106,6 +107,8 @@ public class Store {
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Dog(name, gender));
                     }
+                    player.setCoins(player.getCoins() - getDogPrice()*input2);
+                    System.out.println("You have "+ player.getCoins()+" left. ");
                 }
             }
             case 3:
@@ -124,6 +127,8 @@ public class Store {
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Horse(name, gender));
                     }
+                    player.setCoins(player.getCoins() - getHorsePrice()*input2);
+                    System.out.println("You have "+ player.getCoins()+" left. ");
                 }
             }
             case 4:
@@ -142,6 +147,8 @@ public class Store {
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Lion(name, gender));
                     }
+                    player.setCoins(player.getCoins() - getLionPrice()*input2);
+                    System.out.println("You have "+ player.getCoins()+" left. ");
                 }
             }
             case 5:
@@ -160,7 +167,10 @@ public class Store {
                         char gender = console.nextLine().charAt(0);
                         player.getOwnAnimal().add(new Rabbit(name, gender));
                     }
+                    player.setCoins(player.getCoins() - getRabbitPrice()*input2);
+                    System.out.println("You have "+ player.getCoins()+" left. ");
                 }
+                System.out.println();
             }
         }
     }
