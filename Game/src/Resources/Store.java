@@ -1,4 +1,4 @@
-package Resourses;
+package Resources;
 
 import Animals.*;
 import Food.Meat;
