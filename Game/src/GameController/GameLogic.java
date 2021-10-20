@@ -96,7 +96,7 @@ public class GameLogic {
             int input = scanner.nextInt();
             switch (input) {
                 case 1:
-                    store.animalToBuy();
+                    store.animalToBuy(player);
                     break;
                 case 2:
                     break;
