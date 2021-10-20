@@ -24,6 +24,9 @@ public class Dog extends Animal{
 
     @Override
     public void foodToEat() {
+
+
+
     }
     @Override
     public int getHealth() {
