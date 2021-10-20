@@ -1,22 +1,22 @@
 package Animals;
 
-public class Horse extends Animal {
+public class Horse extends Animal{
+    protected String className = "Horse";
+    protected String name;
 
-    private String name = "Horse";
-    private int health = 100;
-    private int startAge = 0;
-    private int maxAge = 25;
-    private int currentStartAge = 0;
-    private int breedingChance = 50;
-    private char gender;
+    protected int health = 100;
+    protected int maxAge = 25;
+    protected int currentStartAge = 0;
+    protected int breedingChance = 50;
 
     public Horse(String name, char gender) {
         super(name, gender);
     }
 
+
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
@@ -26,32 +26,46 @@ public class Horse extends Animal {
 
     @Override
     public int getHealth() {
-        return 0;
+        return health;
     }
 
     @Override
     public int setHealth() {
-        return 0;
+        return health;
     }
 
     @Override
-    public int getAge() {
-        return 0;
+    public int getMaxAge() {
+        return maxAge;
     }
 
     @Override
-    public int setAge() {
-        return 0;
+    public int getCurrentStartAge() {
+        return currentStartAge;
     }
 
     @Override
-    public char setGender() {
-        return 0;
+    public void setCurrentStartAge(int currentStartAge) {
+    this.currentStartAge = currentStartAge;
+    }
+
+    @Override
+    public int getBreedingChance() {
+        return breedingChance;
     }
 
     @Override
     public char getGender() {
-        return 0;
+        return gender;
     }
-}
 
+    @Override
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+    public String getClassName() {
+        return className;
+    }
+
+
+}
