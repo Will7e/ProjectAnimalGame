@@ -10,47 +10,30 @@ import java.util.Scanner;
 
 public class Store {
     Scanner console = new Scanner(System.in);
-    protected int dogPrice = 30;
-    protected int bearPrice = 80;
-    protected int horsePrice = 50;
-    protected int lionPrice = 99;
-    protected int rabbitPrice = 10;
-    protected int meatPrice = 10;
-    protected int mixFoodPrice = 5;
-    protected int veggiesPrice = 1;
+    private int dogPrice = 30;
+    private int bearPrice = 80;
+    private int horsePrice = 50;
+    private int lionPrice = 99;
+    private int rabbitPrice = 10;
+    private int meatPrice = 10;
+    private int mixFoodPrice = 5;
+    private int veggiesPrice = 1;
     private int input2;
+    private String playerChoice;
 
-    public int getDogPrice() {
-        return dogPrice;
+    public Store() {
+        this.dogPrice = dogPrice;
+        this.bearPrice = bearPrice;
+        this.horsePrice = horsePrice;
+        this.lionPrice = lionPrice;
+        this.rabbitPrice = rabbitPrice;
+        this.meatPrice = meatPrice;
+        this.mixFoodPrice = mixFoodPrice;
+        this.veggiesPrice = veggiesPrice;
+        this.input2 = input2;
+        this.playerChoice = playerChoice;
     }
 
-    public int getBearPrice() {
-        return bearPrice;
-    }
-
-    public int getHorsePrice() {
-        return horsePrice;
-    }
-
-    public int getLionPrice() {
-        return lionPrice;
-    }
-
-    public int getRabbitPrice() {
-        return rabbitPrice;
-    }
-
-    public int getMeatPrice() {
-        return meatPrice;
-    }
-
-    public int getMixFoodPrice() {
-        return mixFoodPrice;
-    }
-
-    public int getVeggiesPrice() {
-        return veggiesPrice;
-    }
 
     // Prints out animal choices for player. Add animal to player,
     public void animalToBuy(Player player) {
@@ -175,6 +158,7 @@ public class Store {
 
         }
     }
+
     //Prints out food to buy for players. Then add to list.
     public void buyFood(Player player) {
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
@@ -227,8 +211,116 @@ public class Store {
         }
     }
 
-}
+    public void sellAnimal(Player player) {
 
+        if (player.getAnimalList().size() == 0) {
+            System.out.println("You don't own any animals");
+        } else {
+
+            System.out.println(player.getName() + " here is a list of the animals you own and the price");
+            for (int i = 0; i < player.getAnimalList().size(); i++) {
+
+                System.out.print("[Name] " + player.getAnimalList().get(i).getName());
+                System.out.print(" [Type] " + player.getAnimalList().get(i).getClassName());
+
+                if (player.getAnimalList().get(i).getClassName().equals("Bear")) {
+                    System.out.println(" [Value] " + getBearPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Dog")) {
+                    System.out.println(" [Value] " + getDogPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Horse")) {
+                    System.out.println(" [Value] " + getHorsePrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Lion")) {
+                    System.out.println(" [Value] " + getLionPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Rabbit")) {
+                    System.out.println(" [Value] " + getRabbitPrice() + " coins");
+                }
+
+            }
+            System.out.println("Which animal do you want to sell? Type in the name of the animal");
+            playerChoice = console.nextLine();
+
+            for (int j = 0; j < player.getAnimalList().size(); j++) {
+
+                if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Bear")) {
+                    player.getAnimalList().remove(j);
+
+                    player.setCoins(player.getCoins() + getBearPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+                }
+
+                else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Dog")) {
+                    player.getAnimalList().remove(j);
+
+                    player.setCoins(player.getCoins() + getDogPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+                }
+
+                  else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Horse")) {
+                      player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getHorsePrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                    }
+                  else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Lion")) {
+                    player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getLionPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                }
+                  else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Rabbit")) {
+
+                      player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getRabbitPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                }
+                  else {
+                    System.out.println("You typed the name wrong, please try again");
+                    sellAnimal(player);
+                }
+            }
+        }
+    }
+
+        public int getDogPrice () {
+            return this.dogPrice;
+        }
+
+        public int getBearPrice () {
+            return this.bearPrice;
+        }
+
+        public int getHorsePrice () {
+            return this.horsePrice;
+        }
+
+        public int getLionPrice () {
+            return this.lionPrice;
+        }
+
+        public int getRabbitPrice () {
+            return this.rabbitPrice;
+        }
+
+        public int getMeatPrice () {
+            return this.meatPrice;
+        }
+
+        public int getMixFoodPrice () {
+            return this.mixFoodPrice;
+        }
+
+        public int getVeggiesPrice () {
+            return this.veggiesPrice;
+        }
+
+
+    }
 
 
 

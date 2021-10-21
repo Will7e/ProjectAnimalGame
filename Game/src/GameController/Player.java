@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class Player {
     Scanner console = new Scanner(System.in);
     private String name;
-    protected int playerCoins = 100;
+    private int playerCoins = 100;
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
 
@@ -26,6 +26,7 @@ public class Player {
         this.name = name;
         this.animalList = new ArrayList<>();
         this.foodList = new ArrayList<>();
+        this.playerCoins = playerCoins;
     }
 
     public String getName() {
@@ -37,7 +38,7 @@ public class Player {
     }
 
     public int getCoins() {
-        return playerCoins;
+        return this.playerCoins;
     }
 
     public void setCoins(int playerCoins) {

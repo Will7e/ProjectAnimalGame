@@ -101,6 +101,7 @@ public class Game {
                         store.buyFood(player);
                         break;
                     case 3:
+                        store.sellAnimal(player);
                         break;
                     case 4:player.feedAnimal(player);
                     break;

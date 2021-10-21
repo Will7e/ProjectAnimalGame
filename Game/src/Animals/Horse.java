@@ -14,6 +14,8 @@ public class Horse extends Animal{
 
     public Horse(String name, char gender) {
         super(name, gender);
+        this.name = name;
+        this.gender = gender;
     }
 
 
