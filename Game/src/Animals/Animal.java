@@ -1,5 +1,7 @@
 package Animals;
 
+import Food.Food;
+
 public abstract class Animal {
     protected String name;
     protected char gender;
@@ -16,9 +18,9 @@ public abstract class Animal {
         this.name = name;
     }
     public abstract String getClassName();
-    public abstract void foodToEat();
-    public abstract int getHealth();
-    public abstract int setHealth();
+    public abstract void eatFood(Food foodToEat);
+    public abstract double getHealth();
+    public abstract void setHealth(double health);
     public abstract int getMaxAge();
     public abstract int getCurrentStartAge();
     public abstract void setCurrentStartAge(int currentStartAge);

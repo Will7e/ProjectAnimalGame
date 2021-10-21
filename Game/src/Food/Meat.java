@@ -10,8 +10,8 @@ public class Meat extends Food {
     }
 
     @Override
-    public double setHealthIncrease() {
-        return Math.round(healthIncrease);
+    public double getHealthIncrease() {
+        return healthIncrease;
     }
 
 }
