@@ -1,8 +1,8 @@
-package GameController;
+package gamecontroller;
 
 
-import Animals.Animal;
-import Food.Food;
+import animals.Animal;
+import food.Food;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +125,7 @@ public class Player {
                     }
                 }
             } else {
-                System.out.println("Animal not found. Type again.");
+                System.out.println("Name not found. Type again.");
                 checkAnimal(player);
             }
         }

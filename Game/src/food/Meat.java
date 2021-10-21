@@ -1,4 +1,4 @@
-package Food;
+package food;
 
 public class Meat extends Food {
     protected String name = "Meat";

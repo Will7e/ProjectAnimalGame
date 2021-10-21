@@ -1,36 +1,32 @@
-package Animals;
+package animals;
+import food.Food;
+import food.Meat;
 
-import Food.Food;
-import Food.Veggies;
-
-public class Horse extends Animal{
-    protected String className = "Horse";
-    protected String name;
-
-    protected double health = Math.round(100);
-    protected int maxAge = 25;
+public class Bear extends Animal{
+    protected final String className = "Bear";
+    protected double health = 100;
+    protected int maxAge = 50;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
-
-    public Horse(String name, char gender) {
+    public Bear(String name, char gender) {
         super(name, gender);
     }
+
     @Override
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
     }
 
     @Override
     public void eatFood(Food foodToEat) {
         double amountHealthIncreased;
-        if  (foodToEat instanceof Veggies){
+        if  (foodToEat instanceof Meat){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println(" Horse health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Health increased by " + Math.floor(amountHealthIncreased));
         } else {
             System.out.println("I don't eat this kind of food.");
         }
-
     }
 
     @Override
@@ -48,6 +44,7 @@ public class Horse extends Animal{
         return maxAge;
     }
 
+
     @Override
     public int getCurrentStartAge() {
         return currentStartAge;
@@ -55,7 +52,7 @@ public class Horse extends Animal{
 
     @Override
     public void setCurrentStartAge(int currentStartAge) {
-    this.currentStartAge = currentStartAge;
+        this.currentStartAge = currentStartAge;
     }
 
     @Override
@@ -71,9 +68,6 @@ public class Horse extends Animal{
     @Override
     public void setGender(char gender) {
         this.gender = gender;
-    }
-    public String getClassName() {
-        return className;
     }
 
 

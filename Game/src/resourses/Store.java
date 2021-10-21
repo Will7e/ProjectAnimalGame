@@ -1,10 +1,10 @@
-package Resourses;
+package resourses;
 
-import Animals.*;
-import Food.Meat;
-import Food.MixFood;
-import Food.Veggies;
-import GameController.Player;
+import animals.*;
+import food.Meat;
+import food.MixFood;
+import food.Veggies;
+import gamecontroller.Player;
 
 import java.util.Scanner;
 

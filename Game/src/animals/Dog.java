@@ -1,16 +1,17 @@
-package Animals;
+package animals;
 
-import Food.Food;
-import Food.Meat;
 
-public class Lion extends Animal{
-    protected String className = "Lion";
+import food.Food;
+import food.MixFood;;
+
+public class Dog extends Animal{
+    protected String className = "Dog";
     protected double health = 100;
-    protected int maxAge = 100;
+    protected int maxAge = 20;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
 
-    public Lion(String name, char gender) {
+    public Dog(String name, char gender) {
         super(name, gender);
     }
 
@@ -28,15 +29,20 @@ public class Lion extends Animal{
     @Override
     public void eatFood(Food foodToEat) {
         double amountHealthIncreased;
-        if  (foodToEat instanceof Meat){
+        if  (foodToEat instanceof MixFood){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println("Lion health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Health increased by " + Math.floor(amountHealthIncreased));
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("I don't eat this kind of food.");
         }
-
     }
+
     @Override
     public double getHealth() {
         return health;
@@ -46,7 +52,6 @@ public class Lion extends Animal{
     public void setHealth(double health) {
         this.health = health;
     }
-
     @Override
     public int getMaxAge() {
         return maxAge;
@@ -59,7 +64,8 @@ public class Lion extends Animal{
 
     @Override
     public void setCurrentStartAge(int currentStartAge) {
-    this.currentStartAge = currentStartAge;
+        this.currentStartAge = currentStartAge;
+
     }
 
     @Override

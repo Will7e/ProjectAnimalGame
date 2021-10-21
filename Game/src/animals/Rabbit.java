@@ -1,7 +1,7 @@
-package Animals;
+package animals;
 
-import Food.Food;
-import Food.Veggies;
+import food.Food;
+import food.Veggies;
 
 public class Rabbit extends Animal{
     protected String className = "Rabbit";
@@ -31,7 +31,7 @@ public class Rabbit extends Animal{
         if  (foodToEat instanceof Veggies){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println(" Rabbit health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Health increased by " + Math.floor(amountHealthIncreased));
         } else {
             System.out.println("I don't eat this kind of food.");
         }

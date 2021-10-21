@@ -1,6 +1,6 @@
-package GameController;
+package gamecontroller;
 
-import Resourses.Store;
+import resourses.Store;
 
 import java.util.ArrayList;
 import java.util.Iterator;

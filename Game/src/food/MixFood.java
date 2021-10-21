@@ -1,4 +1,4 @@
-package Food;
+package food;
 
 public class MixFood extends Food{
     protected String name = "MixFood";

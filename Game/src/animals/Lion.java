@@ -1,15 +1,23 @@
-package Animals;
-import Food.Food;
-import Food.Meat;
+package animals;
 
-public class Bear extends Animal{
-    protected final String className = "Bear";
+import food.Food;
+import food.Meat;
+
+public class Lion extends Animal{
+    protected String className = "Lion";
     protected double health = 100;
-    protected int maxAge = 50;
+    protected int maxAge = 100;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
-    public Bear(String name, char gender) {
+
+    public Lion(String name, char gender) {
         super(name, gender);
+    }
+
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -23,12 +31,12 @@ public class Bear extends Animal{
         if  (foodToEat instanceof Meat){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println("Bear health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Health increased by " + Math.floor(amountHealthIncreased));
         } else {
             System.out.println("I don't eat this kind of food.");
         }
-    }
 
+    }
     @Override
     public double getHealth() {
         return health;
@@ -36,14 +44,13 @@ public class Bear extends Animal{
 
     @Override
     public void setHealth(double health) {
-        this.health = Math.round(health);
+        this.health = health;
     }
 
     @Override
     public int getMaxAge() {
         return maxAge;
     }
-
 
     @Override
     public int getCurrentStartAge() {
@@ -52,7 +59,7 @@ public class Bear extends Animal{
 
     @Override
     public void setCurrentStartAge(int currentStartAge) {
-        this.currentStartAge = currentStartAge;
+    this.currentStartAge = currentStartAge;
     }
 
     @Override
