@@ -23,7 +23,7 @@ public class Bear extends Animal{
         if  (foodToEat instanceof Meat){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println("Your health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Bear health increased by " + Math.round(amountHealthIncreased));
         } else {
             System.out.println("I don't eat this kind of food.");
         }

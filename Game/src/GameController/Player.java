@@ -95,7 +95,7 @@ public class Player {
             System.out.println("---------------");
         }
     }
-// Player choice to feed the animal 
+    // Player choice to feed the animal
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have food");
@@ -105,26 +105,35 @@ public class Player {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Type in the name of animal you want to feed.");
-            printAnimal(player);
-            String animalName = console.nextLine();
-            for (int i = 0; i < animalList.size(); i++) {
-                if (animalName.equalsIgnoreCase(animalList.get(i).getName())) {
-                    System.out.println("Type in name of the food you want to feed animal.");
-                    System.out.println("[Meat]    [Veggies]    [Mix Food]");
-                    String food = console.nextLine();
-                    for (int j = 0; j < foodList.size(); j++) {
-                        if (food.equalsIgnoreCase(foodList.get(i).getName())) {
-                            animalList.get(i).eatFood(foodList.get(i));
-                            foodList.remove(foodList.get(i));
-                        }
+            checkAnimal(player);
+        }
+    }
+    public void checkAnimal(Player player) {
+        System.out.println("Type in the name of animal you want to feed.");
+        printAnimal(player);
+        String animalName = console.nextLine();
+        for (int i = 0; i < animalList.size(); i++) {
+            if (animalName.equalsIgnoreCase(animalList.get(i).getName())) {
+                System.out.println("Type in name of the food you want to feed animal.");
+                System.out.println("[Meat]    [Veggies]    [Mix Food]");
+                String food = console.nextLine();
+                for (int j = 0; j < foodList.size(); j++) {
+                    if (food.equalsIgnoreCase(foodList.get(i).getName())) {
+                        animalList.get(i).eatFood(foodList.get(i));
+                        foodList.remove(foodList.get(i));
+                        System.out.println("You've use the food.");
                     }
-                } else {
-                    System.out.println("Animal not found. Type again.");
                 }
+            } else {
+                System.out.println("Animal not found. Type again.");
+                checkAnimal(player);
             }
         }
     }
 }
+
+
+
+
 
 

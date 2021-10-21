@@ -13,6 +13,7 @@ public class Game {
     protected Store store;
     private int playerAmount;
     int i;
+
     // konstruktorn
     public Game() {
         store = new Store();
@@ -65,6 +66,7 @@ public class Game {
 
         // This method is checking if player's name already exist.
     }
+
     public boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player player : playerList) {
             if (player.getName().equalsIgnoreCase(givenName)) {
@@ -73,13 +75,14 @@ public class Game {
         }
         return false;
     }
+
     //Case 1 - Buy animal / Set gender.
     public void playerChoice() {
         Iterator<Player> iterator = playerList.iterator();
         while (iterator.hasNext()) {
             Player player = iterator.next();
             System.out.println("---------------");
-            System.out.println("[Round: " + i+"]");
+            System.out.println("[Round: " + i + "]");
             System.out.println("Player: " + player.getName() +
                     "\nCoins: " + player.getCoins());
             System.out.println("---------------");
@@ -87,7 +90,7 @@ public class Game {
             System.out.println("---------------");
             player.printFood(player);
             System.out.println();
-            System.out.println("What do you want to do? [Player: "+ player.getName()+"] | [Round: "+i+"] |["+ player.getCoins()+" Coins]");
+            System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + i + "] | [" + player.getCoins() + " Coins]");
             System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
             int input = scanner.nextInt();
             if (input < 1 || input > 6) {
@@ -102,8 +105,10 @@ public class Game {
                         break;
                     case 3:
                         break;
-                    case 4:player.feedAnimal(player);
-                    break;
+                    case 4:
+                        player.feedAnimal(player);
+                        playerChoice();
+                        break;
                     default:
                         System.out.println(" Incorrect input ");
                 }

@@ -32,7 +32,7 @@ public class Dog extends Animal{
         if  (foodToEat instanceof MixFood){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
-            System.out.println("Your health increased by " + Math.round(amountHealthIncreased));
+            System.out.println("Dog health increased by " + Math.round(amountHealthIncreased));
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
