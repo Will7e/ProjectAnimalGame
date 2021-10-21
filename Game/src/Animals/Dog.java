@@ -1,8 +1,12 @@
 package Animals;
 
+
+import Food.Food;
+import Food.MixFood;;
+
 public class Dog extends Animal{
     protected String className = "Dog";
-    protected int health = 100;
+    protected double health = 100;
     protected int maxAge = 20;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
@@ -14,7 +18,7 @@ public class Dog extends Animal{
 
     @Override
     public String getName() {
-        return className;
+        return name;
     }
 
     @Override
@@ -23,19 +27,30 @@ public class Dog extends Animal{
     }
 
     @Override
-    public void foodToEat() {
-
-
-
+    public void eatFood(Food foodToEat) {
+        double amountHealthIncreased;
+        if  (foodToEat instanceof MixFood){
+            amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
+            setHealth(getHealth() * foodToEat.getHealthIncrease());
+            System.out.println("Your health increased by " + Math.round(amountHealthIncreased));
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("I don't eat this kind of food.");
+        }
     }
+
     @Override
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
 
     @Override
-    public int setHealth() {
-        return health;
+    public void setHealth(double health) {
+        this.health = Math.round(health);
     }
     @Override
     public int getMaxAge() {

@@ -1,11 +1,11 @@
 package Game;
 
-import GameController.GameLogic;
+import GameController.Game;
 
 public class Main {
 
     public static void main(String[] args) {
-        new GameLogic();
+        new Game();
 
 
     }}

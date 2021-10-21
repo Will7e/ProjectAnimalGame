@@ -1,12 +1,13 @@
 package Animals;
+import Food.Food;
+import Food.Meat;
 
 public class Bear extends Animal{
     protected final String className = "Bear";
-    protected final int health = 100;
-    protected final int maxAge = 50;
+    protected double health = 100;
+    protected int maxAge = 50;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
-
     public Bear(String name, char gender) {
         super(name, gender);
     }
@@ -17,18 +18,25 @@ public class Bear extends Animal{
     }
 
     @Override
-    public void foodToEat() {
-
+    public void eatFood(Food foodToEat) {
+        double amountHealthIncreased;
+        if  (foodToEat instanceof Meat){
+            amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
+            setHealth(getHealth() * foodToEat.getHealthIncrease());
+            System.out.println("Your health increased by " + Math.round(amountHealthIncreased));
+        } else {
+            System.out.println("I don't eat this kind of food.");
+        }
     }
 
     @Override
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
 
     @Override
-    public int setHealth() {
-        return health;
+    public void setHealth(double health) {
+        this.health = Math.round(health);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package Animals;
 
+import Food.Food;
+import Food.Veggies;
+
 public class Rabbit extends Animal{
     protected String className = "Rabbit";
-    protected int health = 100;
+    protected double health = 100;
     protected int maxAge = 10;
     protected int currentStartAge = 0;
     protected int breedingChance = 50;
@@ -23,18 +26,25 @@ public class Rabbit extends Animal{
     }
 
     @Override
-    public void foodToEat() {
+    public void eatFood(Food foodToEat) {
+        double amountHealthIncreased;
+        if  (foodToEat instanceof Veggies){
+            amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
+            setHealth(getHealth() * foodToEat.getHealthIncrease());
+            System.out.println("Your health increased by " + Math.round(amountHealthIncreased));
+        } else {
+            System.out.println("I don't eat this kind of food.");
+        }
 
     }
-
     @Override
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
 
     @Override
-    public int setHealth() {
-        return health;
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     @Override
