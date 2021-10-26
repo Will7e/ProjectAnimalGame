@@ -114,6 +114,9 @@ public class Game {
                         vet.breedingChance(player);
                         break;
 
+                    case 6:
+
+
                     default:
                         System.out.println(" Incorrect input ");
                 }

@@ -7,7 +7,7 @@ import java.sql.SQLOutput;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.regex.Pattern;
+
 
 public class Vet {
 
@@ -80,7 +80,6 @@ public class Vet {
 
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(name1)) {
                 index1 = i;
-                System.out.println(index1);
                 firstAnimalFound = true;
                 break;
             }
@@ -103,7 +102,7 @@ public class Vet {
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(name2)) {
                 index2 = i;
                 secondAnimalFound = true;
-                System.out.println(index2);
+
                 break;
             }
 
@@ -113,8 +112,36 @@ public class Vet {
             System.out.println("Animal doesnt exist, please try again");
             selectAnimal(player);
         }
-        
 
+        checkAnimalsMatch(player);
+
+    }
+
+    public void checkAnimalsMatch(Player player) {
+
+
+        if (player.getAnimalList().get(index1).getClassName().equalsIgnoreCase(player.getAnimalList().get(index2).getClassName())) {
+            System.out.println("The animal are the same race");
+            checkGender(player);
+        }
+
+        else {
+            System.out.println("Animals arent the same Race, try again");
+
+        }
+
+    }
+
+    public void checkGender(Player player) {
+        if (player.getAnimalList().get(index1).getGender() != player.getAnimalList().get(index2).getGender()) {
+
+            System.out.println("The animals are different gender, lets breed");
+
+        }
+
+        else {
+            System.out.println("Cant mate, same sex, please try again");
+        }
     }
          }
 
