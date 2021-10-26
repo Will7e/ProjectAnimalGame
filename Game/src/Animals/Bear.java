@@ -10,6 +10,8 @@ public class Bear extends Animal{
     protected int breedingChance = 50;
     public Bear(String name, char gender) {
         super(name, gender);
+        this.name = name;
+        this.gender = gender;
     }
 
     @Override

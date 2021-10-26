@@ -12,6 +12,8 @@ public class Lion extends Animal{
 
     public Lion(String name, char gender) {
         super(name, gender);
+        this.name = name;
+        this.gender = gender;
 
     }
 

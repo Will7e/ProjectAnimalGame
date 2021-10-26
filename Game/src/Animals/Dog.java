@@ -13,6 +13,8 @@ public class Dog extends Animal{
 
     public Dog(String name, char gender) {
         super(name, gender);
+        this.name = name;
+        this.gender = gender;
     }
 
 

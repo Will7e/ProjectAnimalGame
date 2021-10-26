@@ -31,6 +31,7 @@ public class Store {
         this.mixFoodPrice = mixFoodPrice;
         this.veggiesPrice = veggiesPrice;
         this.input2 = input2;
+
         this.playerChoice = playerChoice;
     }
 

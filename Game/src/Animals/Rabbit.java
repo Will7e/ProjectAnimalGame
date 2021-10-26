@@ -4,6 +4,8 @@ import Food.Food;
 import Food.Veggies;
 
 public class Rabbit extends Animal{
+    private String name;
+    private char gender;
     protected String className = "Rabbit";
     protected double health = 100;
     protected int maxAge = 10;
@@ -12,6 +14,8 @@ public class Rabbit extends Animal{
 
     public Rabbit(String name, char gender) {
         super(name, gender);
+        this.name = name;
+        this.gender = gender;
     }
 
 

@@ -1,6 +1,7 @@
 package GameController;
 
-import Resourses.Store;
+import Resourses.*;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,11 +14,14 @@ public class Game {
     protected Store store;
     private int playerAmount;
     int i;
+    Vet vet = new Vet();
     // konstruktorn
+
     public Game() {
         store = new Store();
         this.playerList = new ArrayList<>();
         startGame();
+
     }
 
     // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
@@ -105,6 +109,11 @@ public class Game {
                         break;
                     case 4:player.feedAnimal(player);
                     break;
+
+                    case 5:
+                        vet.breedingChance(player);
+                        break;
+
                     default:
                         System.out.println(" Incorrect input ");
                 }
