@@ -1,11 +1,9 @@
 package gamecontroller;
 
+import animals.Animal;
 import resourses.Store;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
@@ -13,6 +11,8 @@ public class Game {
     protected Store store;
     private int playerAmount;
     int i;
+    Random rand = new Random();
+
 
     // konstruktorn
     public Game() {
@@ -100,18 +100,52 @@ public class Game {
                     case 1:
                         store.animalToBuy(player);
                         break;
+
                     case 2:
                         store.buyFood(player);
                         break;
+
                     case 3:
                         break;
+
                     case 4:
+                        if (i > 1){
+                            decreaseHealth(player);
+                        }
                         player.feedAnimal(player);
                         playerChoice();
                         break;
+
+                    case 5:
+
                     default:
                         System.out.println(" Incorrect input ");
                 }
+            }
+        }
+    }
+
+    public void decreaseHealth(Player player) {
+        for (Animal animal : player.getAnimalList()) {
+            double random = 0.7 + rand.nextDouble() * (0.9 - 0.7);
+            double roundRandom = (double) Math.round(random * 100) / 100;
+            animal.setHealth(animal.getHealth() * roundRandom);
+            System.out.println("Health decreases by " + ((1.0 - roundRandom) * 100.0) + "%");
+        }
+    }
+
+    public void checkAnimalHealth(Player player) {
+        for (Animal animal : player.getAnimalList()) {
+            if (animal.getHealth() == 0) {
+                player.getAnimalList().remove(animal);
+                System.out.println(animal.getName() + " has 0 health. The animal passed away... R.I.P");
+            }
+
+        }
+        for (Animal animal : player.getAnimalList()) {
+            if (animal.getCurrentStartAge() == animal.getMaxAge()){
+                player.getAnimalList().remove(animal);
+                System.out.println(animal.getName() + " has grown too old. The animal passed away... R.I.P");
             }
         }
     }
