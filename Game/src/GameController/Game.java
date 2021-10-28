@@ -13,14 +13,16 @@ public class Game {
     public ArrayList<Player> playerList;
     protected Store store;
     private int playerAmount;
-    int i;
+    private int amountRounds;
     Vet vet = new Vet();
     // konstruktorn
 
     public Game() {
         store = new Store();
         this.playerList = new ArrayList<>();
+        this.amountRounds = amountRounds;
         startGame();
+
 
     }
 
@@ -34,7 +36,7 @@ public class Game {
         } else {
             askAmountPlayers();
             addPlayer();
-            for (i = 1; i <= input; i++) {
+            for (amountRounds = 1; amountRounds <= input; amountRounds++) {
                 playerChoice();
             }
         }
@@ -83,7 +85,7 @@ public class Game {
         while (iterator.hasNext()) {
             Player player = iterator.next();
             System.out.println("---------------");
-            System.out.println("[Round: " + i+"]");
+            System.out.println("[Round: " + amountRounds+"]");
             System.out.println("Player: " + player.getName() +
                     "\nCoins: " + player.getCoins());
             System.out.println("---------------");
@@ -91,7 +93,7 @@ public class Game {
             System.out.println("---------------");
             player.printFood(player);
             System.out.println();
-            System.out.println("What do you want to do? [Player: "+ player.getName()+"] | [Round: "+i+"] |["+ player.getCoins()+" Coins]");
+            System.out.println("What do you want to do? [Player: "+ player.getName()+"] | [Round: "+amountRounds+"] |["+ player.getCoins()+" Coins]");
             System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
             int input = scanner.nextInt();
             if (input < 1 || input > 6) {
@@ -107,7 +109,8 @@ public class Game {
                     case 3:
                         store.sellAnimal(player);
                         break;
-                    case 4:player.feedAnimal(player);
+                    case 4:
+                        player.feedAnimal(player);
                     break;
 
                     case 5:
