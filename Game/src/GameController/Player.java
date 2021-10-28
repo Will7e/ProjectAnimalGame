@@ -4,6 +4,7 @@ package GameController;
 import Animals.Animal;
 import Food.Food;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,8 +15,8 @@ import java.util.Scanner;
  *
  * @author william, ridah, marcus
  */
-public class Player {
-    Scanner console = new Scanner(System.in);
+public class Player implements Serializable {
+    transient Scanner console = new Scanner(System.in);
     private String name;
     private int playerCoins = 100;
     private ArrayList<Animal> animalList; // ArrayList

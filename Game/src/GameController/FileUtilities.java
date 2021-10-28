@@ -19,7 +19,8 @@ public class FileUtilities {
             oi.close();
             streamIn.close();
         } catch (Exception e) {
-            System.out.println("Error, cant load file");
+
+           e.printStackTrace();
         }
         return loadGame;
     }
@@ -34,7 +35,7 @@ public class FileUtilities {
             objectOut.close();
             streamOut.close();
         }   catch (Exception e) {
-            System.out.println("Error, cant save runtime to file");
+            e.printStackTrace();
         }
 
     }

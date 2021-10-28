@@ -7,13 +7,13 @@ public class SaveRunTimeGame implements Serializable {
 
     private int playerAmount;
     private int amountRounds;
-    private ArrayList<Player> history;
+    private ArrayList<Player> playerList;
 
     public SaveRunTimeGame (Game game) {
 
-        this.playerAmount = getPlayerAmount();
-        this.amountRounds = getAmountRounds();
-        this.history = getHistory();
+        this.playerAmount = game.getPlayerAmount();
+        this.amountRounds = game.getAmountRounds();
+        this.playerList = game.getPlayerList();
 
     }
 
@@ -22,8 +22,8 @@ public class SaveRunTimeGame implements Serializable {
         return playerAmount;
     }
 
-    public ArrayList<Player> getHistory () {
-        return history;
+    public ArrayList<Player> getPlayerListHistory () {
+        return playerList;
     }
 
     public int getAmountRounds() {

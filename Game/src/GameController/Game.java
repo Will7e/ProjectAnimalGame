@@ -3,25 +3,44 @@ package GameController;
 import Resourses.*;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public class Game {
-    Scanner scanner = new Scanner(System.in);
+public class Game implements Serializable{
+
+    transient Scanner scanner = new Scanner(System.in);
     public ArrayList<Player> playerList;
     protected Store store;
     private int playerAmount;
     private int amountRounds;
+    private String fileName;
     Vet vet = new Vet();
     // konstruktorn
+
+    public Game(SaveRunTimeGame loadSavedGame) {
+
+        this.playerList = loadSavedGame.getPlayerListHistory();
+        this.amountRounds = loadSavedGame.getAmountRounds();
+        this.playerAmount = loadSavedGame.getPlayerAmount();
+        System.out.println("Loaded old save game with the following information: ");
+        System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
+        System.out.println("Rounds played = " + amountRounds);
+        playerChoice();
+
+    }
+
+
 
     public Game() {
         store = new Store();
         this.playerList = new ArrayList<>();
+        this.playerAmount = playerAmount;
         this.amountRounds = amountRounds;
         startGame();
+
 
 
     }
@@ -85,7 +104,7 @@ public class Game {
         while (iterator.hasNext()) {
             Player player = iterator.next();
             System.out.println("---------------");
-            System.out.println("[Round: " + amountRounds+"]");
+            System.out.println("[Round: " + amountRounds + "]");
             System.out.println("Player: " + player.getName() +
                     "\nCoins: " + player.getCoins());
             System.out.println("---------------");
@@ -93,9 +112,9 @@ public class Game {
             System.out.println("---------------");
             player.printFood(player);
             System.out.println();
-            System.out.println("What do you want to do? [Player: "+ player.getName()+"] | [Round: "+amountRounds+"] |["+ player.getCoins()+" Coins]");
+            System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + amountRounds + "] |[" + player.getCoins() + " Coins]");
             System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
-            int input = scanner.nextInt();
+            int input = Integer.parseInt(scanner.nextLine());
             if (input < 1 || input > 6) {
                 System.out.println("Choice between 1 - 6");
             } else {
@@ -111,7 +130,7 @@ public class Game {
                         break;
                     case 4:
                         player.feedAnimal(player);
-                    break;
+                        break;
 
                     case 5:
                         vet.breedingChance(player);
@@ -120,13 +139,39 @@ public class Game {
                     case 6:
 
 
+                        System.out.println("Enter the name of the file you want to write to");
+
+                        fileName = scanner.nextLine();
+
+                        FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
+                        System.exit(0);
+                        break;
+
+
                     default:
                         System.out.println(" Incorrect input ");
                 }
             }
+
         }
-    }
-}
+
+            }
+
+            public int getPlayerAmount() {
+                return this.playerAmount;
+
+            }
+
+            public ArrayList<Player> getPlayerList () {
+               return this.playerList;
+            }
+
+            public int getAmountRounds() {
+            return this.amountRounds;
+            }
+        }
+
+
 
 
 
