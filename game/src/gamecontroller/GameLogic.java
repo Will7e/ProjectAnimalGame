@@ -2,22 +2,24 @@ package gamecontroller;
 
 import resourses.Store;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-public class Game {
-    Scanner scanner = new Scanner(System.in);
+public class GameLogic {
+    private Scanner scanner = new Scanner(System.in);
     public ArrayList<Player> playerList;
+    private Veterinary vet;
     protected Store store;
     private int playerAmount;
+    Random random;
     int i;
 
     // konstruktorn
-    public Game() {
+    public GameLogic() {
+
+        this.vet = new Veterinary();
         store = new Store();
         this.playerList = new ArrayList<>();
+        this.random = new Random();
         startGame();
     }
 
@@ -92,7 +94,7 @@ public class Game {
             System.out.println();
             System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + i + "] | [" + player.getCoins() + " Coins]");
             System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
-            int input = scanner.nextInt();
+            int input = Integer.parseInt(scanner.nextLine());
             if (input < 1 || input > 6) {
                 System.out.println("Choice between 1 - 6");
             } else {
@@ -108,6 +110,8 @@ public class Game {
                     case 4:
                         player.feedAnimal(player);
                         playerChoice();
+                        break;
+                    case 5:vet.breedAnimal(player);
                         break;
                     default:
                         System.out.println(" Incorrect input ");
