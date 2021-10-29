@@ -68,5 +68,4 @@ public class Bear extends Animal{
         this.gender = gender;
     }
 
-
 }

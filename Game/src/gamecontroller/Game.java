@@ -4,7 +4,7 @@ import resourses.Store;
 
 import java.util.*;
 
-public class GameLogic {
+public class Game {
     private Scanner scanner = new Scanner(System.in);
     public ArrayList<Player> playerList;
     private Veterinary vet;
@@ -14,7 +14,7 @@ public class GameLogic {
     int i;
 
     // konstruktorn
-    public GameLogic() {
+    public Game() {
 
         this.vet = new Veterinary();
         store = new Store();
@@ -105,7 +105,7 @@ public class GameLogic {
                     case 2:
                         store.buyFood(player);
                         break;
-                    case 3:
+                    case 3:store.sellAnimal(player);
                         break;
                     case 4:
                         player.feedAnimal(player);

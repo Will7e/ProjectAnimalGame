@@ -77,6 +77,7 @@ public class Store {
                     }
                     player.setCoins(player.getCoins() - getBearPrice() * input2);
                     System.out.println("You have " + player.getCoins() + " left. ");
+
                 }
                 break;
             }
@@ -161,6 +162,74 @@ public class Store {
             }
         }
     }
+
+    // Sell animals
+    public void sellAnimal(Player player) {
+        if (player.getAnimalList().size() == 0) {
+            System.out.println("You don't own any animals");
+        } else {
+            System.out.println(player.getName() + " here is a list of the animals you own and the price");
+            for (int i = 0; i < player.getAnimalList().size(); i++) {
+
+                System.out.print("[Name] " + player.getAnimalList().get(i).getName());
+                System.out.print(" [Type] " + player.getAnimalList().get(i).getClassName());
+
+                if (player.getAnimalList().get(i).getClassName().equals("Bear")) {
+                    System.out.println(" [Value] " + getBearPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Dog")) {
+                    System.out.println(" [Value] " + getDogPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Horse")) {
+                    System.out.println(" [Value] " + getHorsePrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Lion")) {
+                    System.out.println(" [Value] " + getLionPrice() + " coins");
+                } else if (player.getAnimalList().get(i).getClassName().equals("Rabbit")) {
+                    System.out.println(" [Value] " + getRabbitPrice() + " coins");
+                }
+
+            }
+            System.out.println("Which animal do you want to sell? Type in the name of the animal");
+            String playerChoice = console.nextLine();
+
+            for (int j = 0; j < player.getAnimalList().size(); j++) {
+                if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Bear")) {
+                    player.getAnimalList().remove(j);
+
+                    player.setCoins(player.getCoins() + getBearPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+                } else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Dog")) {
+                    player.getAnimalList().remove(j);
+
+                    player.setCoins(player.getCoins() + getDogPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+                } else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Horse")) {
+                    player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getHorsePrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                } else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Lion")) {
+                    player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getLionPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                } else if (player.getAnimalList().get(j).getName().equalsIgnoreCase(playerChoice) &&
+                        player.getAnimalList().get(j).getClassName().equals("Rabbit")) {
+
+                    player.getAnimalList().remove(j);
+                    player.setCoins(player.getCoins() + getRabbitPrice());
+                    System.out.println("Sale done, your balance is now " + player.getCoins());
+
+                } else {
+                    System.out.println("You typed the name wrong, please try again");
+                    sellAnimal(player);
+                }
+            }
+        }
+    }
+
     //Prints out food to buy for players. Then add to list.
     public void buyFood(Player player) {
         foodPrice();
@@ -210,38 +279,42 @@ public class Store {
                 break;
         }
     }
-    public void animalPrice(){
+
+    public void animalPrice() {
         System.out.println("1. Bear " + "   ( " + this.getBearPrice() + " Coins )\n" +
                 "2. Dog " + "    ( " + this.getDogPrice() + " Coins )\n" +
                 "3. Horse " + "  ( " + this.getHorsePrice() + " Coins )\n" +
                 "4. Lion " + "   ( " + this.getLionPrice() + " Coins )\n" +
                 "5. Rabbit " + " ( " + this.getRabbitPrice() + " Coins )");
     }
-    public void foodPrice(){
+
+    public void foodPrice() {
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
                 "2. Veggies " + " ( " + this.getVeggiesPrice() + " Coins / Kg )\n" +
                 "3. MixFood " + " ( " + this.getMixFoodPrice() + " Coins / Kg )");
 
     }
-    public char setGender(){
+
+    public char setGender() {
         System.out.println("Gender (M / F): ");
         gender = console.nextLine().charAt(0);
-        if (gender == 'f' || gender == 'm' || gender == 'F' || gender == 'M' ){
+        if (gender == 'f' || gender == 'm' || gender == 'F' || gender == 'M') {
             return gender;
         }
         System.out.println("Gender has to be M or F. Try again");
         return setGender();
     }
 
-    public String setName(Player player){
+    public String setName(Player player) {
         System.out.print("Namn: ");
         name = console.nextLine();
-        if (hasThisName(player.getAnimalList(),name)){
+        if (hasThisName(player.getAnimalList(), name)) {
             System.out.println("This name already exist. Choose another name. ");
             return setName(player);
         }
         return name;
     }
+
     public boolean hasThisName(List<Animal> animalList, String givenName) {
         for (Animal animal : animalList) {
             if (animal.getName().equalsIgnoreCase(givenName)) {
