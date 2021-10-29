@@ -21,9 +21,11 @@ public class Player implements Serializable {
     private int playerCoins = 100;
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
+    private int index = 0;
 
 
     public Player(String name) {
+        this.index = index;
         this.name = name;
         this.animalList = new ArrayList<>();
         this.foodList = new ArrayList<>();
@@ -97,7 +99,7 @@ public class Player implements Serializable {
             System.out.println("---------------");
         }
     }
-// Player choice to feed the animal 
+// Player choice to feed the animal
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have food");
@@ -127,6 +129,8 @@ public class Player implements Serializable {
             }
         }
     }
+
+
 }
 
 

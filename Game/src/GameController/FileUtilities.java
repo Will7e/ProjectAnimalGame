@@ -16,11 +16,13 @@ public class FileUtilities {
             ObjectInputStream oi = new ObjectInputStream(streamIn);
             loadGame = (SaveRunTimeGame) oi.readObject();
 
+
             oi.close();
             streamIn.close();
+
         } catch (Exception e) {
 
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return loadGame;
     }
@@ -32,13 +34,19 @@ public class FileUtilities {
             ObjectOutputStream objectOut = new ObjectOutputStream(streamOut);
             objectOut.writeObject(saveRunTime);
 
-            objectOut.close();
-            streamOut.close();
+
+                 objectOut.close();
+                 streamOut.close();
+
         }   catch (Exception e) {
             e.printStackTrace();
         }
 
+        }
+
+
+
     }
 
 
-}
+
