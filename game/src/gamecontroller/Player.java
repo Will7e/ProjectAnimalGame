@@ -59,24 +59,28 @@ public class Player {
             System.out.println("[Empty]");
         } else {
             for (Animal animal : animalList) {
-                System.out.println("---------------");
-                System.out.println("Type [" + animal.getClassName() + "]\n[Name: " + animal.getName() + "]" +
-                        "[Age: "+ animal.getAge()+"] [Gender: " + animal.getGender() + " )" + "] " +
-                        "[Health: " + animal.getHealth() + "]");
-
                 if (animal.getHealth() == 0){
                     System.out.println("Your animal is death! ");
                     System.out.println("[Your ["+animal.getName()+"]. Health: "+ animal.getHealth() +
                             " .Have been remove.");
                     animalList.remove(animal);
+                    animalInfo(animal);
+                    Game.playerChoice(player);
                 }
                     if (animal.getAge() == animal.getMaxAge()){
-                        System.out.println("Your animal is death! ");
-                        System.out.println("[Your ["+animal.getName()+"]. Age is "+ animal.getAge()+
-                                " .Have been remove.");
+                        System.out.println("Your ["+ animal.getClassName()+ "] is death! ");
+                        System.out.println("[Type: "+animal.getClassName()+ "] [Name: "+animal.getName()+"] [Age: "+ animal.getAge()+
+                                "] is no longer in your animal list.");
                         animalList.remove(animal);
+                        animalInfo(animal);
+                        Game.playerChoice(player);
                     }
-
+                if (animalList.isEmpty()) {
+                    System.out.println("[Empty]");
+                    animalInfo(animal);
+                    Game.playerChoice(player);
+                }
+                animalInfo(animal);
                 }
 
             }
@@ -137,6 +141,13 @@ public class Player {
                 checkAnimal(player);
             }
         }
+    }
+    public void animalInfo(Animal animal){
+        System.out.println("---------------");
+        System.out.println("Type [" + animal.getClassName() + "]\n[Name: " + animal.getName() + "]" +
+                "[Age: "+ animal.getAge()+"] [Gender: " + animal.getGender() + " )" + "] " +
+                "[Health: " + animal.getHealth() + "]");
+
     }
 
 

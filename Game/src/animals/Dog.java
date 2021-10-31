@@ -51,13 +51,14 @@ public class Dog extends Animal{
 
     @Override
     public double getHealth() {
-        return health;
+        return (int)health;
     }
 
     @Override
     public void setHealth(double health) {
-        this.health = health;
+        this.health = (int) health;
     }
+
     @Override
     public int getMaxAge() {
         return maxAge;
@@ -75,13 +76,12 @@ public class Dog extends Animal{
     }
 
     @Override
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    @Override
     public int getPriceToSell() {
         return priceToSell;
+    }
+
+    public void setPriceToSell(int priceToSell) {
+        this.priceToSell = priceToSell;
     }
 
 

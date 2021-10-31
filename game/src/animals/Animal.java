@@ -26,10 +26,8 @@ public abstract class Animal {
     public abstract int getMaxAge();
     public abstract void setAge(int age);
     public abstract char  getGender();
-    public void setGender(char gender){
-        this.gender = gender;
-    }
     public abstract int getPriceToSell();
+    public abstract void setPriceToSell(int priceToSell);
 
 }
 

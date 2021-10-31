@@ -52,7 +52,7 @@ public class Veterinary {
     }
 
     public int checkAnimal2(Player player) {
-        System.out.println("(2).Type in animal name you want to breed with " + animalName +".");
+        System.out.println("(2).Type in animal name you want to breed with [" + animalName +"].");
         String animalName2 = console.nextLine();
         for (int i = 0; i < player.getAnimalList().size(); i++) {
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName2)) {
@@ -69,7 +69,7 @@ public class Veterinary {
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
-            store.animalToBuy(player);
+            Game.playerInfos();
         } else {
             printAnimalList(player);
             checkAnimal(player);
