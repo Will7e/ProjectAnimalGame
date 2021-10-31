@@ -17,6 +17,7 @@ public class Game implements Serializable {
     protected Store store;
     private int playerAmount;
     private int amountRounds;
+    private int displayRounds;
     private String fileName;
     private Player playersTurn;
 
@@ -28,6 +29,7 @@ public class Game implements Serializable {
         this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
         this.amountRounds = loadSavedGame.getAmountRounds();
+        this.displayRounds = loadSavedGame.getDisplayRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
 
@@ -119,12 +121,11 @@ public class Game implements Serializable {
     //Case 1 - Buy animal / Set gender.
     public void playerChoice(int amountRounds) {
 
-        int displayRounds = 0;
+
 
         for (int i = 0; i < amountRounds; i++) {
-
-
-            displayRounds++;
+            displayRounds  = i + 1;
+            setDisplayRounds(displayRounds);
 
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
@@ -139,7 +140,7 @@ public class Game implements Serializable {
                 Player player = iterator.next();
 
                 System.out.println("---------------");
-                System.out.println("[Round: " + displayRounds + "]");
+                System.out.println("[Round: " +  getDisplayRounds()+ "]");
                 System.out.println("Player: " + player.getName() +
                         "\nCoins: " + player.getCoins());
                 System.out.println("---------------");
@@ -149,7 +150,7 @@ public class Game implements Serializable {
                 System.out.println();
                 System.out.println(getIndex()); // left here for debugging, delete later
                 System.out.println("I = " + i); // left here for debugging, delete later
-                System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds  + "] |[" + player.getCoins() + " Coins]");
+                System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + getDisplayRounds() + "] |[" + player.getCoins() + " Coins]");
                 System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit Game");
                 int input = Integer.parseInt(scanner.nextLine());
                 if (input < 1 || input > 7) {
@@ -232,6 +233,14 @@ public class Game implements Serializable {
 
         public void setAmountRounds(int amountRounds) {
         this.amountRounds = amountRounds;
+        }
+
+        public void setDisplayRounds(int displayRounds) {
+        this.displayRounds = displayRounds;
+        }
+
+        public int getDisplayRounds() {
+        return this.displayRounds;
         }
 
 
