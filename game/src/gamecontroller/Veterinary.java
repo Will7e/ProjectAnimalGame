@@ -134,7 +134,6 @@ public class Veterinary {
                         e.printStackTrace();
                     }
                 }
-
             }
         }
     }

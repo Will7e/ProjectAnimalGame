@@ -82,7 +82,6 @@ public class Player {
                 }
                 animalInfo(animal);
                 }
-
             }
         }
     // Prints out list of players food and amounts.
@@ -116,7 +115,7 @@ public class Player {
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have food");
-            store.animalToBuy(player);
+            Game.playerChoice(player);
         } else {
             checkAnimal(player);
         }

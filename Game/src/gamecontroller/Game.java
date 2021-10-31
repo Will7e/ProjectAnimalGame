@@ -53,7 +53,6 @@ public class Game {
             }
         } while (playerAmount < 2 || playerAmount > 4);
     }
-
     // This method is for adding players to the list
     // Players can input names without having duplicate names.
     public void addPlayer() {
@@ -81,7 +80,6 @@ public class Game {
         return false;
     }
 
-    //Case 1 - Buy animal / Set gender.
     public static void playerInfos() {
         Iterator<Player> iterator = playerList.iterator();
         while (iterator.hasNext()) {
@@ -121,8 +119,6 @@ public class Game {
                         priceChange(player, 0.1);
                         break;
                     }
-
-
                 case 2:
                     healthReduce = 0.2 * animal.getHealth();
                     animal.setHealth(animal.getHealth() - healthReduce);
@@ -130,7 +126,6 @@ public class Game {
                         priceChange(player, 0.2);
                         break;
                     }
-
 
                 case 3:
                     healthReduce = 0.3 * animal.getHealth();
@@ -140,9 +135,7 @@ public class Game {
                         break;
 
                     }
-
             }
-
 
     }
     public static void priceChange(Player player, double percentage){
@@ -155,6 +148,7 @@ public class Game {
     public static void checkWinner(){
         for (Player player : playerList){
             if (playerList.size() == 1){
+                sellEveryThing(player);
                 System.out.println("Congrats " + player.getName()+"\nYou are the winner!! ");
                 gameRun = false;
                 gameRound(input);
@@ -176,9 +170,7 @@ public class Game {
                 findPlayerRank(player);
                 gameRun = false;
                 gameRound(input);
-
             }
-
         }
 
     }
@@ -192,10 +184,10 @@ public class Game {
         for (Player player : playerList){
           int highestCoins = Integer.compare(player.getCoins(), playerToCompare.getCoins());
           if (player.getCoins() > playerToCompare.getCoins()){
-              System.out.println(player.getName() + "has won with highest coins: " + highestCoins);
+              System.out.println(player.getName() + " has won with highest coins: " + highestCoins);
               break;
           }if (player.getCoins() == playerToCompare.getCoins()){
-                System.out.println("Both player " + player.getName() + " and " +  playerToCompare.getName());
+                System.out.println("Player " + player.getName() + " and " +  playerToCompare.getName());
                 System.out.println("Has won with " + highestCoins + " as highest.");
                 break;
           }else {
@@ -257,7 +249,6 @@ public class Game {
                     break;
                 case 4:
                     player.feedAnimal(player);
-                    playerInfos();
                     break;
                 case 5:
                     vet.breedAnimal(player);
