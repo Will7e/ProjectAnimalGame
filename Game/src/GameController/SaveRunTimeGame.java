@@ -8,13 +8,15 @@ public class SaveRunTimeGame implements Serializable {
     private int playerAmount;
     private int amountRounds;
     private int index;
-    private ArrayList<Player> playerList;
+    private ArrayList<Player> playerListHistory;
+
 
     public SaveRunTimeGame (Game game) {
         this.index = game.getIndex();
         this.playerAmount = game.getPlayerAmount();
         this.amountRounds = game.getAmountRounds();
-        this.playerList = game.getPlayerList();
+        this.playerListHistory = game.getPlayerListHistory();
+
 
 
 
@@ -25,8 +27,8 @@ public class SaveRunTimeGame implements Serializable {
         return playerAmount;
     }
 
-    public ArrayList<Player> getPlayerList () {
-        return playerList;
+    public ArrayList<Player> getPlayerListHistory () {
+        return playerListHistory;
     }
 
     public int getAmountRounds() {
@@ -35,9 +37,8 @@ public class SaveRunTimeGame implements Serializable {
     public int getIndex () {
         return index;
     }
-    public Player getPlayersTurn() {
-        return playerList.get(getIndex());
-    }
+
+
 
 
 

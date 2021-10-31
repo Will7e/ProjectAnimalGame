@@ -12,39 +12,43 @@ import java.util.Scanner;
 public class Game implements Serializable {
 
     transient Scanner scanner = new Scanner(System.in);
+    private int index;
     private ArrayList<Player> playerList;
     protected Store store;
     private int playerAmount;
     private int amountRounds;
     private String fileName;
     private Player playersTurn;
-    private int index = 0;
+
     Vet vet = new Vet();
     // konstruktorn
 
     public Game(SaveRunTimeGame loadSavedGame) {
 
-        System.out.println("Welcome back to the game!" + loadSavedGame.getPlayerList().get(loadSavedGame.getIndex()).getName());
-
-        this.playerList = loadSavedGame.getPlayerList();
+        this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
         this.amountRounds = loadSavedGame.getAmountRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
-
+        System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
 
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
-        System.out.println("Rounds played = " + amountRounds);
+        System.out.println("Current round = " + amountRounds);
         System.out.println("See below for more information");
-        playerChoice();
+        store = new Store();
+        playerChoice(amountRounds);
+
+
+
 
     }
 
 
     public Game() {
-        store = new Store();
+
         this.index = index;
         this.playerList = new ArrayList<>();
+        store = new Store();
         this.playerAmount = playerAmount;
         this.amountRounds = amountRounds;
         startGame();
@@ -56,18 +60,21 @@ public class Game implements Serializable {
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
         int input = Integer.parseInt(scanner.nextLine());
+        setAmountRounds(input);
+
         if (input < 5 || input > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
             askAmountPlayers();
             addPlayer();
-            for (amountRounds = 0; amountRounds <= input; amountRounds++) {
-                playerChoice();
+            playerChoice(input);
+        //    for (amountRounds = 1; amountRounds <= input; amountRounds++) {
+          //      playerChoice();
             }
         }
 
-    }
+
 
     private void askAmountPlayers() {
         // This method ask for how many players are going to play.
@@ -110,84 +117,105 @@ public class Game implements Serializable {
     }
 
     //Case 1 - Buy animal / Set gender.
-    public void playerChoice() {
+    public void playerChoice(int amountRounds) {
 
-        Iterator<Player> iterator = playerList.iterator();
+        int displayRounds = 0;
 
-
-
-        while (iterator.hasNext()) {
-            Player player = iterator.next();
-
-            System.out.println("---------------");
-            System.out.println("[Round: " + amountRounds + "]");
-            System.out.println("Player: " + player.getName() +
-                    "\nCoins: " + player.getCoins());
-            System.out.println("---------------");
-            player.printAnimal(player);
-            System.out.println("---------------");
-            player.printFood(player);
-            System.out.println();
-            System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + amountRounds + "] |[" + player.getCoins() + " Coins]");
-            System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit Game");
-            int input = Integer.parseInt(scanner.nextLine());
-            if (input < 1 || input > 7) {
-                System.out.println("Choice between 1 - 7");
-            } else {
+        for (int i = 0; i < amountRounds; i++) {
 
 
-                switch (input) {
-                    case 1:
-                        store.animalToBuy(player);
-                        setIndex(index++);
-                        break;
-                    case 2:
-                        store.buyFood(player);
-                        setIndex(index++);
-                        break;
-                    case 3:
-                        store.saleStart(player);
-                        setIndex(index++);
-                        break;
-                    case 4:
-                        player.feedAnimal(player);
-                        setIndex(index++);
-                        break;
+            displayRounds++;
 
-                    case 5:
-                        vet.breedingChance(player);
-                        setIndex(index++);
-                        break;
-
-                    case 6:
-
-
-                        System.out.println("Enter the name of the file you want to write to");
-                        fileName = scanner.nextLine();
-                        FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
-                        System.exit(0);
-
-                        break;
-
-                    case 7:
-                        System.out.println("Do you want to exit the game?"); // todo, choice to make;
-                        System.exit(0);
-
-                    default:
-                        System.out.println(" Incorrect input ");
-                }
+            if (getIndex() >= playerList.size()) {
+                setIndex(0);
+                index = 0;
             }
 
-        }
+            Iterator<Player> iterator = playerList.listIterator(getIndex());
 
+
+            while (iterator.hasNext()) {
+
+                Player player = iterator.next();
+
+                System.out.println("---------------");
+                System.out.println("[Round: " + displayRounds + "]");
+                System.out.println("Player: " + player.getName() +
+                        "\nCoins: " + player.getCoins());
+                System.out.println("---------------");
+                player.printAnimal(player);
+                System.out.println("---------------");
+                player.printFood(player);
+                System.out.println();
+                System.out.println(getIndex()); // left here for debugging, delete later
+                System.out.println("I = " + i); // left here for debugging, delete later
+                System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds  + "] |[" + player.getCoins() + " Coins]");
+                System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit Game");
+                int input = Integer.parseInt(scanner.nextLine());
+                if (input < 1 || input > 7) {
+                    System.out.println("Choice between 1 - 7");
+                } else {
+
+
+                    switch (input) {
+                        case 1:
+                            store.animalToBuy(player);
+                            System.out.println(getIndex());
+                            setIndex(index += 1);
+                            break;
+                        case 2:
+                            System.out.println(getIndex());
+                            store.buyFood(player);
+                            setIndex(index += 1);
+                            break;
+                        case 3:
+                            store.saleStart(player);
+                            setIndex(index++);
+                            break;
+                        case 4:
+                            player.feedAnimal(player);
+                             setIndex(index++);
+                            break;
+
+                        case 5:
+                            vet.breedingChance(player);
+                            setIndex(index++);
+                            break;
+
+                        case 6:
+
+
+                            System.out.println("Enter the name of the file you want to write to");
+                            fileName = scanner.nextLine();
+                            FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
+                            setIndex(index += 1);
+                            break;
+
+                        case 7:
+                            System.out.println("Do you want to exit the game?"); // todo, choice to make;
+                            System.exit(0);
+
+                        default:
+                            System.out.println(" Incorrect input ");
+                    }
+                }
+
+
+            }
+
+
+        }
     }
 
-    public int getPlayerAmount() {
+     //   }
+
+
+        public int getPlayerAmount() {
         return this.playerAmount;
 
     }
 
-    public ArrayList<Player> getPlayerList() {
+    public ArrayList<Player> getPlayerListHistory() {
         return this.playerList;
     }
 
@@ -196,20 +224,24 @@ public class Game implements Serializable {
     }
 
     public void setIndex(int index) {
+        this.index = index;
 
-        if (index >= this.playerList.size() -1) {
-            this.index = 0;
+
+
         }
 
-    }
+        public void setAmountRounds(int amountRounds) {
+        this.amountRounds = amountRounds;
+        }
+
+
 
     public int getIndex() {
         return this.index;
     }
 
-    public Player getPlayersTurn() {
-        return playerList.get(index);
-    }
+
+
 
 
     }
