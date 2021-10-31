@@ -7,7 +7,7 @@ public class Lion extends Animal{
     protected String className = "Lion";
     protected double health = 100;
     protected int maxAge = 100;
-    protected int currentStartAge = 0;
+    protected int priceToSell = 99;
 
     public Lion(String name, char gender) {
         super(name, gender);
@@ -17,6 +17,11 @@ public class Lion extends Animal{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -54,13 +59,8 @@ public class Lion extends Animal{
     }
 
     @Override
-    public int getCurrentStartAge() {
-        return currentStartAge;
-    }
-
-    @Override
-    public void setCurrentStartAge(int currentStartAge) {
-    this.currentStartAge = currentStartAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -71,6 +71,11 @@ public class Lion extends Animal{
     @Override
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public int getPriceToSell() {
+        return priceToSell;
     }
 
 

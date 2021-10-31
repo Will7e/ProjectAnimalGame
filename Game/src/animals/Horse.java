@@ -7,7 +7,7 @@ public class Horse extends Animal{
     protected String className = "Horse";
     protected double health = Math.round(100);
     protected int maxAge = 25;
-    protected int currentStartAge = 0;
+    protected int priceToSell = 50;
 
     public Horse(String name, char gender) {
         super(name, gender);
@@ -16,6 +16,11 @@ public class Horse extends Animal{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -49,13 +54,8 @@ public class Horse extends Animal{
     }
 
     @Override
-    public int getCurrentStartAge() {
-        return currentStartAge;
-    }
-
-    @Override
-    public void setCurrentStartAge(int currentStartAge) {
-    this.currentStartAge = currentStartAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -67,6 +67,12 @@ public class Horse extends Animal{
     public void setGender(char gender) {
         this.gender = gender;
     }
+
+    @Override
+    public int getPriceToSell() {
+        return priceToSell;
+    }
+
     public String getClassName() {
         return className;
     }

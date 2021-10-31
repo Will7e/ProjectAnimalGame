@@ -61,11 +61,26 @@ public class Player {
             for (Animal animal : animalList) {
                 System.out.println("---------------");
                 System.out.println("Type [" + animal.getClassName() + "]\n[Name: " + animal.getName() + "]" +
-                        " [Gender:( " + animal.getGender() + " )" + "] [Health: " + animal.getHealth() + "]");
+                        "[Age: "+ animal.getAge()+"] [Gender: " + animal.getGender() + " )" + "] " +
+                        "[Health: " + animal.getHealth() + "]");
+
+                if (animal.getHealth() == 0){
+                    System.out.println("Your animal is death! ");
+                    System.out.println("[Your ["+animal.getName()+"]. Health: "+ animal.getHealth() +
+                            " .Have been remove.");
+                    animalList.remove(animal);
+                }
+                    if (animal.getAge() == animal.getMaxAge()){
+                        System.out.println("Your animal is death! ");
+                        System.out.println("[Your ["+animal.getName()+"]. Age is "+ animal.getAge()+
+                                " .Have been remove.");
+                        animalList.remove(animal);
+                    }
+
+                }
+
             }
         }
-    }
-
     // Prints out list of players food and amounts.
     public void printFood(Player player) {
         System.out.println("Food list:");
@@ -102,7 +117,6 @@ public class Player {
             checkAnimal(player);
         }
     }
-
     public void checkAnimal(Player player) {
         System.out.println("Type in the name of animal you want to feed.");
         printAnimal(player);

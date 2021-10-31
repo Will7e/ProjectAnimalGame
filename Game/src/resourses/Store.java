@@ -9,13 +9,15 @@ import gamecontroller.Player;
 import java.util.List;
 import java.util.Scanner;
 
+// We should have a price to sell for animal because price in store for animal to buy can not change.
+
 public class Store {
-    private Scanner console = new Scanner(System.in);
-    protected int dogPrice = 30;
-    protected int bearPrice = 80;
-    protected int horsePrice = 50;
-    protected int lionPrice = 99;
-    protected int rabbitPrice = 10;
+    Scanner console = new Scanner(System.in);
+    public int dogPrice = 30;
+    public int bearPrice = 80;
+    public int horsePrice = 50;
+    public int lionPrice = 99;
+    public int rabbitPrice = 10;
     protected int meatPrice = 10;
     protected int mixFoodPrice = 5;
     protected int veggiesPrice = 1;
@@ -323,7 +325,6 @@ public class Store {
         }
         return false;
     }
-
 }
 
 

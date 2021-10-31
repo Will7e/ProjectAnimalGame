@@ -1,5 +1,6 @@
 package gamecontroller;
 
+import animals.Animal;
 import resourses.Store;
 
 import java.util.*;
@@ -12,6 +13,10 @@ public class Game {
     private int playerAmount;
     Random random;
     int i;
+    double healthReduceBy10;
+    double healthReduceBy20;
+    double healthReduceBy30;
+
 
     // konstruktorn
     public Game() {
@@ -35,6 +40,12 @@ public class Game {
             addPlayer();
             for (i = 1; i <= input; i++) {
                 playerChoice();
+                if (i > 0) {
+                    animalStatsModify();
+                    if (i > input){
+                        // Last round.
+                    }
+                }
             }
         }
 
@@ -93,6 +104,9 @@ public class Game {
             player.printFood(player);
             System.out.println();
             System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + i + "] | [" + player.getCoins() + " Coins]");
+            if ( i > 0){ // Start with message about animals healths and age
+
+            }
             System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
             int input = Integer.parseInt(scanner.nextLine());
             if (input < 1 || input > 6) {
@@ -105,13 +119,15 @@ public class Game {
                     case 2:
                         store.buyFood(player);
                         break;
-                    case 3:store.sellAnimal(player);
+                    case 3:
+                        store.sellAnimal(player);
                         break;
                     case 4:
                         player.feedAnimal(player);
                         playerChoice();
                         break;
-                    case 5:vet.breedAnimal(player);
+                    case 5:
+                        vet.breedAnimal(player);
                         break;
                     default:
                         System.out.println(" Incorrect input ");
@@ -119,7 +135,58 @@ public class Game {
             }
         }
     }
+
+    public void animalStatsModify() {
+        for (Player player: playerList){
+            for (Animal animal : player.getAnimalList()) {
+                healthPriceReduce(player);
+                animal.setAge(animal.getAge() + 5);
+            }
+
+        }
+
+    }
+
+    // health reduce by random 10-30%
+    public void healthPriceReduce(Player player){
+        Random random = new Random();
+        int rn = random.nextInt(3) + 1;
+        for (Animal animal: player.getAnimalList()){
+            switch (rn){
+                case 1:
+                    healthReduceBy10 = 0.1 *animal.getHealth();
+                    animal.setHealth(animal.getHealth() - healthReduceBy10);
+                    System.out.println("Health reduce 10%. \n (Reduced by " + healthReduceBy10);
+                    if (animal.getHealth() < 100){
+
+                    }
+                    break;
+
+                case 2:
+                    healthReduceBy20 = 0.2 * animal.getHealth();
+                    animal.setHealth(animal.getHealth() - healthReduceBy20);
+                    System.out.println("Health reduce 20%. \n (Reduced by " + healthReduceBy20);
+                    if (animal.getHealth() < 100){
+
+                    }
+                    break;
+
+                case 3:
+                    healthReduceBy30 = 0.3 * animal.getHealth();
+                    animal.setHealth(animal.getHealth() - healthReduceBy30);
+                    System.out.println("Health reduce 20%. \n (Reduced by " + healthReduceBy30);
+                    if (animal.getHealth() < 100){
+
+                    }
+                    break;
+            }
+
+        }
+
+
+    }
 }
+
 
 
 

@@ -1,4 +1,5 @@
 package animals;
+
 import food.Food;
 import food.Meat;
 
@@ -6,9 +7,14 @@ public class Bear extends Animal{
     protected final String className = "Bear";
     protected double health = 100;
     protected int maxAge = 50;
-    protected int currentStartAge = 0;
+    protected int priceToSell = 80;
     public Bear(String name, char gender) {
         super(name, gender);
+    }
+
+    @Override
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -46,15 +52,9 @@ public class Bear extends Animal{
         return maxAge;
     }
 
-
     @Override
-    public int getCurrentStartAge() {
-        return currentStartAge;
-    }
-
-    @Override
-    public void setCurrentStartAge(int currentStartAge) {
-        this.currentStartAge = currentStartAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
 
@@ -66,6 +66,11 @@ public class Bear extends Animal{
     @Override
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public int getPriceToSell() {
+        return priceToSell;
     }
 
 }
