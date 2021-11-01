@@ -35,7 +35,7 @@ public class Game implements Serializable {
 
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
-        System.out.println("Current round = " + amountRounds);
+        System.out.println("Current round = " + getDisplayRounds());
         System.out.println("See below for more information");
         store = new Store();
         playerChoice(amountRounds);
