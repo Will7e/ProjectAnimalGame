@@ -2,7 +2,9 @@ package animals;
 
 import food.Food;
 
-public abstract class Animal {
+import java.io.Serializable;
+
+public abstract class Animal implements Serializable {
     protected String name;
     protected char gender;
     protected int age = 0;

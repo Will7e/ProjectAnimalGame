@@ -3,10 +3,11 @@ package gamecontroller;
 import animals.*;
 import resourses.Store;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Veterinary {
+public class Veterinary  implements Serializable {
     private Scanner console;
     private Random random;
     private Store store;

@@ -5,6 +5,7 @@ import animals.*;
 import food.Food;
 import resourses.Store;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -13,7 +14,7 @@ import java.util.*;
  *
  * @author william, ridah, marcus
  */
-public class Player {
+public class Player implements Serializable {
     private static Scanner console = new Scanner(System.in);
     private String name;
     protected int playerCoins = 100;

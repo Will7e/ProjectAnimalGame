@@ -3,9 +3,10 @@ package gamecontroller;
 import animals.Animal;
 import resourses.Store;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Game {
+public class Game implements Serializable {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Player> playerList;
     public static Veterinary vet;
