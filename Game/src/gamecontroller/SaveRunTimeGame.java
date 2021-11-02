@@ -1,8 +1,5 @@
 package gamecontroller;
 
-import gamecontroller.Game;
-import gamecontroller.Player;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +8,7 @@ public class SaveRunTimeGame implements Serializable {
     private int playerAmount;
     private int amountRounds;
     private int index;
-    private int displayRounds;
+    private static int displayRounds;
     private ArrayList<Player> playerListHistory;
     private boolean savedGame;
 

@@ -7,31 +7,34 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Game implements Serializable {
-    public static Scanner scanner = new Scanner(System.in);
+    transient static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Player> playerList;
     public static Veterinary vet;
     public static Store store;
+    private static String fileName;
     private int playerAmount;
     Random random;
     public static int i;
     protected static double healthReduce;
     protected static int priceReduce;
-    protected static int input;
+    protected static int amountRounds;
     public static boolean gameRun = true;
-    private int playerAmount;
-    private int amountRounds;
-    private int displayRounds = 0;
+
+    private static int displayRounds = 0;
     private String fileName;
     private Player playersTurn;
-    private int index;
+    private static int index;
 
 
     // konstruktorn
     public Game() {
 
+
         vet = new Veterinary();
         store = new Store();
         playerList = new ArrayList<>();
+        this.playerAmount = playerAmount;
+        this.amountRounds = amountRounds;
         this.random = new Random();
         startGame();
     }
@@ -48,7 +51,7 @@ public class Game implements Serializable {
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more information");
         store = new Store();
-        playerChoice(amountRounds);
+        playerInfos();
 
 
 
@@ -56,14 +59,14 @@ public class Game implements Serializable {
         // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
-        input = Integer.parseInt(scanner.nextLine());
-        if (input < 2 || input > 30) {
+        amountRounds = Integer.parseInt(scanner.nextLine());
+        if (amountRounds < 2 || amountRounds > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
             askAmountPlayers();
             addPlayer();
-            gameRound(input);
+            gameRound(amountRounds);
         }
     }
 
@@ -106,8 +109,9 @@ public class Game implements Serializable {
     }
 
     public static void playerInfos() {
-        Iterator<Player> iterator = playerList.iterator();
-        while (iterator.hasNext()) {
+
+        Iterator<Player> iterator = playerList.listIterator(index);
+         while (iterator.hasNext()) {
             Player player = iterator.next();
             checkWinner();
             info(player);
@@ -166,7 +170,7 @@ public class Game implements Serializable {
                 sellEveryThing(player);
                 System.out.println("Congrats " + player.getName()+"\nYou are the winner!! ");
                 gameRun = false;
-                gameRound(input);
+                gameRound(amountRounds);
                 break;
             }
             if (player.playerCoins == 0 && player.getAnimalList().size() < 1){
@@ -218,15 +222,22 @@ public class Game implements Serializable {
             break;
         }
         gameRun = false;
-        gameRound(input);
+        gameRound(amountRounds);
     }
-    public static void gameRound(int input ){
-        for (i = 1; i <= input; i++) {
+    public void gameRound(int amountRounds){
+        for (i = 1; i <= amountRounds; i++) {
+            displayRounds++;
+           // setDisplayRounds(displayRounds);
+
+            if (index >= playerList.size()) {
+                index = 0;
+            }
+
             if (gameRun){
                 playerInfos();
                 if (i > 0) {
                     animalStatsModify();
-                    if (i == input){
+                    if (i == amountRounds){
                         findWinnerLastRound();
                         break;
                     }
@@ -262,6 +273,17 @@ public class Game implements Serializable {
                 case 5:
                     vet.breedAnimal(player);
                     break;
+
+                case 6:
+
+
+
+                    case 7:
+                    System.out.println("Do you want to exit the game?"); // todo, choice to make;
+                    System.exit(0);
+
+
+
                 default:
                     System.out.println(" Incorrect input ");
             }
@@ -299,34 +321,33 @@ public class Game implements Serializable {
         return this.amountRounds;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-        
-    }
+
 
     public void setAmountRounds(int amountRounds) {
         this.amountRounds = amountRounds;
     }
 
-    public void setDisplayRounds(int displayRounds) {
-        this.displayRounds = displayRounds;
-
-    }
-
     public int getDisplayRounds() {
-        return this.displayRounds;
+        return displayRounds;
     }
 
 
 
     public int getIndex() {
-        return this.index;
+        return index;
     }
 
 
 
 
+    public static void saveGame() {
 
+        System.out.println("Enter the name of the file you want to write to");
+        fileName = scanner.nextLine();
+        FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
+        index += 1;
+
+    }
 
 
 }

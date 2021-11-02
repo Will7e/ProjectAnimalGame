@@ -15,7 +15,7 @@ import java.util.*;
  * @author william, ridah, marcus
  */
 public class Player implements Serializable {
-    private static Scanner console = new Scanner(System.in);
+    transient static Scanner console = new Scanner(System.in);
     private String name;
     protected int playerCoins = 100;
     private ArrayList<Animal> animalList; // ArrayList
