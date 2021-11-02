@@ -4,10 +4,7 @@ import Resourses.*;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game implements Serializable {
 
@@ -17,9 +14,10 @@ public class Game implements Serializable {
     protected Store store;
     private int playerAmount;
     private int amountRounds;
-    private int displayRounds;
+    private int displayRounds = 0;
     private String fileName;
     private Player playersTurn;
+
 
     Vet vet = new Vet();
     // konstruktorn
@@ -35,7 +33,6 @@ public class Game implements Serializable {
 
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
-        System.out.println("Current round = " + getDisplayRounds());
         System.out.println("See below for more information");
         store = new Store();
         playerChoice(amountRounds);
@@ -124,13 +121,17 @@ public class Game implements Serializable {
 
 
         for (int i = 0; i < amountRounds; i++) {
-            displayRounds  = i + 1;
+
+            displayRounds++;
             setDisplayRounds(displayRounds);
 
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
                 index = 0;
             }
+
+
+
 
             Iterator<Player> iterator = playerList.listIterator(getIndex());
 
@@ -237,6 +238,7 @@ public class Game implements Serializable {
 
         public void setDisplayRounds(int displayRounds) {
         this.displayRounds = displayRounds;
+
         }
 
         public int getDisplayRounds() {
@@ -253,7 +255,11 @@ public class Game implements Serializable {
 
 
 
-    }
+
+
+        }
+
+
 
 
 
