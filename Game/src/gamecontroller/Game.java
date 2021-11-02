@@ -18,6 +18,11 @@ public class Game implements Serializable {
     protected static int priceReduce;
     protected static int input;
     public static boolean gameRun = true;
+    private int playerAmount;
+    private int amountRounds;
+    private int displayRounds = 0;
+    private String fileName;
+    private Player playersTurn;
 
 
 
