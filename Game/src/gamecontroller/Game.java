@@ -19,7 +19,6 @@ public class Game implements Serializable {
     protected int amountRounds;
     public boolean gameRun = true;
     private int displayRounds = 0;
-
     private int index;
 
 
@@ -267,7 +266,7 @@ public class Game implements Serializable {
 
                 case 6: saveGame();
 
-                    case 7:
+                case 7:
                     System.out.println("Do you want to exit the game?"); // todo, choice to make;
                     System.exit(0);
 
@@ -331,11 +330,11 @@ public class Game implements Serializable {
         }
 
         
-    public  void saveGame() {
+    public void saveGame() {
         System.out.println("Enter the name of the file you want to write to");
         String fileName = scanner.nextLine();
         FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
-        index += 1;
+        setIndex(index += 1);
     }
 }
 
