@@ -7,13 +7,14 @@ import food.Veggies;
 import gamecontroller.Game;
 import gamecontroller.Player;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
 // We should have a price to sell for animal because price in store for animal to buy can not change.
 
-public class Store {
-    Scanner console = new Scanner(System.in);
+public class Store implements Serializable {
+    transient Scanner console = new Scanner(System.in);
     public int dogPrice = 30;
     public int bearPrice = 80;
     public int horsePrice = 50;
