@@ -291,42 +291,51 @@ public class Game implements Serializable {
         System.out.println();
     }
 
-    public String playerCoins(){
-        for (Player player : playerList){
+    public String playerCoins() {
+        for (Player player : playerList) {
 
         }
         return "";
     }
 
-    public int getPlayerAmount() {
-        return this.playerAmount;
+        public int getPlayerAmount() {
+            return this.playerAmount;
 
-    }
+        }
 
-    public ArrayList<Player> getPlayerListHistory() {
-        return this.playerList;
-    }
+        public ArrayList<Player> getPlayerListHistory() {
+            return this.playerList;
+        }
 
-    public int getAmountRounds() {
-        return this.amountRounds;
-    }
+        public int getAmountRounds() {
+            return this.amountRounds;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+
+        }
+
+        public void setAmountRounds(int amountRounds) {
+            this.amountRounds = amountRounds;
+        }
+
+        public void setDisplayRounds(int displayRounds) {
+            this.displayRounds = displayRounds;
+
+        }
+
+        public int getDisplayRounds() {
+            return this.displayRounds;
+        }
 
 
 
-    public void setAmountRounds(int amountRounds) {
-        this.amountRounds = amountRounds;
-    }
+        public int getIndex() {
+            return this.index;
+        }
 
-    public int getDisplayRounds() {
-        return displayRounds;
-    }
-
-
-
-    public int getIndex() {
-        return index;
-    }
-
+        
     public  void saveGame() {
         System.out.println("Enter the name of the file you want to write to");
         String fileName = scanner.nextLine();
