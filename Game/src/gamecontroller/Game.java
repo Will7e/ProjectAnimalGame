@@ -278,6 +278,50 @@ public class Game implements Serializable {
     }
 
 }
+    public int getPlayerAmount() {
+        return this.playerAmount;
+
+    }
+
+    public ArrayList<Player> getPlayerListHistory() {
+        return this.playerList;
+    }
+
+    public int getAmountRounds() {
+        return this.amountRounds;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+        
+    }
+
+    public void setAmountRounds(int amountRounds) {
+        this.amountRounds = amountRounds;
+    }
+
+    public void setDisplayRounds(int displayRounds) {
+        this.displayRounds = displayRounds;
+
+    }
+
+    public int getDisplayRounds() {
+        return this.displayRounds;
+    }
+
+
+
+    public int getIndex() {
+        return this.index;
+    }
+
+
+
+
+
+
+
+}
 
 
 
