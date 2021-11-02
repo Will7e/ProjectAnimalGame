@@ -28,12 +28,11 @@ public class Game {
         this.random = new Random();
         startGame();
     }
-
     // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
         input = Integer.parseInt(scanner.nextLine());
-        if (input < 5 || input > 30) {
+        if (input < 2 || input > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
@@ -144,22 +143,27 @@ public class Game {
                 gameRound(input);
                 break;
             }
-            if (player.playerCoins == 0){
-                System.out.println(player.getName() + " has lost. And now remove from the game.");
+            if (player.playerCoins == 0 && player.getAnimalList().size() < 1){
+                System.out.println("");
+                System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game.");
                 playerList.remove(player);
                 checkWinner();
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    break;
+                }
+
+            }if (player.getCoins() == 0) {
+                System.out.println("You have zero coins. Sell your animal to get coins.");
+                playerChoice(player);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 break;
-            }
-            if (i > input){
-                sellEveryThing(player);
-                findPlayerRank(player);
-                gameRun = false;
-                gameRound(input);
             }
         }
     }
@@ -169,46 +173,37 @@ public class Game {
         }
     }
     // can sort player rank from the highest coins to the lowest coin?
-    public static void findPlayerRank(Player playerToCompare){
-        for (Player player : playerList){
-          int highestCoins = Integer.compare(player.getCoins(), playerToCompare.getCoins());
-          if (player.getCoins() > playerToCompare.getCoins()){
-              System.out.println(player.getName() + " has won with highest coins: " + highestCoins);
-              break;
-          }if (player.getCoins() == playerToCompare.getCoins()){
-                System.out.println("Player " + player.getName() + " and " +  playerToCompare.getName());
-                System.out.println("Has won with " + highestCoins + " as highest.");
-                break;
-          }else {
-                System.out.println(playerToCompare.getName() + " highest coins: " + highestCoins);
+    public static void findPlayerRank(){
+        int max = 0;
+        String winner ="";
+        for(int i= 0; i< playerList.size(); i++){
+            if (playerList.get(i).getCoins() > max ){
+                max = playerList.get(i).getCoins();
+                winner = playerList.get(i).getName();
             }
-          break;
         }
+        System.out.println("Winner " + winner);
     }
-   /* public static void findWinnerLastRound(){
+    public static void findWinnerLastRound(){
         for (Player player : playerList){
             checkWinner();
             sellEveryThing(player);
-            findPlayerRank(player);
+            findPlayerRank();
+            break;
         }
-        System.out.println("Game over..");
         gameRun = false;
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
+        gameRound(input);
+    }
     public static void gameRound(int input ){
         for (i = 1; i <= input; i++) {
             if (gameRun){
                 playerInfos();
                 if (i > 0) {
                     animalStatsModify();
-                   /* if (i > input){
+                    if (i == input){
                         findWinnerLastRound();
                         break;
-                    }*/
+                    }
                 }
             }else {
                 System.out.println("Game Over");
@@ -216,7 +211,6 @@ public class Game {
                 break;
             }
             System.out.println();
-
         }
     }
     public static void playerChoice(Player player){
@@ -246,8 +240,6 @@ public class Game {
                     System.out.println(" Incorrect input ");
             }
         }
-
-
     }
     public static void info(Player player){
         System.out.println("---------------");
@@ -259,7 +251,12 @@ public class Game {
         System.out.println("---------------");
         player.printFood(player);
         System.out.println();
+    }
 
+    public String playerCoins(){
+        for (Player player : playerList){
+
+        }
     }
 
 }

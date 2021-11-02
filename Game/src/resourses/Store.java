@@ -184,14 +184,11 @@ public class Store {
             System.out.println();
             Game.playerChoice(player);
         } else {
-
             System.out.println("Welcome to the Store!");
             System.out.println("Do you want to sell animals?");
             System.out.println("1. Yes. 2. No");
             int userInput = Integer.parseInt(console.nextLine());
-
             switch (userInput) {
-
                 case 1:
                     System.out.println("Yes");
                     getAnimalsForSale(player);
@@ -205,8 +202,6 @@ public class Store {
                     System.out.println("Invalid input, please try again");
                     saleStart(player);
                     break;
-
-
             }
 
         }
@@ -217,12 +212,11 @@ public class Store {
         System.out.println(player.getName() + " here is a list of the animals you own and the price");
         for (int i = 0; i < player.getAnimalList().size(); i++) {
 
-            System.out.print("[Name]" + player.getAnimalList().get(i).getName() +
-                    "[Type]" + player.getAnimalList().get(i).getClassName() +
-                    "[Value]" + player.getAnimalList().get(i).getPriceToSell());
+            System.out.println("[Name: " + player.getAnimalList().get(i).getName() +"] "+
+                    "[Type: " + player.getAnimalList().get(i).getClassName() + "] "+
+                    "[Value: " + player.getAnimalList().get(i).getPriceToSell() +"]");
         }
         sellAnimal(player);
-
     }
 
     public void sellAnimal(Player player) {
@@ -230,84 +224,35 @@ public class Store {
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't have animals for sale.");
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Game.playerInfos();
 
         }
-
         System.out.println("Which animal do you want to sell? Type in the name of the animal");
         String playerChoice = console.nextLine();
         boolean animalExist = true;
-
         for (int i = 0; i < player.getAnimalList().size(); i++) {
 
-
-            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice) &&
-                    player.getAnimalList().get(i).getClassName().equals("Bear")) {
-                player.getAnimalList().remove(i);
+            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice)) {
                 player.setCoins(player.getCoins() + player.getAnimalList().get(i).getPriceToSell());
                 System.out.println("Sale done, your balance is now " + player.getCoins());
-                animalExist = true;
-
-                break;
-
-
-            } else if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice) &&
-                    player.getAnimalList().get(i).getClassName().equals("Dog")) {
                 player.getAnimalList().remove(i);
-                player.setCoins(player.getCoins() + +player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done, your balance is now " + player.getCoins());
-                animalExist = true;
-
-                break;
-
-            } else if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice) &&
-                    player.getAnimalList().get(i).getClassName().equals("Horse")) {
-                player.getAnimalList().remove(i);
-                player.setCoins(player.getCoins() + +player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done, your balance is now " + player.getCoins());
-                animalExist = true;
-
-                break;
-
-            } else if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice) &&
-                    player.getAnimalList().get(i).getClassName().equals("Lion")) {
-                player.getAnimalList().remove(i);
-                player.setCoins(player.getCoins() + +player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done, your balance is now " + player.getCoins());
-                animalExist = true;
-
-                break;
-
-            } else if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice) &&
-                    player.getAnimalList().get(i).getClassName().equals("Rabbit")) {
-
-                player.getAnimalList().remove(i);
-                player.setCoins(player.getCoins() + +player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done, your balance is now " + player.getCoins());
                 animalExist = true;
                 break;
-
-
             }
-
             animalExist = false;
 
-
         }
-
-
         if (!animalExist) {
-            System.out.println("Animal doesnt exist, please try again");
+            System.out.println("Animal doesn't exist, please try again");
             Game.playerInfos();
         } else {
             System.out.println("Do you want to sell more animals?");
             System.out.println("1. Yes 2. No");
             int userInput = Integer.parseInt(console.nextLine());
-
             switch (userInput) {
                 case 1:
                     getAnimalsForSale(player);
@@ -318,9 +263,7 @@ public class Store {
                 default:
                     System.out.println("Invalid output, please try again");
             }
-
         }
-
     }
 
     //Prints out food to buy for players. Then add to list.
@@ -381,7 +324,6 @@ public class Store {
                 "5. Rabbit " + " ( " + this.getRabbitPrice() + " Coins )\n" +
                 "6. Return to main menu");
     }
-
     public void foodPrice() {
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
                 "2. Veggies " + " ( " + this.getVeggiesPrice() + " Coins / Kg )\n" +

@@ -76,8 +76,8 @@ public class Player {
                         Game.playerChoice(player);
                     }
                 if (animalList.isEmpty()) {
+                    System.out.println("-".repeat(5));
                     System.out.println("[Empty]");
-                    animalInfo(animal);
                     Game.playerChoice(player);
                 }
                 animalInfo(animal);
