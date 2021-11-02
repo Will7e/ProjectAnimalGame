@@ -23,7 +23,7 @@ public class Game implements Serializable {
     private int displayRounds = 0;
     private String fileName;
     private Player playersTurn;
-
+    private int index;
 
 
     // konstruktorn
@@ -50,6 +50,8 @@ public class Game implements Serializable {
         store = new Store();
         playerChoice(amountRounds);
 
+
+
     }
         // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
@@ -64,6 +66,7 @@ public class Game implements Serializable {
             gameRound(input);
         }
     }
+
 
     private void askAmountPlayers() {
         // This method ask for how many players are going to play.
@@ -280,9 +283,9 @@ public class Game implements Serializable {
         for (Player player : playerList){
 
         }
+        return "";
     }
 
-}
     public int getPlayerAmount() {
         return this.playerAmount;
 
