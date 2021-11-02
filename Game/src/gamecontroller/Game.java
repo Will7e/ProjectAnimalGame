@@ -8,42 +8,35 @@ import java.util.*;
 
 public class Game implements Serializable {
     transient static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Player> playerList;
-    public static Veterinary vet;
-    public static Store store;
-    private static String fileName;
+    public ArrayList<Player> playerList;
+    public Veterinary vet;
+    public Store store;
     private int playerAmount;
     Random random;
-    public static int i;
-    protected static double healthReduce;
-    protected static int priceReduce;
-    protected static int amountRounds;
-    public static boolean gameRun = true;
+    public int i;
+    protected double healthReduce;
+    protected  int priceReduce;
+    protected int amountRounds;
+    public boolean gameRun = true;
+    private int displayRounds = 0;
 
-    private static int displayRounds = 0;
-
-    private Player playersTurn;
-    private static int index;
+    private int index;
 
 
     // konstruktorn
     public Game() {
-
-
         vet = new Veterinary();
         store = new Store();
         playerList = new ArrayList<>();
-        this.playerAmount = playerAmount;
-        this.amountRounds = amountRounds;
         this.random = new Random();
         startGame();
     }
     public Game(SaveRunTimeGame loadSavedGame) {
 
-        this.playerList = loadSavedGame.getPlayerListHistory();
-        this.index = loadSavedGame.getIndex();
-        this.amountRounds = loadSavedGame.getAmountRounds();
-        this.displayRounds = loadSavedGame.getDisplayRounds();
+        playerList = loadSavedGame.getPlayerListHistory();
+        index = loadSavedGame.getIndex();
+        amountRounds = loadSavedGame.getAmountRounds();
+        displayRounds = loadSavedGame.getDisplayRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
 
@@ -52,8 +45,6 @@ public class Game implements Serializable {
         System.out.println("See below for more information");
         store = new Store();
         playerInfos();
-
-
 
     }
         // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
@@ -118,7 +109,7 @@ public class Game implements Serializable {
             playerChoice(player);
         }
     }
-    public static void animalStatsModify() {
+    public void animalStatsModify() {
         for (Player player: playerList){
             for (Animal animal : player.getAnimalList()) {
                 healthPriceReduce(player);
@@ -128,7 +119,7 @@ public class Game implements Serializable {
     }
     // health reduce by random 10-30%
     // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
-    public static void healthPriceReduce(Player player){
+    public void healthPriceReduce(Player player){
         Random random = new Random();
         int rn = random.nextInt(3) + 1;
         for (Animal animal: player.getAnimalList())
@@ -158,13 +149,13 @@ public class Game implements Serializable {
             }
 
     }
-    public static void priceChange(Player player, double percentage){
+    public void priceChange(Player player, double percentage){
         for (Animal animal : player.getAnimalList()){
             priceReduce = (int) (animal.getPriceToSell() * percentage);
             animal.setPriceToSell( ( animal.getPriceToSell() - priceReduce));
         }
     }
-    public static void checkWinner(){
+    public void checkWinner(){
         for (Player player : playerList){
             if (playerList.size() == 1){
                 sellEveryThing(player);
@@ -197,13 +188,13 @@ public class Game implements Serializable {
             }
         }
     }
-    public static void sellEveryThing(Player player){
+    public void sellEveryThing(Player player){
         for (Animal animal : player.getAnimalList()){
             player.setCoins(player.getCoins() + animal.getPriceToSell());
         }
     }
     // can sort player rank from the highest coins to the lowest coin?
-    public static void findPlayerRank(){
+    public void findPlayerRank(){
         int max = 0;
         String winner ="";
         for(int i= 0; i< playerList.size(); i++){
@@ -214,7 +205,7 @@ public class Game implements Serializable {
         }
         System.out.println("Winner " + winner);
     }
-    public static void findWinnerLastRound(){
+    public void findWinnerLastRound(){
         for (Player player : playerList){
             checkWinner();
             sellEveryThing(player);
@@ -227,7 +218,7 @@ public class Game implements Serializable {
     public void gameRound(int amountRounds){
         for (i = 1; i <= amountRounds; i++) {
             displayRounds++;
-           // setDisplayRounds(displayRounds);
+           setDisplayRounds(displayRounds);
 
             if (index >= playerList.size()) {
                 index = 0;
@@ -250,6 +241,7 @@ public class Game implements Serializable {
             System.out.println();
         }
     }
+
     public void playerChoice(Player player){
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + i + "] | [" + player.getCoins() + " Coins]");
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
@@ -274,9 +266,7 @@ public class Game implements Serializable {
                     vet.breedAnimal(player);
                     break;
 
-                case 6:
-
-
+                case 6: saveGame();
 
                     case 7:
                     System.out.println("Do you want to exit the game?"); // todo, choice to make;
@@ -289,7 +279,7 @@ public class Game implements Serializable {
             }
         }
     }
-    public static void info(Player player){
+    public void info(Player player){
         System.out.println("---------------");
         System.out.println("[Round: " + i + "]");
         System.out.println("Player: " + player.getName() +
@@ -337,19 +327,12 @@ public class Game implements Serializable {
         return index;
     }
 
-
-
-
-    public static void saveGame() {
-
+    public  void saveGame() {
         System.out.println("Enter the name of the file you want to write to");
-        fileName = scanner.nextLine();
+        String fileName = scanner.nextLine();
         FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
         index += 1;
-
     }
-
-
 }
 
 

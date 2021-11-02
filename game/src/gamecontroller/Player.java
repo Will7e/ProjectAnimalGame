@@ -24,6 +24,7 @@ public class Player implements Serializable {
     Game game;
 
     public Player(String name) {
+        this.game = new Game();
         this.store = new Store();
         this.name = name;
         this.animalList = new ArrayList<>();

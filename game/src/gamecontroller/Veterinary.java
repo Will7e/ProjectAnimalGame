@@ -17,7 +17,6 @@ public class Veterinary  implements Serializable {
     private String name;
     String animalName;
 
-
     public Veterinary() {
         this.console = new Scanner(System.in);
         this.random = new Random();
@@ -70,7 +69,6 @@ public class Veterinary  implements Serializable {
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
-            game.playerInfos();
         } else {
             printAnimalList(player);
             checkAnimal(player);

@@ -249,7 +249,7 @@ public class Store {
         }
         if (!animalExist) {
             System.out.println("Animal doesn't exist, please try again");
-            Game.playerInfos();
+            game.playerInfos();
         } else {
             System.out.println("Do you want to sell more animals?");
             System.out.println("1. Yes 2. No");
@@ -277,7 +277,7 @@ public class Store {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMeatPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
-                    Game.playerInfos();
+                    game.playerInfos();
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Meat());
@@ -291,7 +291,7 @@ public class Store {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getVeggiesPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
-                    Game.playerInfos();
+                    game.playerInfos();
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Veggies());
@@ -305,7 +305,7 @@ public class Store {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMixFoodPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. ");
-                    Game.playerInfos();
+                    game.playerInfos();
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new MixFood());
