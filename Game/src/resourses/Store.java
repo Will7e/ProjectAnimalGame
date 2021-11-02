@@ -25,6 +25,7 @@ public class Store {
     private int input2;
     private char gender;
     private String name;
+    Game game;
 
     public int getDogPrice() {
         return dogPrice;
@@ -164,12 +165,12 @@ public class Store {
                 break;
             }
             case 6:
-                Game.playerChoice(player);
+                game.playerChoice(player);
                 break;
 
             default:
                 System.out.println("Incorrect input");
-                Game.playerChoice(player);
+                game.playerChoice(player);
                 break;
         }
 
@@ -182,7 +183,7 @@ public class Store {
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animals");
             System.out.println();
-            Game.playerChoice(player);
+            game.playerChoice(player);
         } else {
             System.out.println("Welcome to the Store!");
             System.out.println("Do you want to sell animals?");
@@ -228,7 +229,7 @@ public class Store {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Game.playerInfos();
+            game.playerInfos();
 
         }
         System.out.println("Which animal do you want to sell? Type in the name of the animal");

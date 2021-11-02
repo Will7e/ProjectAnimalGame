@@ -70,7 +70,7 @@ public class Veterinary  implements Serializable {
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
-            Game.playerInfos();
+            game.playerInfos();
         } else {
             printAnimalList(player);
             checkAnimal(player);

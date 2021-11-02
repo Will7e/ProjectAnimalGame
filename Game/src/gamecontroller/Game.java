@@ -21,7 +21,7 @@ public class Game implements Serializable {
     public static boolean gameRun = true;
 
     private static int displayRounds = 0;
-    private String fileName;
+
     private Player playersTurn;
     private static int index;
 
@@ -108,7 +108,7 @@ public class Game implements Serializable {
         return false;
     }
 
-    public static void playerInfos() {
+    public void playerInfos() {
 
         Iterator<Player> iterator = playerList.listIterator(index);
          while (iterator.hasNext()) {
@@ -250,7 +250,7 @@ public class Game implements Serializable {
             System.out.println();
         }
     }
-    public static void playerChoice(Player player){
+    public void playerChoice(Player player){
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + i + "] | [" + player.getCoins() + " Coins]");
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save & Quit");
         int input = Integer.parseInt(scanner.nextLine());

@@ -21,6 +21,7 @@ public class Player implements Serializable {
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
+    Game game;
 
     public Player(String name) {
         this.store = new Store();
@@ -66,7 +67,7 @@ public class Player implements Serializable {
                             " .Have been remove.");
                     animalList.remove(animal);
                     animalInfo(animal);
-                    Game.playerChoice(player);
+                    game.playerChoice(player);
                 }
                     if (animal.getAge() == animal.getMaxAge()){
                         System.out.println("Your ["+ animal.getClassName()+ "] is death! ");
@@ -74,12 +75,12 @@ public class Player implements Serializable {
                                 "] is no longer in your animal list.");
                         animalList.remove(animal);
                         animalInfo(animal);
-                        Game.playerChoice(player);
+                        game.playerChoice(player);
                     }
                 if (animalList.isEmpty()) {
                     System.out.println("-".repeat(5));
                     System.out.println("[Empty]");
-                    Game.playerChoice(player);
+                    game.playerChoice(player);
                 }
                 animalInfo(animal);
                 }
@@ -116,7 +117,7 @@ public class Player implements Serializable {
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have food");
-            Game.playerChoice(player);
+            game.playerChoice(player);
         } else {
             checkAnimal(player);
         }
