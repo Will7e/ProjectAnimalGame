@@ -100,7 +100,6 @@ public class Game implements Serializable {
     }
 
     public void playerInfos() {
-
         Iterator<Player> iterator = playerList.listIterator(index);
          while (iterator.hasNext()) {
             Player player = iterator.next();
@@ -216,14 +215,14 @@ public class Game implements Serializable {
         gameRound(amountRounds);
     }
     public void gameRound(int amountRounds){
-        for (i = 1; i <= amountRounds; i++) {
-            displayRounds++;
-           setDisplayRounds(displayRounds);
+            for (i = 0; i < amountRounds; i++) {
+                displayRounds++;
+                setDisplayRounds(displayRounds);
 
-            if (index >= playerList.size()) {
-                index = 0;
-            }
-
+                if (getIndex() >= playerList.size()) {
+                    setIndex(0);
+                    index = 0;
+                }
             if (gameRun){
                 playerInfos();
                 if (i > 0) {
@@ -281,7 +280,7 @@ public class Game implements Serializable {
     }
     public void info(Player player){
         System.out.println("---------------");
-        System.out.println("[Round: " + i + "]");
+        System.out.println("[Round: " + amountRounds + "]");
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
@@ -315,11 +314,7 @@ public class Game implements Serializable {
             this.index = index;
 
         }
-
-        public void setAmountRounds(int amountRounds) {
-            this.amountRounds = amountRounds;
-        }
-
+        
         public void setDisplayRounds(int displayRounds) {
             this.displayRounds = displayRounds;
 
