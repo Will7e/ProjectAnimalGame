@@ -100,7 +100,7 @@ public class Game implements Serializable {
     }
 
     public void playerInfos() {
-        Iterator<Player> iterator = playerList.listIterator(index);
+        Iterator<Player> iterator = playerList.listIterator(getIndex());
          while (iterator.hasNext()) {
             Player player = iterator.next();
             checkWinner();
