@@ -20,6 +20,7 @@ public class Game implements Serializable {
     public static boolean gameRun = true;
 
 
+
     // konstruktorn
     public Game() {
 
@@ -29,7 +30,23 @@ public class Game implements Serializable {
         this.random = new Random();
         startGame();
     }
-    // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
+    public Game(SaveRunTimeGame loadSavedGame) {
+
+        this.playerList = loadSavedGame.getPlayerListHistory();
+        this.index = loadSavedGame.getIndex();
+        this.amountRounds = loadSavedGame.getAmountRounds();
+        this.displayRounds = loadSavedGame.getDisplayRounds();
+        this.playerAmount = loadSavedGame.getPlayerAmount();
+        System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
+
+        System.out.println("Loaded old save game with the following information: ");
+        System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
+        System.out.println("See below for more information");
+        store = new Store();
+        playerChoice(amountRounds);
+
+    }
+        // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
         input = Integer.parseInt(scanner.nextLine());
