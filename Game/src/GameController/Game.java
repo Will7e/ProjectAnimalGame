@@ -172,11 +172,11 @@ public class Game implements Serializable {
                             break;
                         case 3:
                             store.saleStart(player);
-                            setIndex(index++);
+                            setIndex(index += 1);
                             break;
                         case 4:
                             player.feedAnimal(player);
-                             setIndex(index++);
+                             setIndex(index += 1);
                             break;
 
                         case 5:
@@ -258,6 +258,12 @@ public class Game implements Serializable {
 
 
         }
+
+
+
+
+
+
 
 
 
