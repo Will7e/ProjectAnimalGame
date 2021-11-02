@@ -4,7 +4,6 @@ import animals.*;
 import food.Meat;
 import food.MixFood;
 import food.Veggies;
-import gamecontroller.Game;
 import gamecontroller.Player;
 
 import java.io.Serializable;
@@ -26,7 +25,6 @@ public class Store implements Serializable {
     private int input2;
     private char gender;
     private String name;
-    Game game;
 
     public int getDogPrice() {
         return dogPrice;
@@ -166,12 +164,12 @@ public class Store implements Serializable {
                 break;
             }
             case 6:
-                game.playerChoice(player);
+
                 break;
 
             default:
                 System.out.println("Incorrect input");
-                game.playerChoice(player);
+
                 break;
         }
 
@@ -184,7 +182,7 @@ public class Store implements Serializable {
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animals");
             System.out.println();
-            game.playerChoice(player);
+
         } else {
             System.out.println("Welcome to the Store!");
             System.out.println("Do you want to sell animals?");
@@ -230,7 +228,6 @@ public class Store implements Serializable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            game.playerInfos();
 
         }
         System.out.println("Which animal do you want to sell? Type in the name of the animal");
@@ -250,7 +247,7 @@ public class Store implements Serializable {
         }
         if (!animalExist) {
             System.out.println("Animal doesn't exist, please try again");
-            game.playerInfos();
+
         } else {
             System.out.println("Do you want to sell more animals?");
             System.out.println("1. Yes 2. No");
@@ -278,7 +275,7 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMeatPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
-                    game.playerInfos();
+
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Meat());
@@ -292,7 +289,7 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getVeggiesPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
-                    game.playerInfos();
+
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Veggies());
@@ -306,7 +303,7 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMixFoodPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. ");
-                    game.playerInfos();
+
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new MixFood());

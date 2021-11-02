@@ -13,7 +13,7 @@ public class SaveRunTimeGame implements Serializable {
     private boolean savedGame;
 
 
-    public SaveRunTimeGame (Game game) {
+    public SaveRunTimeGame (GameLogic game) {
         this.index = game.getIndex();
         this.playerAmount = game.getPlayerAmount();
         this.amountRounds = game.getAmountRounds();
