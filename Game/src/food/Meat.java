@@ -1,4 +1,4 @@
-package Food;
+package food;
 
 public class Meat extends Food {
     protected String name = "Meat";
@@ -10,8 +10,8 @@ public class Meat extends Food {
     }
 
     @Override
-    public double setHealthIncrease() {
-        return Math.round(healthIncrease);
+    public double getHealthIncrease() {
+        return healthIncrease;
     }
 
 }
