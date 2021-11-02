@@ -85,15 +85,7 @@ public class Game {
         while (iterator.hasNext()) {
             Player player = iterator.next();
             checkWinner();
-            System.out.println("---------------");
-            System.out.println("[Round: " + i + "]");
-            System.out.println("Player: " + player.getName() +
-                    "\nCoins: " + player.getCoins());
-            System.out.println("---------------");
-            player.printAnimal(player);
-            System.out.println("---------------");
-            player.printFood(player);
-            System.out.println();
+            info(player);
             playerChoice(player);
         }
     }
@@ -133,7 +125,6 @@ public class Game {
                     if (animal.getHealth() < 100) {
                         priceChange(player, 0.3);
                         break;
-
                     }
             }
 
@@ -143,7 +134,6 @@ public class Game {
             priceReduce = (int) (animal.getPriceToSell() * percentage);
             animal.setPriceToSell( ( animal.getPriceToSell() - priceReduce));
         }
-
     }
     public static void checkWinner(){
         for (Player player : playerList){
@@ -172,7 +162,6 @@ public class Game {
                 gameRound(input);
             }
         }
-
     }
     public static void sellEveryThing(Player player){
         for (Animal animal : player.getAnimalList()){
@@ -258,6 +247,18 @@ public class Game {
             }
         }
 
+
+    }
+    public static void info(Player player){
+        System.out.println("---------------");
+        System.out.println("[Round: " + i + "]");
+        System.out.println("Player: " + player.getName() +
+                "\nCoins: " + player.getCoins());
+        System.out.println("---------------");
+        player.printAnimal(player);
+        System.out.println("---------------");
+        player.printFood(player);
+        System.out.println();
 
     }
 
