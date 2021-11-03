@@ -86,6 +86,13 @@ public class Veterinary  implements Serializable {
             }
             if (player.getAnimalList().get(i1).getGender() == player.getAnimalList().get(i2).getGender()) {
                 System.out.println("Animal cant have same gender.");
+                System.out.println("Going back to main menu, next players turn");
+                FormatHelp.threadSleep();
+                FormatHelp.emptyScreen();
+
+
+
+                return;
             } else {
                 if (random.nextBoolean()) {
                     for (int i = 0; i < player.getAnimalList().size(); i++) {

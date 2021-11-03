@@ -33,6 +33,7 @@ public class GameLogic implements Serializable {
 
     public GameLogic(SaveRunTimeGame loadSavedGame) {
 
+        Player player;
         playerList = loadSavedGame.getPlayerListHistory();
         index = loadSavedGame.getIndex();
         amountRounds = loadSavedGame.getAmountRounds();
@@ -44,7 +45,9 @@ public class GameLogic implements Serializable {
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more information");
         store = new Store();
+        vet = new Veterinary();
         playerInfos();
+        gameRound();
 
     }
 
