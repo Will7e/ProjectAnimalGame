@@ -33,11 +33,10 @@ public class GameLogic implements Serializable {
 
     public GameLogic(SaveRunTimeGame loadSavedGame) {
 
-        Player player;
-        playerList = loadSavedGame.getPlayerListHistory();
-        index = loadSavedGame.getIndex();
-        amountRounds = loadSavedGame.getAmountRounds();
-        displayRounds = loadSavedGame.getDisplayRounds();
+        this.playerList = loadSavedGame.getPlayerListHistory();
+        this.index = loadSavedGame.getIndex();
+        this.amountRounds = loadSavedGame.getAmountRounds();
+        this.displayRounds = loadSavedGame.getDisplayRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
 
