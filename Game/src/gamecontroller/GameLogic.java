@@ -271,15 +271,35 @@ public class GameLogic implements Serializable {
                     break;
                 case 3:
                     store.saleStart(player);
-                    setIndex(index += 1);
+
+                    if (store.getbackToMenu()) {
+                        playerChoice(player);
+                    }
+                    else {
+
+                        setIndex(index += 1);
+                    }
                     break;
                 case 4:
                     player.feedAnimal(player);
+
+                    if (player.getBackToMenu()) {
+                        playerChoice(player);
+                    }
+                    else {
+
                     setIndex(index += 1);
+                    }
                     break;
                 case 5:
                     vet.breedAnimal(player);
-                    setIndex(index += 1);
+                    if (vet.getBackToMenu()) {
+                        playerChoice(player);
+                }
+                    else {
+
+                        setIndex(index += 1);
+                    }
                     break;
 
                 case 6:

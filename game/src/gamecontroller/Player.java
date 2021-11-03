@@ -21,12 +21,14 @@ public class Player implements Serializable {
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
+    private boolean backToMenu;
 
     public Player(String name) {
         this.store = new Store();
         this.name = name;
         this.animalList = new ArrayList<>();
         this.foodList = new ArrayList<>();
+        this.backToMenu = backToMenu;
     }
 
     public String getName() {
@@ -116,14 +118,18 @@ public class Player implements Serializable {
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
-            System.out.println("Next players turn, back to menu...");
+            System.out.println("Try again, back to main menu");
+            boolean backToMenu= true;
+            setBackToMenu(backToMenu);
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
         } else if(player.getAnimalList().size() == 0) {
             System.out.println("You dont own any animals to feed");
             System.out.println("Please come back after you bought some animals");
-            System.out.println("Next players turn, back to menu...");
+            System.out.println("Back to main menu");
+            boolean backToMenu= true;
+            setBackToMenu(backToMenu);
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
@@ -161,6 +167,14 @@ public class Player implements Serializable {
                 "[Age: "+ animal.getAge()+"] [Gender: " + animal.getGender() + " )" + "] " +
                 "[Health: " + animal.getHealth() + "]");
 
+    }
+
+    public void setBackToMenu(boolean backToMenu) {
+        this.backToMenu = backToMenu;
+    }
+
+    public boolean getBackToMenu() {
+        return this.backToMenu;
     }
 
 

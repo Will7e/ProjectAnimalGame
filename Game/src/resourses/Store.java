@@ -26,6 +26,7 @@ public class Store implements Serializable {
     private int input2;
     private char gender;
     private String name;
+    private boolean backToMenu;
 
     public int getDogPrice() {
         return dogPrice;
@@ -69,7 +70,8 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
             {
                 if (player.getCoins() < this.getBearPrice() * input2) {
-                    System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
+                    System.out.println("Not enough coins. You only have " + player.getCoins() + " coins. Try again!");
+                    input2 = Integer.parseInt(console.nextLine());
                     animalToBuy(player);
 
                 } else {
@@ -216,7 +218,9 @@ public class Store implements Serializable {
 
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animals");
-            System.out.println("Please come back in the next round");
+            System.out.println("Please make another choice, going back to menu");
+            boolean backToMenu = true;
+            setBackToMenu(backToMenu);
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
@@ -399,6 +403,15 @@ public class Store implements Serializable {
             }
         }
         return false;
+    }
+
+    public void setBackToMenu(boolean backToMenu) {
+        this.backToMenu = backToMenu;
+
+    }
+
+    public boolean getbackToMenu() {
+        return this.backToMenu;
     }
 }
 

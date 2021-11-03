@@ -16,6 +16,7 @@ public class Veterinary  implements Serializable {
     private char gender;
     private String name;
     String animalName;
+    private boolean backToMenu;
 
     public Veterinary() {
         this.console = new Scanner(System.in);
@@ -69,6 +70,13 @@ public class Veterinary  implements Serializable {
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
+            System.out.println("Going back to main menu");
+            boolean backToMenu= true;
+            setBackToMenu(backToMenu);
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
+
         } else {
             printAnimalList(player);
             checkAnimal(player);
@@ -153,6 +161,15 @@ public class Veterinary  implements Serializable {
             System.out.println("[Type: " + animal.getClassName() + "] [Name: " + animal.getName() + "] [Gender: " + animal.getGender() + "]");
         }
     }
+
+    public void setBackToMenu(boolean backToMenu) {
+        this.backToMenu = backToMenu;
+    }
+
+    public boolean getBackToMenu() {
+        return this.backToMenu;
+    }
+
 }
 
 
