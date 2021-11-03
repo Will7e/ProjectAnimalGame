@@ -270,8 +270,13 @@ public class GameLogic implements Serializable {
                     break;
                 case 2:
                     store.buyFood(player);
-                    setIndex(index += 1);
-                    break;
+
+                    if (store.getbackToMenu()) {
+                        playerChoice(player);
+                    }
+                    else {
+                        setIndex(index += 1);
+                    }  break;
                 case 3:
                     store.saleStart(player);
 

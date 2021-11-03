@@ -311,6 +311,7 @@ public class Store implements Serializable {
 
     //Prints out food to buy for players. Then add to list.
     public void buyFood(Player player) {
+
         foodPrice();
         int input = Integer.parseInt(console.nextLine());
         switch (input) {
@@ -318,14 +319,27 @@ public class Store implements Serializable {
                 System.out.println("How many Kilos of meat do you want to buy ?");
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMeatPrice() * input2) {
-                    System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
+                    System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
+                    System.out.println("Going back to main menu, please try again");
+                    backToMenu = true;
+                    setBackToMenu(backToMenu);
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+                    break;
+
 
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Meat());
                     }
                     player.setCoins(player.getCoins() - getMeatPrice() * input2);
+                    System.out.println("You bought some meat!");
                     System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("Going back to main menu, next players turn");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
+
                 }
                 break;
             case 2:
