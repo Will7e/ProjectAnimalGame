@@ -185,18 +185,18 @@ public class GameLogic implements Serializable {
                 }
 
             }
-            if (player.getCoins() == 0) {
-                System.out.println("You have zero coins. Sell your animal to get coins.");
-                playerChoice(player);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                break;
+       //     if (player.getCoins() == 0) {
+         //       System.out.println("You have zero coins. Sell your animal to get coins.");
+         //       playerChoice(player);
+          //      try {
+            //        Thread.sleep(2000);
+           //     } catch (InterruptedException e) {
+           //         e.printStackTrace();
+           //     }
+           //     break;
             }
         }
-    }
+ //   }
 
     public void sellEveryThing(Player player) {
         for (Animal animal : player.getAnimalList()) {

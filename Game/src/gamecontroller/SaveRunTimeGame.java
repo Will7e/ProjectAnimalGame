@@ -8,7 +8,7 @@ public class SaveRunTimeGame implements Serializable {
     private int playerAmount;
     private int amountRounds;
     private int index;
-    private static int displayRounds;
+    private int displayRounds;
     private ArrayList<Player> playerListHistory;
     private boolean savedGame;
 

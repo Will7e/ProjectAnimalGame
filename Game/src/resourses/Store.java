@@ -15,50 +15,19 @@ import java.util.Scanner;
 
 public class Store implements Serializable {
     transient Scanner console = new Scanner(System.in);
-    public int dogPrice = 30;
-    public int bearPrice = 80;
-    public int horsePrice = 50;
-    public int lionPrice = 100;
-    public int rabbitPrice = 10;
-    protected int meatPrice = 10;
-    protected int mixFoodPrice = 5;
-    protected int veggiesPrice = 1;
+    private int dogPrice = 30;
+    private int bearPrice = 80;
+    private int horsePrice = 50;
+    private int lionPrice = 100;
+    private int rabbitPrice = 10;
+    private int meatPrice = 10;
+    private int mixFoodPrice = 5;
+    private int veggiesPrice = 1;
     private int input2;
     private char gender;
     private String name;
     private boolean backToMenu;
 
-    public int getDogPrice() {
-        return dogPrice;
-    }
-
-    public int getBearPrice() {
-        return bearPrice;
-    }
-
-    public int getHorsePrice() {
-        return horsePrice;
-    }
-
-    public int getLionPrice() {
-        return lionPrice;
-    }
-
-    public int getRabbitPrice() {
-        return rabbitPrice;
-    }
-
-    public int getMeatPrice() {
-        return meatPrice;
-    }
-
-    public int getMixFoodPrice() {
-        return mixFoodPrice;
-    }
-
-    public int getVeggiesPrice() {
-        return veggiesPrice;
-    }
 
     // Prints out animal choices for player. Add animal to player,
     public void animalToBuy(Player player) {
@@ -346,28 +315,55 @@ public class Store implements Serializable {
                 System.out.println("How many Kilos of veggies do you want to buy ?");
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getVeggiesPrice() * input2) {
-                    System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins.");
+
+                    System.out.println("Not enough coins. You have : " + player.getCoins() + "left.");
+                    System.out.println("Going back to main menu, please try again");
+                    backToMenu = true;
+                    setBackToMenu(backToMenu);
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+                    break;
 
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Veggies());
                     }
                     player.setCoins(player.getCoins() - getVeggiesPrice() * input2);
+                    System.out.println("You bought some veggies!");
                     System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("Going back to main menu, next players turn");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
                 }
                 break;
             case 3:
                 System.out.println("How many Kilos of mix foods do you want to buy ?");
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMixFoodPrice() * input2) {
-                    System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. ");
+                    System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
+                    System.out.println("Going back to main menu, please try again");
+                    backToMenu = true;
+                    setBackToMenu(backToMenu);
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+                    break;
+
+
+
+
 
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new MixFood());
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
+                    System.out.println("You bought some mixed food!");
                     System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("Going back to main menu, next players turn");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
                 }
                 break;
         }
@@ -427,6 +423,41 @@ public class Store implements Serializable {
     public boolean getbackToMenu() {
         return this.backToMenu;
     }
+
+    public int getDogPrice() {
+        return dogPrice;
+    }
+
+    public int getBearPrice() {
+        return bearPrice;
+    }
+
+    public int getHorsePrice() {
+        return horsePrice;
+    }
+
+    public int getLionPrice() {
+        return lionPrice;
+    }
+
+    public int getRabbitPrice() {
+        return rabbitPrice;
+    }
+
+    public int getMeatPrice() {
+        return meatPrice;
+    }
+
+    public int getMixFoodPrice() {
+        return mixFoodPrice;
+    }
+
+    public int getVeggiesPrice() {
+        return veggiesPrice;
+    }
+
+
+
 }
 
 
