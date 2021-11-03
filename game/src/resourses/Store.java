@@ -40,7 +40,8 @@ public class Store implements Serializable {
             {
                 if (player.getCoins() < this.getBearPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins. Try again!");
-                    input2 = Integer.parseInt(console.nextLine());
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                     animalToBuy(player);
 
                 } else {
@@ -67,6 +68,8 @@ public class Store implements Serializable {
             {
                 if (player.getCoins() < this.getDogPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                     animalToBuy(player);
 
                 } else {
@@ -79,6 +82,7 @@ public class Store implements Serializable {
                     player.setCoins(player.getCoins() - getDogPrice() * input2);
                     System.out.println("You bought " + input2 + " Dog(s)!");
                     System.out.println("You have " + player.getCoins() + " coins left. ");
+                    backToMenu = false;
                     System.out.println("Next players turn, back to menu...");
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
@@ -165,7 +169,8 @@ public class Store implements Serializable {
             }
             case 6:
                 System.out.println("Going back to main menu");
-                System.out.println("Next players turn");
+                backToMenu = true;
+                setBackToMenu(backToMenu);
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 break;

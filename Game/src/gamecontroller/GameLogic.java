@@ -265,8 +265,17 @@ public class GameLogic implements Serializable {
             switch (input) {
                 case 1:
                     store.animalToBuy(player);
-                    setIndex(index += 1);
-                    break;
+
+                    if (store.getbackToMenu()) {
+                        playerChoice(player);
+                        return;
+
+                    }
+                    else {
+
+                        setIndex(index += 1);
+                    }
+                        break;
                 case 2:
                     store.buyFood(player);
 
@@ -275,7 +284,8 @@ public class GameLogic implements Serializable {
                     }
                     else {
                         setIndex(index += 1);
-                    }  break;
+                    }
+                    break;
                 case 3:
                     store.saleStart(player);
 
