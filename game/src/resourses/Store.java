@@ -4,6 +4,7 @@ import animals.*;
 import food.Meat;
 import food.MixFood;
 import food.Veggies;
+import gamecontroller.FormatHelp;
 import gamecontroller.Player;
 
 import java.io.Serializable;
@@ -79,7 +80,12 @@ public class Store implements Serializable {
                         player.getAnimalList().add(new Bear(name, gender));
                     }
                     player.setCoins(player.getCoins() - getBearPrice() * input2);
-                    System.out.println("You have " + player.getCoins() + " left. ");
+                    System.out.println("You bought " + input2 + " Bear(s)!");
+                    System.out.println("You have " + player.getCoins() + " coins left. ");
+                    System.out.println("Next players turn, back to menu...");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
 
                 }
                 break;
@@ -100,7 +106,13 @@ public class Store implements Serializable {
                         player.getAnimalList().add(new Dog(name, gender));
                     }
                     player.setCoins(player.getCoins() - getDogPrice() * input2);
-                    System.out.println("You have " + player.getCoins() + " left. ");
+                    System.out.println("You bought " + input2 + " Dog(s)!");
+                    System.out.println("You have " + player.getCoins() + " coins left. ");
+                    System.out.println("Next players turn, back to menu...");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
+
                 }
                 break;
             }
@@ -119,7 +131,16 @@ public class Store implements Serializable {
                         player.getAnimalList().add(new Horse(name, gender));
                     }
                     player.setCoins(player.getCoins() - getHorsePrice() * input2);
-                    System.out.println("You have " + player.getCoins() + " left. ");
+
+                    System.out.println("You bought " + input2 + " Horse(s)!");
+                    System.out.println("You have " + player.getCoins() + " coins left. ");
+                    System.out.println("Next players turn, back to menu...");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+
+
+
+
                 }
                 break;
             }
@@ -139,7 +160,11 @@ public class Store implements Serializable {
                         player.getAnimalList().add(new Lion(name, gender));
                     }
                     player.setCoins(player.getCoins() - getLionPrice() * input2);
-                    System.out.println("You have " + player.getCoins() + " left. ");
+                    System.out.println("You bought " + input2 + " Lion(s)!");
+                    System.out.println("You have " + player.getCoins() + " coins left. ");
+                    System.out.println("Next players turn, back to menu...");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                 }
                 break;
             }
@@ -158,18 +183,28 @@ public class Store implements Serializable {
                         player.getAnimalList().add(new Rabbit(name, gender));
                     }
                     player.setCoins(player.getCoins() - getRabbitPrice() * input2);
-                    System.out.println("You have " + player.getCoins() + " left. ");
+                    System.out.println("You bought " + input2 + " Rabbit(s)!");
+                    System.out.println("You have " + player.getCoins() + " coins left. ");
+                    System.out.println("Next players turn, back to menu...");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                 }
                 System.out.println();
                 break;
             }
             case 6:
-
+                System.out.println("Going back to main menu");
+                System.out.println("Next players turn");
+                FormatHelp.threadSleep();
+                FormatHelp.emptyScreen();
                 break;
 
             default:
                 System.out.println("Incorrect input");
-
+                System.out.println("Please try again");
+                FormatHelp.threadSleep();
+                FormatHelp.emptyScreen();
+                animalToBuy(player);
                 break;
         }
 
@@ -181,7 +216,9 @@ public class Store implements Serializable {
 
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animals");
-            System.out.println();
+            System.out.println("Please come back in the next round");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
 
         } else {
             System.out.println("Welcome to the Store!");
@@ -195,11 +232,18 @@ public class Store implements Serializable {
                     break;
 
                 case 2:
-                    System.out.println("Test");
-                    return;
+                    System.out.println("Going back to main menu");
+                    System.out.println("Next players turn.");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
+                    break;
+
+
 
                 default:
                     System.out.println("Invalid input, please try again");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                     saleStart(player);
                     break;
             }
@@ -221,15 +265,6 @@ public class Store implements Serializable {
 
     public void sellAnimal(Player player) {
 
-        if (player.getAnimalList().size() == 0) {
-            System.out.println("You don't have animals for sale.");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
         System.out.println("Which animal do you want to sell? Type in the name of the animal");
         String playerChoice = console.nextLine();
         boolean animalExist = true;
@@ -257,10 +292,15 @@ public class Store implements Serializable {
                     getAnimalsForSale(player);
 
                 case 2:
+                    System.out.println("Closing the shop, see you next time!");
+                    System.out.println("Next players turn, back to main menu");
+                    FormatHelp.threadSleep();
+                    FormatHelp.emptyScreen();
                     break;
 
                 default:
                     System.out.println("Invalid output, please try again");
+                    sellAnimal(player);
             }
         }
     }
@@ -316,6 +356,8 @@ public class Store implements Serializable {
     }
 
     public void animalPrice() {
+        System.out.println("Welcome to the store!");
+        System.out.println("Here is a list of animals you can buy");
         System.out.println("1. Bear " + "   ( " + this.getBearPrice() + " Coins )\n" +
                 "2. Dog " + "    ( " + this.getDogPrice() + " Coins )\n" +
                 "3. Horse " + "  ( " + this.getHorsePrice() + " Coins )\n" +

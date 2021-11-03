@@ -36,7 +36,7 @@ public class SaveRunTimeGame implements Serializable {
         return amountRounds;
     }
     public int getDisplayRounds() {
-        return displayRounds - 1;
+        return displayRounds;
     }
     public int getIndex () {
         return index;

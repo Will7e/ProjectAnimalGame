@@ -15,7 +15,7 @@ import java.util.*;
  * @author william, ridah, marcus
  */
 public class Player implements Serializable {
-    transient static Scanner console = new Scanner(System.in);
+    transient Scanner console = new Scanner(System.in);
     private String name;
     protected int playerCoins = 100;
     private ArrayList<Animal> animalList; // ArrayList
@@ -115,7 +115,19 @@ public class Player implements Serializable {
     // Player choice to feed the animal
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
-            System.out.println("You don't have food");
+            System.out.println("You don't have any food, please come back after you buy some more");
+            System.out.println("Next players turn, back to menu...");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
+        } else if(player.getAnimalList().size() == 0) {
+            System.out.println("You dont own any animals to feed");
+            System.out.println("Please come back after you bought some animals");
+            System.out.println("Next players turn, back to menu...");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
+
 
         } else {
             checkAnimal(player);
@@ -135,6 +147,7 @@ public class Player implements Serializable {
                         animalList.get(i).eatFood(foodList.get(i));
                         foodList.remove(foodList.get(i));
                     }
+                    break;
                 }
             } else {
                 System.out.println("Name not found. Type again.");
