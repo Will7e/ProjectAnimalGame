@@ -67,7 +67,7 @@ public class Player implements Serializable {
                     System.out.println("[Your ["+animal.getName()+"]. Health: "+ animal.getHealth() +
                             " .Have been remove.");
                     animalList.remove(animal);
-                    animalInfo(animal);
+                    backToMenu = true;
 
                 }
                     if (animal.getAge() == animal.getMaxAge()){
@@ -75,7 +75,7 @@ public class Player implements Serializable {
                         System.out.println("[Type: "+animal.getClassName()+ "] [Name: "+animal.getName()+"] [Age: "+ animal.getAge()+
                                 "] is no longer in your animal list.");
                         animalList.remove(animal);
-                        animalInfo(animal);
+                        backToMenu = true;
 
                     }
                 if (animalList.isEmpty()) {
@@ -83,6 +83,7 @@ public class Player implements Serializable {
                     System.out.println("[Empty]");
                 }
                 animalInfo(animal);
+                backToMenu = true;
                 }
             }
         }
@@ -118,8 +119,7 @@ public class Player implements Serializable {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
             System.out.println("Try again, back to main menu");
-            boolean backToMenu= true;
-            setBackToMenu(backToMenu);
+            backToMenu= true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
@@ -127,8 +127,7 @@ public class Player implements Serializable {
             System.out.println("You dont own any animals to feed");
             System.out.println("Please come back after you bought some animals");
             System.out.println("Back to main menu");
-            boolean backToMenu= true;
-            setBackToMenu(backToMenu);
+            backToMenu= true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
