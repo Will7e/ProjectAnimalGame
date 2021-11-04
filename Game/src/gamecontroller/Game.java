@@ -44,15 +44,20 @@ public class Game {
 
                 case 2:
                     System.out.println("Please enter a name of the saved file");
-                    fileName = console.nextLine();
-                    loadSavedGame = FileUtilities.loadSavedGame(fileName);
-                    if (loadSavedGame != null) {
-                        this.game = new GameLogic(loadSavedGame);
 
-                    } else {
+                        fileName = console.nextLine();
 
 
-                    }
+                        loadSavedGame = FileUtilities.loadSavedGame(fileName);
+                        if (loadSavedGame != null) {
+                            this.game = new GameLogic(loadSavedGame);
+                        }
+                        else{
+
+                        System.out.println("Something went wrong, pleae try again");
+                        startMenu();
+
+                        }
 
             }
         }
