@@ -81,7 +81,6 @@ public class Player implements Serializable {
                 if (animalList.isEmpty()) {
                     System.out.println("-".repeat(5));
                     System.out.println("[Empty]");
-
                 }
                 animalInfo(animal);
                 }

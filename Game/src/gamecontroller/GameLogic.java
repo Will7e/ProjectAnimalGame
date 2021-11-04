@@ -64,7 +64,6 @@ public class GameLogic implements Serializable {
         }
     }
 
-
     private void askAmountPlayers() {
         // This method ask for how many players are going to play.
         do {
@@ -116,9 +115,11 @@ public class GameLogic implements Serializable {
 
     public void animalStatsModify() {
         for (Player player : playerList) {
-            for (Animal animal : player.getAnimalList()) {
-                healthPriceReduce(player);
-                animal.setAge(animal.getAge() + 5);
+            if (!player.getAnimalList().isEmpty()){
+                for (Animal animal : player.getAnimalList()) {
+                    healthPriceReduce(player);
+                    animal.setAge(animal.getAge() + 5);
+            }
             }
         }
     }
@@ -208,6 +209,7 @@ public class GameLogic implements Serializable {
     public void findPlayerRank() {
         int max = 0;
         String winner = "";
+        playerCoins();
         for (int i = 0; i < playerList.size(); i++) {
             if (playerList.get(i).getCoins() > max) {
                 max = playerList.get(i).getCoins();
@@ -239,12 +241,11 @@ public class GameLogic implements Serializable {
             }
             if (gameRun) {
                 playerInfos();
-                if (i > 0) {
                     animalStatsModify();
                     if (i == amountRounds) {
                         findWinnerLastRound();
                         break;
-                    }
+
                 }
             } else {
                 System.out.println("Game Over");
@@ -260,7 +261,7 @@ public class GameLogic implements Serializable {
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit game");
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 1 || input > 7) {
-            System.out.println("Choice between 1 - 7");
+            System.out.println("Choose between 1 - 7");
         } else {
             switch (input) {
                 case 1:
@@ -327,9 +328,7 @@ public class GameLogic implements Serializable {
                     System.out.println("Do you want to exit the game?");
                     System.out.println("1. Yes. 2. No");
                     int userChoice = Integer.parseInt(scanner.nextLine());
-
                     switch (userChoice) {
-
                         case 1:
                             System.exit(0);
                             break;
@@ -338,7 +337,7 @@ public class GameLogic implements Serializable {
                             playerChoice(player);
                             break;
                         default:
-                            System.out.println("Please choose 1 or 2");
+                            System.out.println("Choose between 1 - 2");
                             break;
                     }
 
@@ -361,11 +360,12 @@ public class GameLogic implements Serializable {
         System.out.println();
     }
 
-    public String playerCoins() {
+    public void playerCoins() {
+        System.out.println("Player stats.");
         for (Player player : playerList) {
-
+            System.out.println("Name: " + player.getName() + " Coins: " + player.getCoins());
         }
-        return "";
+
     }
 
     public int getPlayerAmount() {
@@ -408,9 +408,7 @@ public class GameLogic implements Serializable {
         int userChoice = Integer.parseInt(scanner.nextLine());
 
         switch (userChoice) {
-
             case 1:
-
                 System.out.println("Enter the name of the file you want to write to");
                 String fileName = scanner.nextLine();
                 FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
@@ -423,7 +421,6 @@ public class GameLogic implements Serializable {
                 FormatHelp.emptyScreen();
                 playerChoice(player);
                 break;
-
 
             default:
                 System.out.println("Please enter 1 or 2");
