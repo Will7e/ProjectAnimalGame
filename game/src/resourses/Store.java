@@ -88,8 +88,6 @@ public class Store implements Serializable {
                     System.out.println("Next players turn, back to menu...");
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
-
-
                 }
                 break;
             }
@@ -115,7 +113,6 @@ public class Store implements Serializable {
                     System.out.println("Next players turn, back to menu...");
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
-
 
                 }
                 break;

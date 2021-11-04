@@ -65,9 +65,10 @@ public class Player implements Serializable {
                             "] [Age: "+ (animal.getAge()+5)+"] is death and has been remove.");
                     animalList.remove(animal);
                 }
+                backToMenu = true;
                 }
-        System.out.println("-".repeat(15));
-            backToMenu = true;
+
+
             }
     // Prints out list of players food and amounts.
     public void printFood(Player player) {

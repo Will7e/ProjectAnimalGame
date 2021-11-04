@@ -243,8 +243,10 @@ public class GameLogic implements Serializable {
             }
             if (gameRun) {
                 playerInfos();
+                if  (i > 0){
                     animalStatsModify();
-                    if (i == amountRounds) {
+                }
+                    if ((i+1) == amountRounds) {
                         findWinnerLastRound();
                         break;
 
@@ -272,11 +274,8 @@ public class GameLogic implements Serializable {
 
                     if (store.getbackToMenu()) {
                         playerChoice(player);
-                        return;
-
                     }
                     else {
-
                         setIndex(index += 1);
                     }
                         break;
@@ -357,7 +356,6 @@ public class GameLogic implements Serializable {
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
-        player.removeDeadAnimal(player);
         player.animalInfo(player);
         System.out.println("---------------");
         player.printFood(player);
