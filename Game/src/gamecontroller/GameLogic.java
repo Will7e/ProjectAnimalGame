@@ -127,9 +127,10 @@ public class GameLogic implements Serializable {
     // health reduce by random 10-30%
     // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
     public void healthPriceReduce(Player player) {
-        Random random = new Random();
+
         int rn = random.nextInt(3) + 1;
         for (Animal animal : player.getAnimalList())
+
             switch (rn) {
                 case 1:
                     healthReduce = 0.1 * animal.getHealth();
