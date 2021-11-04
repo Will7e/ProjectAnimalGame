@@ -56,37 +56,19 @@ public class Player implements Serializable {
     }
 
     // Prints out list of animal that player own.
-    public void printAnimal(Player player) {
-        System.out.println("Animal list:");
-        if (animalList.isEmpty()) {
-            System.out.println("[Empty]");
-        } else {
-            for (Animal animal : animalList) {
-                if (animal.getHealth() == 0){
-                    System.out.println("Your animal is death! ");
-                    System.out.println("[Your ["+animal.getName()+"]. Health: "+ animal.getHealth() +
-                            " .Have been remove.");
+    public void removeDeadAnimal(Player player) {
+            Iterator<Animal> iterator = player.getAnimalList().iterator();
+            while (iterator.hasNext()){
+                Animal animal = animalList.iterator().next();
+                if (animal.getHealth() == 0 || animal.getAge() == animal.getMaxAge()){
+                    System.out.println("[Name: "+animal.getName()+"]. [Health: "+ animal.getHealth() +
+                            "] [Age: "+ (animal.getAge()+5)+"] is death and has been remove.");
                     animalList.remove(animal);
-                    backToMenu = true;
-
                 }
-                    if (animal.getAge() == animal.getMaxAge()){
-                        System.out.println("Your ["+ animal.getClassName()+ "] is death! ");
-                        System.out.println("[Type: "+animal.getClassName()+ "] [Name: "+animal.getName()+"] [Age: "+ animal.getAge()+
-                                "] is no longer in your animal list.");
-                        animalList.remove(animal);
-                        backToMenu = true;
-
-                    }
-                if (animalList.isEmpty()) {
-                    System.out.println("-".repeat(5));
-                    System.out.println("[Empty]");
                 }
-                animalInfo(animal);
-                backToMenu = true;
-                }
+        System.out.println("-".repeat(15));
+            backToMenu = true;
             }
-        }
     // Prints out list of players food and amounts.
     public void printFood(Player player) {
         System.out.println("Food list:");
@@ -124,14 +106,10 @@ public class Player implements Serializable {
             FormatHelp.emptyScreen();
 
         } else if(player.getAnimalList().size() == 0) {
-            System.out.println("You dont own any animals to feed");
-            System.out.println("Please come back after you bought some animals");
-            System.out.println("Back to main menu");
+            System.out.println("You don't own any animal.\nCome back after you've bought some animals\nReturn to main menu...");
             backToMenu= true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-
-
 
         } else {
             checkAnimal(player);
@@ -139,7 +117,7 @@ public class Player implements Serializable {
     }
     public void checkAnimal(Player player) {
         System.out.println("Type in the name of animal you want to feed.");
-        printAnimal(player);
+        removeDeadAnimal(player);
         String animalName = console.nextLine();
         for (int i = 0; i < animalList.size(); i++) {
             if (animalName.equalsIgnoreCase(animalList.get(i).getName())) {
@@ -151,26 +129,26 @@ public class Player implements Serializable {
                         animalList.get(i).eatFood(foodList.get(i));
                         foodList.remove(foodList.get(i));
                     }
-                    break;
                 }
+                break;
             } else {
                 System.out.println("Name not found. Type again.");
                 checkAnimal(player);
             }
         }
     }
-    public void animalInfo(Animal animal){
-        System.out.println("---------------");
-        System.out.println("Type [" + animal.getClassName() + "]\n[Name: " + animal.getName() + "]" +
-                "[Age: "+ animal.getAge()+"] [Gender: " + animal.getGender() + " )" + "] " +
-                "[Health: " + animal.getHealth() + "]");
+    public void animalInfo(Player player){
+        System.out.println("Animal list:");
+        if (animalList.isEmpty()) {
+            System.out.println("[Empty]");}
 
+        for (Animal animal : player.getAnimalList()){
+            System.out.println("-".repeat(15));
+            System.out.println("Type [" + animal.getClassName() + "]\n[Name: " + animal.getName() + "]" +
+                    "[Age: "+ (animal.getAge()+5)+"] [Gender: " + animal.getGender() + " )" + "] " +
+                    "[Health: " + animal.getHealth() + "]");
+        }
     }
-
-    public void setBackToMenu(boolean backToMenu) {
-        this.backToMenu = backToMenu;
-    }
-
     public boolean getBackToMenu() {
         return this.backToMenu;
     }

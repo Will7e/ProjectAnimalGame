@@ -116,8 +116,8 @@ public class GameLogic implements Serializable {
     public void animalStatsModify() {
         for (Player player : playerList) {
             if (!player.getAnimalList().isEmpty()){
+                healthPriceReduce(player);
                 for (Animal animal : player.getAnimalList()) {
-                    healthPriceReduce(player);
                     animal.setAge(animal.getAge() + 5);
             }
             }
@@ -127,33 +127,35 @@ public class GameLogic implements Serializable {
     // health reduce by random 10-30%
     // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
     public void healthPriceReduce(Player player) {
-        Random random = new Random();
-        int rn = random.nextInt(3) + 1;
-        for (Animal animal : player.getAnimalList())
+        for (int i = 0; i < player.getAnimalList().size(); i++){
+           int rn = random.nextInt(3) + 1;
             switch (rn) {
                 case 1:
-                    healthReduce = 0.1 * animal.getHealth();
-                    animal.setHealth(animal.getHealth() - healthReduce);
-                    if (animal.getHealth() < 100) {
+                    healthReduce = 0.1 * player.getAnimalList().get(i).getHealth();
+                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
+                    if (player.getAnimalList().get(i).getHealth() < 100) {
                         priceChange(player, 0.1);
                         break;
                     }
                 case 2:
-                    healthReduce = 0.2 * animal.getHealth();
-                    animal.setHealth(animal.getHealth() - healthReduce);
-                    if (animal.getHealth() < 100) {
+                    healthReduce = 0.2 * player.getAnimalList().get(i).getHealth();
+                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
+                    if (player.getAnimalList().get(i).getHealth() < 100) {
                         priceChange(player, 0.2);
                         break;
                     }
 
                 case 3:
-                    healthReduce = 0.3 * animal.getHealth();
-                    animal.setHealth(animal.getHealth() - healthReduce);
-                    if (animal.getHealth() < 100) {
+                    healthReduce = 0.3 * player.getAnimalList().get(i).getHealth();
+                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
+                    if (player.getAnimalList().get(i).getHealth() < 100) {
                         priceChange(player, 0.3);
                         break;
                     }
+                    break;
             }
+        }
+
 
     }
 
@@ -257,7 +259,8 @@ public class GameLogic implements Serializable {
     }
 
     public void playerChoice(Player player) {
-        System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | [" + player.getCoins() + " Coins]");
+        System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | " +
+                "[" + player.getCoins() + " Coins] | [Max round: " +amountRounds + "]");
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit game");
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 1 || input > 7) {
@@ -354,7 +357,8 @@ public class GameLogic implements Serializable {
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
-        player.printAnimal(player);
+        player.removeDeadAnimal(player);
+        player.animalInfo(player);
         System.out.println("---------------");
         player.printFood(player);
         System.out.println();
