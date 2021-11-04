@@ -20,8 +20,8 @@ public class Game {
 
     public void startMenu() {
 
-        System.out.println("Welcome to the animal game!");
-        System.out.println("1. Start a new game 2. Load old file");
+        System.out.println("[ -  Welcome to the animal game  - ]");
+        System.out.println("   1. New game      2. Load game");
         int choice = Integer.parseInt(console.nextLine());
 
         switch (choice) {

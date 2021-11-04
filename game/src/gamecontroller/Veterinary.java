@@ -33,8 +33,7 @@ public class Veterinary  implements Serializable {
 
     public void successMessage() {
         System.out.println("[Name : " + name + "]\n" +
-                "[Gender: " + gender + "]\n" +
-                " has succeeded add to your bag.");
+                "[Gender: " + gender + "]");
     }
 
     public int checkAnimal(Player player) {
@@ -70,9 +69,9 @@ public class Veterinary  implements Serializable {
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
-            System.out.println("Going back to main menu");
-            boolean backToMenu= true;
-            setBackToMenu(backToMenu);
+            System.out.println("Return to main menu...");
+            backToMenu= true;
+            setBackToMenu(true);
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
@@ -83,21 +82,23 @@ public class Veterinary  implements Serializable {
             checkAnimal2(player);
             if (!player.getAnimalList().get(i1).getClassName().equalsIgnoreCase(player.getAnimalList().get(i2).getClassName())) {
                 System.out.println("Animal need to be same race.");
+                System.out.println();
+                System.out.println("Return to main menu...");
+                backToMenu = true;
             }
             if (player.getAnimalList().get(i1).getGender() == player.getAnimalList().get(i2).getGender()) {
-                System.out.println("Animal cant have same gender.");
-                System.out.println("Going back to main menu, next players turn");
+                System.out.println("Animal can't have same gender.");
+                System.out.println();
+                System.out.println("Return to main menu...");
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
-
-
-
+                backToMenu = true;
                 return;
             } else {
                 if (random.nextBoolean()) {
                     for (int i = 0; i < player.getAnimalList().size(); i++) {
                         if (player.getAnimalList().get(i1).getClassName().equalsIgnoreCase("Bear")) {
-                            System.out.println("Congrats you succeed with bear breeding.");
+                            System.out.println("Congrats! You succeed with Bear's breeding.");
                             gender = randomGender();
                             name = nameAnimal(player);
                             player.getAnimalList().add(new Bear(name, gender));
@@ -105,8 +106,9 @@ public class Veterinary  implements Serializable {
                             break;
                         }
                         if (player.getAnimalList().get(i1).getClassName().equalsIgnoreCase("Dog")) {
-                            System.out.println("Congrats you succeed with dog breeding. You now get 2 dogs.");
+                            System.out.println("Congrats! You succeed with Dog's breeding. You now get 2 dogs.");
                             for (int j = 0; j < 2; j++) {
+                                System.out.println("Dog: " + (j+1));
                                 gender = randomGender();
                                 name = nameAnimal(player);
                                 player.getAnimalList().add(new Dog(name, gender));
@@ -115,7 +117,7 @@ public class Veterinary  implements Serializable {
                             break;
                         }
                         if (player.getAnimalList().get(i1).getClassName().equalsIgnoreCase("Horse")) {
-                            System.out.println("Congrats you succeed with horse breeding.");
+                            System.out.println("Congrats! You succeed with Horse's breeding.");
                             gender = randomGender();
                             name = nameAnimal(player);
                             player.getAnimalList().add(new Horse(name, gender));
@@ -123,6 +125,7 @@ public class Veterinary  implements Serializable {
                             break;
                         }
                         if (player.getAnimalList().get(i1).getClassName().equalsIgnoreCase("Lion")) {
+                            System.out.println("Congrats! You succeed with Lion's breeding.");
                             gender = randomGender();
                             name = nameAnimal(player);
                             player.getAnimalList().add(new Lion(name, gender));
@@ -130,18 +133,23 @@ public class Veterinary  implements Serializable {
                             break;
                         }
                         if (player.getAnimalList().get(i1).getClassName().equalsIgnoreCase("Rabbit")) {
-                            System.out.println("Congrats you succeed with rabbit breeding. You now get 4 rabbits");
+                            System.out.println("Congrats! You succeed with Rabbit's breeding. You now get 4 rabbits.");
                             for (int j = 0; j < 4; j++) {
+                                System.out.println("Rabbit: " + (j+1));
                                 gender = randomGender();
                                 name = nameAnimal(player);
                                 player.getAnimalList().add(new Rabbit(name, gender));
                                 successMessage();
                             }
+                            System.out.println("Animals succeeded add to your bag.");
                             break;
                         }
+
                     }
                 } else {
-                    System.out.println("Sorry breeding failed.Good luck next time");
+                    System.out.println("Breeding failed. Good luck next time");
+                    System.out.println();
+                    backToMenu = false;
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
