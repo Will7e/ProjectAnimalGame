@@ -187,18 +187,9 @@ public class GameLogic implements Serializable {
                 }
 
             }
-       //     if (player.getCoins() == 0) {
-         //       System.out.println("You have zero coins. Sell your animal to get coins.");
-         //       playerChoice(player);
-          //      try {
-            //        Thread.sleep(2000);
-           //     } catch (InterruptedException e) {
-           //         e.printStackTrace();
-           //     }
-           //     break;
+
             }
         }
- //   }
 
     public void sellEveryThing(Player player) {
         for (Animal animal : player.getAnimalList()) {
@@ -217,7 +208,7 @@ public class GameLogic implements Serializable {
                 winner = playerList.get(i).getName();
             }
         }
-        System.out.println("Winner " + winner);
+        System.out.println("Winner: " + winner);
     }
 
     public void findWinnerLastRound() {
@@ -242,7 +233,7 @@ public class GameLogic implements Serializable {
             }
             if (gameRun) {
                 playerInfos();
-                if  (i > 0){
+                if  ((i+1) > 0){
                     animalStatsModify();
                 }
                     if ((i+1) == amountRounds) {
@@ -353,7 +344,6 @@ public class GameLogic implements Serializable {
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
-        player.removeDeadAnimal(player);
         player.animalInfo(player);
         System.out.println("---------------");
         player.printFood(player);
@@ -424,9 +414,10 @@ public class GameLogic implements Serializable {
                 System.out.println("Please enter 1 or 2");
                 playerChoice(player);
 
-
         }
+
     }
+
 }
 
 

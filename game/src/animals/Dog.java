@@ -9,7 +9,7 @@ public class Dog extends Animal{
     protected double health = 100;
     protected int maxAge = 20;
     protected int priceToSell = 30;
-
+    protected int age = 0;
     public Dog(String name, char gender) {
         super(name, gender);
     }

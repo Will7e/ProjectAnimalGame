@@ -6,9 +6,9 @@ import food.Veggies;
 public class Rabbit extends Animal{
     protected String className = "Rabbit";
     protected double health = 100;
-    protected int maxAge = 5;
+    protected int maxAge = 10;
     protected int priceToSell = 10;
-
+    protected int age = 0;
     public Rabbit(String name, char gender) {
         super(name, gender);
     }

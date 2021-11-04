@@ -22,6 +22,7 @@ public class Player implements Serializable {
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
     private boolean backToMenu;
+    Animal i1;
 
     public Player(String name) {
         this.store = new Store();
@@ -55,23 +56,6 @@ public class Player implements Serializable {
         return foodList;
     }
 
-    // Prints out list of animal that player own.
-    public void removeDeadAnimal(Player player) {
-            for (int i = 0; i < player.getAnimalList().size() ; i++){
-                if (player.getAnimalList().get(i).getHealth() <= 0 ){
-                    System.out.println("[Name: "+player.getAnimalList().get(i).getName()+"]. [Health: "+ player.getAnimalList().get(i).getHealth() +
-                            "] [Age: "+ (player.getAnimalList().get(i).getAge()+5)+"] is death and has been remove.");
-                    animalList.remove(player.getAnimalList().get(i));
-                    if (player.getAnimalList().get(i).getAge() == player.getAnimalList().get(i).getMaxAge()){
-                        System.out.println("[Name: "+player.getAnimalList().get(i).getName()+"]. [Health: "+ player.getAnimalList().get(i).getHealth() +
-                                "] [Age: "+ (player.getAnimalList().get(i).getAge()+5)+"] is death and has been remove.");
-                        animalList.remove(player.getAnimalList().get(i));
-
-                    }
-                }
-                }
- backToMenu = true;
-            }
     // Prints out list of players food and amounts.
     public void printFood(Player player) {
         System.out.println("Food list:");
@@ -104,13 +88,13 @@ public class Player implements Serializable {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
             System.out.println("Try again, back to main menu");
-            backToMenu= true;
+            backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
-        } else if(player.getAnimalList().size() == 0) {
+        } else if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animal.\nCome back after you've bought some animals\nReturn to main menu...");
-            backToMenu= true;
+            backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
@@ -118,6 +102,7 @@ public class Player implements Serializable {
             checkAnimal(player);
         }
     }
+
     public void checkAnimal(Player player) {
         animalInfo(player);
         System.out.println("Type in the name of animal you want to feed.");
@@ -142,25 +127,41 @@ public class Player implements Serializable {
             }
         }
     }
-    public void animalInfo(Player player){
+
+    public void animalInfo(Player player) {
         System.out.println("Animal list:");
         if (animalList.isEmpty()) {
-            System.out.println("[Empty]");}
+            System.out.println("[Empty]");
+        }
         backToMenu = true;
-
-        for (int i= 0; i< player.getAnimalList().size(); i++){
+        for (int i = 0; i < player.getAnimalList().size(); i++) {
             System.out.println("-".repeat(15));
             System.out.println("Type [" + player.getAnimalList().get(i).getClassName() + "]\n[Name: " + player.getAnimalList().get(i).getName() + "]" +
-                    "[Age: "+ (player.getAnimalList().get(i).getAge()+5)+"] [Gender: " + player.getAnimalList().get(i).getGender() + " )" + "] " +
+                    "[Age: " + player.getAnimalList().get(i).getAge() + "] [Gender: " + player.getAnimalList().get(i).getGender() + " )" + "] " +
                     "[Health: " + player.getAnimalList().get(i).getHealth() + "]");
+
+            if (player.getAnimalList().get(i).getAge() == player.getAnimalList().get(i).getMaxAge() ) {
+                System.out.println("Animal is dead. Cause: Reached max age.");
+                player.getAnimalList().remove(player.getAnimalList().get(i));
+                i--;
+            } else if (player.getAnimalList().get(i).getHealth() <= 0 ){
+                System.out.println("Animal is dead. Cause: Health reached 0.");
+                player.getAnimalList().remove(player.getAnimalList().get(i));
+                i--;
+            }
+                else {
+                backToMenu = true;
+            }
         }
     }
+
+
     public boolean getBackToMenu() {
         return this.backToMenu;
     }
 
 
-    }
+}
 
 
 

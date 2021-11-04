@@ -8,7 +8,7 @@ public class Lion extends Animal{
     protected double health = 100;
     protected int maxAge = 100;
     protected int priceToSell = 100;
-
+    protected int age = 0;
     public Lion(String name, char gender) {
         super(name, gender);
     }

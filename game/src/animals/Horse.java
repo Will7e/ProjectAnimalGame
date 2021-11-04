@@ -8,7 +8,7 @@ public class Horse extends Animal{
     protected double health = Math.round(100);
     protected int maxAge = 25;
     protected int priceToSell = 50;
-
+    protected int age = 0;
     public Horse(String name, char gender) {
         super(name, gender);
 

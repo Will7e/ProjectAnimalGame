@@ -8,6 +8,7 @@ public class Bear extends Animal{
     protected double health = 100;
     protected int maxAge = 50;
     protected int priceToSell = 80;
+    protected int age = 0;
     public Bear(String name, char gender) {
         super(name, gender);
     }

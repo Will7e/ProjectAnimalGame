@@ -7,7 +7,7 @@ import java.io.Serializable;
 public abstract class Animal implements Serializable {
     protected String name;
     protected char gender;
-    protected int age = 0;
+
     public Animal(String name, char gender){
         this.name = name;
         this.gender = gender;
