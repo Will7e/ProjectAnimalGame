@@ -43,7 +43,7 @@ public class Game {
                     break;
 
                 case 2:
-                    System.out.println("Please enter a name of the saved file");
+                    System.out.println("Enter a name for the saved file");
 
                         fileName = console.nextLine();
 
@@ -54,7 +54,7 @@ public class Game {
                         }
                         else{
 
-                        System.out.println("Something went wrong, pleae try again");
+                        System.out.println("Something went wrong. Try again");
                         startMenu();
 
                         }
