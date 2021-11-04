@@ -19,7 +19,7 @@ public class SaveRunTimeGame implements Serializable {
         this.amountRounds = game.getAmountRounds();
         this.displayRounds = game.getDisplayRounds();
         this.playerListHistory = game.getPlayerListHistory();
-        //  this.savedGame = game.getSavedGame();
+
         
     }
 

@@ -4,8 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Scanner;
 
 public class FileUtilities {
+
+    static Scanner console = new Scanner(System.in);
 
 
     public static SaveRunTimeGame loadSavedGame(String fileName) {
@@ -43,6 +46,8 @@ public class FileUtilities {
         }
 
     }
+
+
 
 
 
