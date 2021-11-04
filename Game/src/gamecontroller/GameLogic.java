@@ -104,7 +104,6 @@ public class GameLogic implements Serializable {
 
     public void playerInfos() {
         Iterator<Player> iterator = playerList.listIterator(getIndex());
-
         while (iterator.hasNext()) {
             Player player = iterator.next();
             checkWinner();
@@ -307,7 +306,6 @@ public class GameLogic implements Serializable {
                         playerChoice(player);
                     }
                     else {
-
                     setIndex(index += 1);
                     }
                     break;
@@ -349,13 +347,13 @@ public class GameLogic implements Serializable {
             }
         }
     }
-
     public void info(Player player) {
         System.out.println("---------------");
         System.out.println("[Round: " + displayRounds + "]");
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
+        player.removeDeadAnimal(player);
         player.animalInfo(player);
         System.out.println("---------------");
         player.printFood(player);
@@ -404,11 +402,9 @@ public class GameLogic implements Serializable {
 
 
     public void saveGame(Player player) {
-
         System.out.println("Do you want to save the game?");
         System.out.println("1. Yes  2. No");
         int userChoice = Integer.parseInt(scanner.nextLine());
-
         switch (userChoice) {
             case 1:
                 System.out.println("Enter the name of the file you want to write to");

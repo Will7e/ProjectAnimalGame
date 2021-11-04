@@ -10,7 +10,6 @@ public class SaveRunTimeGame implements Serializable {
     private int index;
     private int displayRounds;
     private ArrayList<Player> playerListHistory;
-    private boolean savedGame;
 
 
     public SaveRunTimeGame (GameLogic game) {
