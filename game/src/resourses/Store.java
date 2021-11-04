@@ -27,9 +27,6 @@ public class Store implements Serializable {
     private char gender;
     private String name;
     private boolean backToMenu;
-    private int id1;
-    private int id2;
-
 
     // Prints out animal choices for player. Add animal to player,
     public void animalToBuy(Player player) {
@@ -168,7 +165,7 @@ public class Store implements Serializable {
                 break;
             }
             case 6:
-                System.out.println("Return to main menu.");
+                System.out.println("Return to main menu...");
                 backToMenu = true;
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
@@ -190,7 +187,7 @@ public class Store implements Serializable {
 
         if (player.getAnimalList().size() == 0) {
             System.out.println("You don't own any animal.");
-            System.out.println("Return to main menu.");
+            System.out.println("Return to main menu...");
             backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
@@ -203,21 +200,21 @@ public class Store implements Serializable {
             switch (userInput) {
                 case 1:
                     getAnimalsForSale(player);
-                    System.out.println("Return to main menu.");
+                    System.out.println("Return to main menu...");
                     backToMenu = false;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
                     break;
 
                     case 2:
-                    System.out.println("Return to main menu.");
+                    System.out.println("Return to main menu...");
                     backToMenu = true;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
                     break;
 
                 default:
-                    System.out.println("Invalid input. Try again");
+                    System.out.println("Invalid input. Try again.");
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
                     saleStart(player);
@@ -269,13 +266,9 @@ public class Store implements Serializable {
 
             }
         }
-        System.out.println("Animal doesn't exist, please try again");
+        System.out.println("Animal doesn't exist. Try again.");
         sellAnimal(player);
-
-
                 }
-
-
 
             public void sellMoreAnimals (Player player){
 
@@ -314,7 +307,7 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMeatPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
-                    System.out.println("Return to main menu.");
+                    System.out.println("Return to main menu...");
                     backToMenu = true;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
@@ -327,7 +320,7 @@ public class Store implements Serializable {
                     }
                     player.setCoins(player.getCoins() - getMeatPrice() * input2);
                     System.out.println("You've bought some meat!");
-                    System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
                     FormatHelp.threadSleep();
@@ -341,8 +334,8 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getVeggiesPrice() * input2) {
 
-                    System.out.println("Not enough coins. You have : " + player.getCoins() + "left.");
-                    System.out.println("Return to main menu.");
+                    System.out.println("Not enough coins. You have : " + player.getCoins() + " coins left.");
+                    System.out.println("Return to main menu...");
                     backToMenu = true;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
@@ -354,7 +347,7 @@ public class Store implements Serializable {
                     }
                     player.setCoins(player.getCoins() - getVeggiesPrice() * input2);
                     System.out.println("You've bought some veggies!");
-                    System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
                     FormatHelp.threadSleep();
@@ -367,7 +360,7 @@ public class Store implements Serializable {
                 input2 = Integer.parseInt(console.nextLine());
                 if (player.getCoins() < getMixFoodPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
-                    System.out.println("Return to main menu.");
+                    System.out.println("Return to main menu...");
                     backToMenu = true;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
@@ -383,7 +376,7 @@ public class Store implements Serializable {
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
                     System.out.println("You've bought some mixed food!");
-                    System.out.println("You have : " + player.getCoins() + "left.");
+                    System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn");
                     backToMenu = false;
                     FormatHelp.threadSleep();
@@ -392,13 +385,13 @@ public class Store implements Serializable {
                 }
             case 4:
 
-                System.out.println("Return to main menu.");
+                System.out.println("Return to main menu...");
                 backToMenu = true;
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 break;
             default:
-                System.out.println("Invalid output. Try again");
+                System.out.println("Invalid output. Try again.");
                 buyFood(player);
         }
     }
@@ -452,12 +445,8 @@ public class Store implements Serializable {
         return false;
     }
 
-    public void setBackToMenu(boolean backToMenu) {
-        this.backToMenu = backToMenu;
 
-    }
-
-    public boolean getbackToMenu() {
+    public boolean returnMainMenu() {
         return this.backToMenu;
     }
 

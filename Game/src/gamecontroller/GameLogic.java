@@ -42,7 +42,7 @@ public class GameLogic implements Serializable {
 
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
-        System.out.println("See below for more information");
+        System.out.println("See below for more informations.");
         store = new Store();
         vet = new Veterinary();
         playerInfos();
@@ -54,7 +54,7 @@ public class GameLogic implements Serializable {
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
         amountRounds = Integer.parseInt(scanner.nextLine());
-        if (amountRounds < 2 || amountRounds > 30) {
+        if (amountRounds < 5 || amountRounds > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
@@ -176,7 +176,7 @@ public class GameLogic implements Serializable {
             }
             if (player.playerCoins == 0 && player.getAnimalList().size() < 1) {
                 System.out.println("");
-                System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game.");
+                System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game...");
                 playerList.remove(player);
                 checkWinner();
                 try {
@@ -208,7 +208,8 @@ public class GameLogic implements Serializable {
                 winner = playerList.get(i).getName();
             }
         }
-        System.out.println("Winner: " + winner);
+
+        System.out.println("Congrats [" + winner +"]. You have won the game with highest coins. [" + max +" Coins]");
     }
 
     public void findWinnerLastRound() {
@@ -242,7 +243,7 @@ public class GameLogic implements Serializable {
 
                 }
             } else {
-                System.out.println("Game Over");
+                System.out.println("[ - Game Over - ] ");
                 System.exit(0);
                 break;
             }
@@ -262,7 +263,8 @@ public class GameLogic implements Serializable {
                 case 1:
                     store.animalToBuy(player);
 
-                    if (store.getbackToMenu()) {
+                    if (store.returnMainMenu()) {
+                        info(player);
                         playerChoice(player);
                     }
                     else {
@@ -272,7 +274,8 @@ public class GameLogic implements Serializable {
                 case 2:
                     store.buyFood(player);
 
-                    if (store.getbackToMenu()) {
+                    if (store.returnMainMenu()) {
+                        info(player);
                         playerChoice(player);
                     }
                     else {
@@ -282,7 +285,8 @@ public class GameLogic implements Serializable {
                 case 3:
                     store.saleStart(player);
 
-                    if (store.getbackToMenu()) {
+                    if (store.returnMainMenu()) {
+                        info(player);
                         playerChoice(player);
                     }
                     else {
@@ -294,6 +298,7 @@ public class GameLogic implements Serializable {
                     player.feedAnimal(player);
 
                     if (player.getBackToMenu()) {
+                        info(player);
                         playerChoice(player);
                     }
                     else {
@@ -303,6 +308,7 @@ public class GameLogic implements Serializable {
                 case 5:
                     vet.breedAnimal(player);
                     if (vet.getBackToMenu()) {
+                        info(player);
                         playerChoice(player);
                 }
                     else {
@@ -325,6 +331,7 @@ public class GameLogic implements Serializable {
                             break;
 
                         case 2:
+                            info(player);
                             playerChoice(player);
                             break;
                         default:
@@ -351,9 +358,10 @@ public class GameLogic implements Serializable {
     }
 
     public void playerCoins() {
-        System.out.println("Player stats.");
+        System.out.println("Last round reached!\nGame automatically end.\nSelling all player's animal...");
+        System.out.println("Player's coins: ");
         for (Player player : playerList) {
-            System.out.println("Name: " + player.getName() + " Coins: " + player.getCoins());
+            System.out.println("[Name: " + player.getName() + "] [Coins: " + player.getCoins()+"]");
         }
 
     }
@@ -397,21 +405,21 @@ public class GameLogic implements Serializable {
         int userChoice = Integer.parseInt(scanner.nextLine());
         switch (userChoice) {
             case 1:
-                System.out.println("Enter the name of the file you want to write to");
+                System.out.print("Creating save file... Type in file name: ");
                 String fileName = scanner.nextLine();
                 FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
                 setIndex(index += 1);
                 break;
 
             case 2:
-                System.out.println("Going back to the menu..");
+                System.out.println("Return to the menu..");
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 playerChoice(player);
                 break;
 
             default:
-                System.out.println("Please enter 1 or 2");
+                System.out.println("Choose between 1 - 2.");
                 playerChoice(player);
 
         }

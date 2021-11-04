@@ -22,14 +22,13 @@ public class Player implements Serializable {
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
     private boolean backToMenu;
-    Animal i1;
+    int index;
 
     public Player(String name) {
         this.store = new Store();
         this.name = name;
         this.animalList = new ArrayList<>();
         this.foodList = new ArrayList<>();
-        this.backToMenu = backToMenu;
     }
 
     public String getName() {
@@ -87,7 +86,7 @@ public class Player implements Serializable {
     public void feedAnimal(Player player) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
-            System.out.println("Try again, back to main menu");
+            System.out.println("Return to main menu...");
             backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
@@ -107,29 +106,31 @@ public class Player implements Serializable {
         animalInfo(player);
         System.out.println("Type in the name of animal you want to feed.");
         String animalName = console.nextLine();
-        for (int i = 0; i < animalList.size(); i++) {
-            if (animalName.equalsIgnoreCase(animalList.get(i).getName())) {
+        for (int i = 0; i < player.getAnimalList().size(); i++) {
+            index = i;
+            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName)){
                 System.out.println("Type in name of the food you want to feed animal.");
                 System.out.println("[Meat]    [Veggies]    [Mix Food]");
                 String food = console.nextLine();
-                for (int j = 0; j < foodList.size(); j++) {
-                    if (food.equalsIgnoreCase(foodList.get(i).getName())) {
-                        animalList.get(i).eatFood(foodList.get(i));
-                        foodList.remove(foodList.get(i));
+                for (int j = 0; j < player.getFoodList().size(); j++) {
+                    if (food.equalsIgnoreCase(player.getFoodList().get(j).getName())) {
+                        player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
+                        player.getFoodList().remove(player.getFoodList().get(j));
                     }
                 }
-                backToMenu = true;
+                backToMenu = false;
                 break;
-
-            } else {
-                System.out.println("Name not found. Type again.");
-                checkAnimal(player);
             }
+        } if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)){
+            System.out.println("Name not found. Type again.");
+            FormatHelp.threadSleep();
+            checkAnimal(player);
         }
+
     }
 
     public void animalInfo(Player player) {
-        System.out.println("Animal list:");
+        System.out.println("Animal list: ");
         if (animalList.isEmpty()) {
             System.out.println("[Empty]");
         }

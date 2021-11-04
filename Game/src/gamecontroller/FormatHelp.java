@@ -7,11 +7,11 @@ package gamecontroller;
 public class FormatHelp {
 
     /*
-    threadSleep() pauses the program for 3000 millisecunders
+    threadSleep() pauses the program for 2 seconds
      */
     public static void threadSleep() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

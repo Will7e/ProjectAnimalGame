@@ -5,21 +5,18 @@ public class Game {
 
     private GameLogic game;
     private SaveRunTimeGame loadSavedGame;
-    private boolean activateGame = true;
     Scanner console;
     String fileName;
 
     public Game() {
 
         console = new Scanner(System.in);
-        this.fileName = fileName;
         startMenu();
 
 
     }
 
     public void startMenu() {
-
         System.out.println("[ -  Welcome to the animal game  - ]");
         System.out.println("   1. New game      2. Load game");
         int choice = 0;
@@ -34,7 +31,6 @@ public class Game {
                 FormatHelp.emptyScreen();
                 startMenu();
             }
-
 
             switch (choice) {
 
