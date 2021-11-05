@@ -57,7 +57,7 @@ public class Player implements Serializable {
     }
 
     // Prints out list of players food and amounts.
-    public void printFood(Player player) {
+    public void printFood() {
         System.out.println("Food list:");
         if (foodList.isEmpty()) {
             System.out.println("--------------- \n[Empty]");
@@ -73,7 +73,7 @@ public class Player implements Serializable {
                     countVeggies += 1;
                 }
                 if (food.getName().equalsIgnoreCase("MixFood")) {
-                    countMeat += 1;
+                    countMixFood += 1;
                 }
             }
             System.out.println("---------------");

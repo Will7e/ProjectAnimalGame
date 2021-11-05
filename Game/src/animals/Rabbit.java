@@ -4,7 +4,9 @@ import food.Food;
 import food.Veggies;
 import gamecontroller.FormatHelp;
 
-public class Rabbit extends Animal{
+import java.io.Serializable;
+
+public class Rabbit extends Animal implements Serializable {
     protected String className = "Rabbit";
     protected double health = 100;
     protected int maxAge = 10;
