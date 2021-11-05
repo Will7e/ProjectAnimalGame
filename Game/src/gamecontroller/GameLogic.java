@@ -6,18 +6,26 @@ import resourses.Store;
 import java.io.Serializable;
 import java.util.*;
 
+
+/**
+ *  In this class the games logic exist
+ */
+
+
+
+
 public class GameLogic implements Serializable {
     transient Scanner scanner = new Scanner(System.in);
-    public ArrayList<Player> playerList;
-    public Veterinary vet;
-    public Store store;
+    private ArrayList<Player> playerList;
+    private Veterinary vet;
+    private Store store;
     private int playerAmount;
-    Random random;
+    private Random random;
     private int counter;
-    protected double healthReduce;
-    protected int priceReduce;
+    private double healthReduce;
+    private int priceReduce;
     private int amountRounds;
-    public boolean gameRun = true;
+    private boolean gameRun = true;
     private int displayRounds = 0;
     private int index;
 
