@@ -298,13 +298,19 @@ public class GameLogic implements Serializable {
                 case 4:
                     player.feedAnimal(player);
 
-                    if (player.getBackToMenu()) {
+                    if (!player.feedAnimal(player)) {
                         info(player);
                         playerChoice(player);
+
                     }
-                    else {
-                    setIndex(index += 1);
-                    }
+                   else{
+                            player.checkAnimal(player, scanner);
+                            setIndex(index += 1);
+                            break;
+                        }
+
+
+
                     break;
                 case 5:
                     vet.breedAnimal(player);
