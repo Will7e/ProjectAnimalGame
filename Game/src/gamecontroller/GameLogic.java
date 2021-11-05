@@ -37,7 +37,7 @@ public class GameLogic implements Serializable {
         this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
         this.amountRounds = loadSavedGame.getAmountRounds();
-        this.displayRounds = loadSavedGame.getDisplayRounds();
+        this.displayRounds = loadSavedGame.getDisplayRounds() -1;
         this.playerAmount = loadSavedGame.getPlayerAmount();
 
         this.counter = loadSavedGame.getCounter();
@@ -53,8 +53,10 @@ public class GameLogic implements Serializable {
         store = new Store();
         vet = new Veterinary();
         this.random = new Random();
-        playerInfos();
         gameRound();
+        playerInfos();
+
+
 
     }
 
@@ -233,6 +235,7 @@ public class GameLogic implements Serializable {
 
     public void gameRound() {
         for (counter = 0; counter < amountRounds; counter++) {
+
             displayRounds++;
             setDisplayRounds(displayRounds);
 

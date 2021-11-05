@@ -56,6 +56,7 @@ public class Dog extends Animal implements Serializable {
             System.out.println("Next player's turn");
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
+            return;
         }
     }
 
