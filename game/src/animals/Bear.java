@@ -2,6 +2,7 @@ package animals;
 
 import food.Food;
 import food.Meat;
+import gamecontroller.FormatHelp;
 
 public class Bear extends Animal{
     protected final String className = "Bear";
@@ -33,8 +34,21 @@ public class Bear extends Animal{
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
 
+            System.out.println("Going back to main menu");
+            System.out.println("Next player's turn");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
+
+
+
         } else {
             System.out.println("I don't eat this kind of food.");
+            System.out.println("I don't eat this kind of food.");
+            System.out.println("Going back to main menu");
+            System.out.println("Next player's turn");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
         }
     }
 
