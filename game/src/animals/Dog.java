@@ -2,7 +2,8 @@ package animals;
 
 
 import food.Food;
-import food.MixFood;;
+import food.MixFood;
+import gamecontroller.FormatHelp;;
 
 public class Dog extends Animal{
     protected String className = "Dog";
@@ -39,13 +40,22 @@ public class Dog extends Animal{
             System.out.println("You've use the food.");
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Going back to main menu");
+            System.out.println("Next player's turn");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
+
+
+
+
         } else {
+
             System.out.println("I don't eat this kind of food.");
+            System.out.println("Going back to main menu");
+            System.out.println("Next player's turn");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
         }
     }
 
