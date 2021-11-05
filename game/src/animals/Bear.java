@@ -44,7 +44,6 @@ public class Bear extends Animal{
 
         } else {
             System.out.println("I don't eat this kind of food.");
-            System.out.println("I don't eat this kind of food.");
             System.out.println("Going back to main menu");
             System.out.println("Next player's turn");
             FormatHelp.threadSleep();
