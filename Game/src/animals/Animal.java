@@ -7,6 +7,7 @@ import java.io.Serializable;
 public abstract class Animal implements Serializable {
     protected String name;
     protected char gender;
+    public boolean animalEat;
 
     public Animal(String name, char gender){
         this.name = name;
@@ -30,6 +31,8 @@ public abstract class Animal implements Serializable {
     public abstract char  getGender();
     public abstract int getPriceToSell();
     public abstract void setPriceToSell(int priceToSell);
+    public abstract boolean animalEat();
+    public abstract void animalEat(boolean animalEat);
 
 }
 

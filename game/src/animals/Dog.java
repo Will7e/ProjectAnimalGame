@@ -2,7 +2,7 @@ package animals;
 
 
 import food.Food;
-import food.MixFood;
+import food.*;
 import gamecontroller.FormatHelp;;import java.io.Serializable;
 
 public class Dog extends Animal implements Serializable {
@@ -11,6 +11,9 @@ public class Dog extends Animal implements Serializable {
     protected int maxAge = 20;
     protected int priceToSell = 30;
     protected int age = 0;
+    public boolean animalEaten;
+
+
     public Dog(String name, char gender) {
         super(name, gender);
     }
@@ -40,6 +43,8 @@ public class Dog extends Animal implements Serializable {
             System.out.println("You've use the food.");
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
+            animalEat = true;
+
             System.out.println("Going back to main menu");
             System.out.println("Next player's turn");
             FormatHelp.threadSleep();
@@ -49,14 +54,16 @@ public class Dog extends Animal implements Serializable {
 
 
 
-        } else {
+        } else if (foodToEat instanceof Meat) {
 
             System.out.println("I don't eat this kind of food.");
             System.out.println("Going back to main menu");
-            System.out.println("Next player's turn");
+            boolean animalEaten = false;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-            return;
+
+
+
         }
     }
 
@@ -95,5 +102,18 @@ public class Dog extends Animal implements Serializable {
         this.priceToSell = priceToSell;
     }
 
+    @Override
+    public boolean animalEat() {
+        return animalEat;
+    }
+
+    @Override
+    public void animalEat(boolean animalEat) {
+
+    }
+
 
 }
+
+
+
