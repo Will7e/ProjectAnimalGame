@@ -40,7 +40,7 @@ public class Dog extends Animal{
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
