@@ -26,7 +26,7 @@ public class Game {
                 choice = Integer.parseInt(console.nextLine());
 
             } catch (Exception e) {
-                System.out.println("Please enter a number, try again");
+                System.out.println("Enter a number. Try again");
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 startMenu();
@@ -39,7 +39,7 @@ public class Game {
                     break;
 
                 case 2:
-                    System.out.println("Enter a name for the saved file");
+                    System.out.print("Enter saved file's name: ");
 
                         fileName = console.nextLine();
 

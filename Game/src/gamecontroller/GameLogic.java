@@ -38,10 +38,10 @@ public class GameLogic implements Serializable {
         this.amountRounds = loadSavedGame.getAmountRounds();
         this.displayRounds = loadSavedGame.getDisplayRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
-        System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
+        System.out.println("Welcome back to the game! ");
 
         System.out.println("Loaded old save game with the following information: ");
-        System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
+        System.out.println("Amount of players: " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more informations.");
         store = new Store();
         vet = new Veterinary();

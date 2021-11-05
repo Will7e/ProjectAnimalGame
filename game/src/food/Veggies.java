@@ -1,6 +1,8 @@
 package food;
 
-public class Veggies extends Food{
+import java.io.Serializable;
+
+public class Veggies extends Food implements Serializable {
     protected String name = "Veggies";
     protected double healthIncrease = 1.1;
 

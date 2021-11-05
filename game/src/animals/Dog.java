@@ -3,9 +3,9 @@ package animals;
 
 import food.Food;
 import food.MixFood;
-import gamecontroller.FormatHelp;;
+import gamecontroller.FormatHelp;;import java.io.Serializable;
 
-public class Dog extends Animal{
+public class Dog extends Animal implements Serializable {
     protected String className = "Dog";
     protected double health = 100;
     protected int maxAge = 20;

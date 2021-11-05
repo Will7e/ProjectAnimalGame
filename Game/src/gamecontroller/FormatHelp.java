@@ -1,10 +1,12 @@
 package gamecontroller;
 
+import java.io.Serializable;
+
 /**
  *     Helping class for the game
  *     Contains features for output in the game
  */
-public class FormatHelp {
+public class FormatHelp implements Serializable {
 
     /*
     threadSleep() pauses the program for 2 seconds

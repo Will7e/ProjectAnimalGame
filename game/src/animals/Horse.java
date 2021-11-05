@@ -4,7 +4,9 @@ import food.Food;
 import food.Veggies;
 import gamecontroller.FormatHelp;
 
-public class Horse extends Animal{
+import java.io.Serializable;
+
+public class Horse extends Animal implements Serializable {
     protected String className = "Horse";
     protected double health = Math.round(100);
     protected int maxAge = 25;
