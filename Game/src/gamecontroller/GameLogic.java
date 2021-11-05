@@ -45,6 +45,7 @@ public class GameLogic implements Serializable {
         System.out.println("See below for more informations.");
         store = new Store();
         vet = new Veterinary();
+        this.random = new Random();
         playerInfos();
         gameRound();
 
@@ -254,7 +255,7 @@ public class GameLogic implements Serializable {
     public void playerChoice(Player player) {
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | " +
                 "[" + player.getCoins() + " Coins] | [Max round: " +amountRounds + "]");
-        System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save     7. Quit game");
+        System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save and exit");
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
@@ -317,16 +318,13 @@ public class GameLogic implements Serializable {
                     }
                     break;
 
-                case 6:
-                    saveGame(player);
-                    break;
-
-                case 7:
-                    System.out.println("Do you want to exit the game?");
+                    case 6:
+                    System.out.println("Do you want to save and exit the game?");
                     System.out.println("1. Yes. 2. No");
                     int userChoice = Integer.parseInt(scanner.nextLine());
                     switch (userChoice) {
                         case 1:
+                            saveGame(player);
                             System.exit(0);
                             break;
 
@@ -400,33 +398,18 @@ public class GameLogic implements Serializable {
 
 
     public void saveGame(Player player) {
-        System.out.println("Do you want to save the game?");
-        System.out.println("1. Yes  2. No");
-        int userChoice = Integer.parseInt(scanner.nextLine());
-        switch (userChoice) {
-            case 1:
-                System.out.print("Creating save file... Type in file name: ");
+
+                System.out.print("Type in file name: ");
                 String fileName = scanner.nextLine();
                 FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
-                setIndex(index += 1);
-                break;
+                System.out.println("Exiting the game, see you next time");
 
-            case 2:
-                System.out.println("Return to the menu..");
-                FormatHelp.threadSleep();
-                FormatHelp.emptyScreen();
-                playerChoice(player);
-                break;
 
-            default:
-                System.out.println("Choose between 1 - 2.");
-                playerChoice(player);
 
         }
 
     }
 
-}
 
 
 
