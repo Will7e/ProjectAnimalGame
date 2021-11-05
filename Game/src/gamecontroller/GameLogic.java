@@ -353,7 +353,7 @@ public class GameLogic implements Serializable {
         System.out.println("---------------");
         player.animalInfo(player);
         System.out.println("---------------");
-        player.printFood(player);
+        player.printFood();
         System.out.println();
     }
 
