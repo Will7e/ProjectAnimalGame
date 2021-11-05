@@ -13,7 +13,7 @@ public class GameLogic implements Serializable {
     public Store store;
     private int playerAmount;
     Random random;
-    public int i;
+    private int counter;
     protected double healthReduce;
     protected int priceReduce;
     private int amountRounds;
@@ -23,11 +23,12 @@ public class GameLogic implements Serializable {
 
 
     // konstruktorn
-    public GameLogic() {
+        public GameLogic() {
         vet = new Veterinary();
         store = new Store();
         playerList = new ArrayList<>();
         this.random = new Random();
+        this.counter = counter;
         startGame();
     }
 
@@ -38,11 +39,13 @@ public class GameLogic implements Serializable {
         this.amountRounds = loadSavedGame.getAmountRounds();
         this.displayRounds = loadSavedGame.getDisplayRounds();
         this.playerAmount = loadSavedGame.getPlayerAmount();
+        this.counter = loadSavedGame.getCounter();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
 
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players = " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more informations.");
+        System.out.println(counter);
         store = new Store();
         vet = new Veterinary();
         this.random = new Random();
@@ -225,9 +228,10 @@ public class GameLogic implements Serializable {
     }
 
     public void gameRound() {
-        for (i = 0; i < amountRounds; i++) {
+        for (counter = 0; counter < amountRounds; counter++) {
             displayRounds++;
             setDisplayRounds(displayRounds);
+
 
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
@@ -235,10 +239,10 @@ public class GameLogic implements Serializable {
             }
             if (gameRun) {
                 playerInfos();
-                if  ((i+1) > 0){
+                if  ((counter+1) > 0){
                     animalStatsModify();
                 }
-                    if ((i+1) == amountRounds) {
+                    if ((counter+1) == amountRounds) {
                         findWinnerLastRound();
                         break;
 
@@ -411,6 +415,16 @@ public class GameLogic implements Serializable {
 
 
 
+        }
+
+
+        public void setCounter(int counter) {
+            this.counter = counter;
+        }
+
+
+        public int getCounter() {
+        return this.counter;
         }
 
     }
