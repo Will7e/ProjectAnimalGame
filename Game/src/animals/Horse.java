@@ -90,15 +90,5 @@ public class Horse extends Animal implements Serializable {
         this.priceToSell = priceToSell;
     }
 
-    @Override
-    public boolean animalEat() {
-        return false;
-    }
-
-    @Override
-    public void animalEat(boolean animalEat) {
-
-    }
-
 
 }

@@ -100,8 +100,7 @@ public class Player implements Serializable {
             FormatHelp.emptyScreen();
             return false;
 
-        }
-        return true;
+        }  return true;
     }
 
 
@@ -111,80 +110,61 @@ public class Player implements Serializable {
         String animalName = scan.nextLine();
         for (int i = 0; i < player.getAnimalList().size(); i++) {
             index = i;
-            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName)) {
+            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName)){
                 System.out.println("Type in name of the food you want to feed animal.");
                 System.out.println("[Meat]    [Veggies]    [Mix Food]");
                 String food = scan.nextLine();
-
                 for (int j = 0; j < player.getFoodList().size(); j++) {
-
                     if (food.equalsIgnoreCase(player.getFoodList().get(j).getName())) {
                         player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
-
-                        if(!player.getAnimalList().get(j).animalEat()) {
-                            backToMenu = true;
-                            return;
-                        }
-
-                        else {
-                            player.getFoodList().remove(player.getFoodList().get(j));
-                            backToMenu = false;
-                            break;
-
-                        }
+                        player.getFoodList().remove(player.getFoodList().get(j));
                     }
-                    }
-
                 }
+                backToMenu = false;
+                break;
             }
-            if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)) {
-                System.out.println("Name not found. Type again.");
-                FormatHelp.threadSleep();
-                checkAnimal(player, scan);
-            }
-
+        } if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)){
+            System.out.println("Name not found. Type again.");
+            FormatHelp.threadSleep();
+            checkAnimal(player, scan);
         }
 
-        public void animalInfo (Player player){
-            System.out.println("Animal list: ");
-            if (animalList.isEmpty()) {
-                System.out.println("[Empty]");
+    }
+
+    public void animalInfo(Player player) {
+        System.out.println("Animal list: ");
+        if (animalList.isEmpty()) {
+            System.out.println("[Empty]");
+        }
+        backToMenu = true;
+        for (int i = 0; i < player.getAnimalList().size(); i++) {
+            System.out.println("-".repeat(15));
+            System.out.println("Type [" + player.getAnimalList().get(i).getClassName() + "]\n[Name: " + player.getAnimalList().get(i).getName() + "]" +
+                    "[Age: " + player.getAnimalList().get(i).getAge() + "] [Gender: " + player.getAnimalList().get(i).getGender() + " )" + "] " +
+                    "[Health: " + player.getAnimalList().get(i).getHealth() + "]");
+
+            if (player.getAnimalList().get(i).getAge() == player.getAnimalList().get(i).getMaxAge() ) {
+                System.out.println("Animal is dead. Cause: Reached max age.");
+                player.getAnimalList().remove(player.getAnimalList().get(i));
+                i--;
+            } else if (player.getAnimalList().get(i).getHealth() <= 0 ){
+                System.out.println("Animal is dead. Cause: Health reached 0.");
+                player.getAnimalList().remove(player.getAnimalList().get(i));
+                i--;
             }
-            backToMenu = true;
-            for (int i = 0; i < player.getAnimalList().size(); i++) {
-                System.out.println("-".repeat(15));
-                System.out.println("Type [" + player.getAnimalList().get(i).getClassName() + "]\n[Name: " + player.getAnimalList().get(i).getName() + "]" +
-                        "[Age: " + player.getAnimalList().get(i).getAge() + "] [Gender: " + player.getAnimalList().get(i).getGender() + " )" + "] " +
-                        "[Health: " + player.getAnimalList().get(i).getHealth() + "]");
-
-                if (player.getAnimalList().get(i).getAge() == player.getAnimalList().get(i).getMaxAge()) {
-                    System.out.println("Animal is dead. Cause: Reached max age.");
-                    player.getAnimalList().remove(player.getAnimalList().get(i));
-                    i--;
-                } else if (player.getAnimalList().get(i).getHealth() <= 0) {
-                    System.out.println("Animal is dead. Cause: Health reached 0.");
-                    player.getAnimalList().remove(player.getAnimalList().get(i));
-                    i--;
-                } else {
-                    backToMenu = true;
-                }
+                else {
+                backToMenu = true;
             }
         }
+    }
 
 
-        public boolean getBackToMenu () {
-            return this.backToMenu;
-        }
+    public boolean getBackToMenu() {
+        return this.backToMenu;
+    }
 
 
-
-        }
-
-
-
-
-
-
+}
 
 
 

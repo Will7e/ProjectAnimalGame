@@ -324,16 +324,7 @@ public class GameLogic implements Serializable {
                     }
                    else{
                             player.checkAnimal(player, scanner);
-
-                            if (player.getBackToMenu()) {
-                                playerChoice(player);
-                                break;
-                            }
-                            else {
-
-                                setIndex(index += 1);
-
-                            }
+                            setIndex(index += 1);
                     }
 
 
