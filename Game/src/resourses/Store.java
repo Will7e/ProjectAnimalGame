@@ -32,10 +32,17 @@ public class Store implements Serializable {
     public void animalToBuy(Player player) {
         animalPrice();
         int input = Integer.parseInt(console.nextLine());
+
         switch (input) {
             case 1:
                 System.out.println("How many bears do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    animalToBuy(player);
+                    break;
+                }
             {
                 if (player.getCoins() < this.getBearPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins. Try again!");
@@ -63,7 +70,13 @@ public class Store implements Serializable {
             }
             case 2:
                 System.out.println("How many dogs do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    animalToBuy(player);
+                    break;
+                }
             {
                 if (player.getCoins() < this.getDogPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
@@ -90,7 +103,13 @@ public class Store implements Serializable {
             }
             case 3:
                 System.out.println("How many horses do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    animalToBuy(player);
+                    break;
+                }
             {
                 if (player.getCoins() < this.getHorsePrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
@@ -116,7 +135,13 @@ public class Store implements Serializable {
             }
             case 4:
                 System.out.println("How many lions do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    animalToBuy(player);
+                    break;
+                }
             {
                 if (player.getCoins() < this.getLionPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
@@ -141,7 +166,13 @@ public class Store implements Serializable {
             }
             case 5:
                 System.out.println("How many rabbits do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    animalToBuy(player);
+                    break;
+                }
             {
                 if (player.getCoins() < this.getRabbitPrice() * input2) {
                     System.out.println("Not enough coins. You have to only " + player.getCoins() + " coins. Try again!");
@@ -304,7 +335,13 @@ public class Store implements Serializable {
         switch (input) {
             case 1:
                 System.out.println("How many Kilos of meat do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    buyFood(player);
+                    break;
+                }
                 if (player.getCoins() < getMeatPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
                     System.out.println("Return to main menu...");
@@ -331,7 +368,13 @@ public class Store implements Serializable {
                 break;
             case 2:
                 System.out.println("How many Kilos of veggies do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    buyFood(player);
+                    break;
+                }
                 if (player.getCoins() < getVeggiesPrice() * input2) {
 
                     System.out.println("Not enough coins. You have : " + player.getCoins() + " coins left.");
@@ -357,7 +400,13 @@ public class Store implements Serializable {
                 break;
             case 3:
                 System.out.println("How many Kilos of mix foods do you want to buy ?");
-                input2 = Integer.parseInt(console.nextLine());
+                try {
+                    input2 = Integer.parseInt(console.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Wrong input, please enter a number");
+                    buyFood(player);
+                    break;
+                }
                 if (player.getCoins() < getMixFoodPrice() * input2) {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
                     System.out.println("Return to main menu...");
@@ -365,10 +414,6 @@ public class Store implements Serializable {
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
                     break;
-
-
-
-
 
                 } else {
                     for (int i = 0; i < input2; i++) {
