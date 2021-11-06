@@ -319,7 +319,7 @@ public class Store implements Serializable {
                         player.getFoodList().add(new Meat());
                     }
                     player.setCoins(player.getCoins() - getMeatPrice() * input2);
-                    System.out.println("You've bought some meat!");
+                    System.out.println("You've bought "+input2+" kilos of meat!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
@@ -346,7 +346,7 @@ public class Store implements Serializable {
                         player.getFoodList().add(new Veggies());
                     }
                     player.setCoins(player.getCoins() - getVeggiesPrice() * input2);
-                    System.out.println("You've bought some veggies!");
+                    System.out.println("You've bought "+ input2 +" kilos of veggies!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
@@ -375,7 +375,7 @@ public class Store implements Serializable {
                         player.getFoodList().add(new MixFood());
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
-                    System.out.println("You've bought some mixed food!");
+                    System.out.println("You've bought "+ input2 +" kilos of mixed food!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn");
                     backToMenu = false;

@@ -315,8 +315,8 @@ public class GameLogic implements Serializable {
                     }
                     break;
                 case 4:
-
-                    if (!player.feedAnimal(player)) {
+                    player.feedAnimal(player);
+                    if (player.getBackToMenu()) {
                         info(player);
                         playerChoice(player);
                         break;
