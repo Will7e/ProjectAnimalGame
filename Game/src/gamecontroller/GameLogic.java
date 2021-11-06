@@ -426,7 +426,7 @@ public class GameLogic implements Serializable {
                 System.out.print("Type in file name: ");
                 String fileName = scanner.nextLine();
                 FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
-                System.out.println("Exiting the game, see you next time");
+                System.out.println("Exiting the game. See you next time");
 
 
 

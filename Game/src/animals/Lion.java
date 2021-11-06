@@ -41,9 +41,7 @@ public class Lion extends Animal implements Serializable {
             System.out.println("You've use the food.");
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
-
-            System.out.println("Going back to main menu");
-            System.out.println("Next player's turn");
+            System.out.println("Next player's turn...");
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
