@@ -21,43 +21,43 @@ public class Game {
         System.out.println("   1. New game      2. Load game");
         int choice = 0;
 
-           try {
+        try {
 
-                choice = Integer.parseInt(console.nextLine());
+            choice = Integer.parseInt(console.nextLine());
 
-            } catch (Exception e) {
-                System.out.println("Enter a number. Try again");
-                FormatHelp.threadSleep();
-                FormatHelp.emptyScreen();
-                startMenu();
-            }
+        } catch (Exception e) {
+            System.out.println("Enter a number. Try again");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+            startMenu();
+        }
 
-            switch (choice) {
+        switch (choice) {
 
-                case 1:
-                    this.game = new GameLogic();
-                    break;
+            case 1:
+                this.game = new GameLogic();
+                break;
 
-                case 2:
-                    System.out.print("Enter saved file's name: ");
+            case 2:
+                System.out.print("Enter saved file's name: ");
 
-                        fileName = console.nextLine();
+                fileName = console.nextLine();
 
 
-                        loadSavedGame = FileUtilities.loadSavedGame(fileName);
-                        if (loadSavedGame != null) {
-                            this.game = new GameLogic(loadSavedGame);
-                        }
-                        else{
+                loadSavedGame = FileUtilities.loadSavedGame(fileName);
+                if (loadSavedGame != null) {
+                    this.game = new GameLogic(loadSavedGame);
+                }
+                else{
 
-                        System.out.println("Something went wrong. Try again");
-                        startMenu();
+                    System.out.println("Something went wrong. Try again");
+                    startMenu();
 
-                        }
+                }
 
-            }
         }
     }
+}
 
 
 
