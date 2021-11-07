@@ -419,7 +419,6 @@ public class GameLogic implements Serializable {
         return this.index;
     }
 
-
     public void saveGame(Player player) {
 
                 System.out.print("Type in file name: ");
@@ -428,12 +427,6 @@ public class GameLogic implements Serializable {
                 System.out.println("Exiting the game. See you next time");
 
         }
-
-
-        public void setCounter(int counter) {
-            this.counter = counter;
-        }
-
 
         public int getCounter() {
         return this.counter;
