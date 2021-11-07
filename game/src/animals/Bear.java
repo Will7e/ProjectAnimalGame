@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  *This is the class where we created for this specific animal ( Bear ). This class is subclass arv from Animal (super).
- * This class has specific stats of animal, such as amount of health, price to sell, age, max age, class name.
+ * This class has specific stats for this type of animal, such as amount of health, price to sell, age, max age, class name.
  * This class methods are exact same methods we have in super class Animal. But it has logics and implementations.
  *
  * @author William, Ridah, Marcus.
