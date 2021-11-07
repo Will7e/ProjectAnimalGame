@@ -1,7 +1,14 @@
-package GameController;
+package gamecontroller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+/**
+ *  Here we store important data and write objects of this class to a file.
+ *  Information stored here must be used to get a game up and running.
+ */
+
+
 
 public class SaveRunTimeGame implements Serializable {
 
@@ -9,21 +16,24 @@ public class SaveRunTimeGame implements Serializable {
     private int amountRounds;
     private int index;
     private int displayRounds;
+    private int counter;
     private ArrayList<Player> playerListHistory;
-    private boolean savedGame;
 
 
-    public SaveRunTimeGame (Game game) {
+    /**
+     * Constructor
+     * @param game
+     */
+
+    public SaveRunTimeGame (GameLogic game) {
         this.index = game.getIndex();
         this.playerAmount = game.getPlayerAmount();
         this.amountRounds = game.getAmountRounds();
         this.displayRounds = game.getDisplayRounds();
         this.playerListHistory = game.getPlayerListHistory();
-      //  this.savedGame = game.getSavedGame();
+        this.counter = game.getCounter();
 
-
-
-
+        
     }
 
 
@@ -39,19 +49,22 @@ public class SaveRunTimeGame implements Serializable {
         return amountRounds;
     }
     public int getDisplayRounds() {
-        return displayRounds - 1;
+        return displayRounds;
     }
     public int getIndex () {
         return index;
     }
-
-
-
-
-
-
-
-
+    public int getCounter() {
+        return counter;
     }
+
+
+
+
+
+
+
+
+}
 
 
