@@ -50,7 +50,7 @@ public class FileUtilities {
     }
 
     /**
-     *  ethod lets us save a new instance of SavedRunTimeGame to a chosen file.
+     * This method lets us save a new instance of SavedRunTimeGame to a chosen file.
      * @param saveRunTime the instance to write to a file
      * @param fileName the filename to where we want to write the file
      */
