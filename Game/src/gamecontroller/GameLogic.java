@@ -36,7 +36,6 @@ public class GameLogic implements Serializable {
         store = new Store();
         playerList = new ArrayList<>();
         this.random = new Random();
-        this.counter = counter;
         startGame();
     }
 
