@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Veterinary  implements Serializable {
+public class Veterinaryimplements Serializable {
     private Scanner console;
     private Random random;
     private Store store;

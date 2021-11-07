@@ -2,7 +2,6 @@ package gamecontroller;
 import java.util.Scanner;
 
 public class Game {
-
     private GameLogic game;
     private SaveRunTimeGame loadSavedGame;
     Scanner console;
