@@ -8,7 +8,7 @@ import java.util.*;
 
 
 /**
- *  In this class the games logic exist
+ *
  */
 
 
@@ -30,7 +30,6 @@ public class GameLogic implements Serializable {
     private int index;
 
 
-    // konstruktorn
         public GameLogic() {
         vet = new Veterinary();
         store = new Store();
