@@ -267,8 +267,6 @@ public class Store implements Serializable {
         }
 
         sellAnimal(player);
-
-
     }
 
 

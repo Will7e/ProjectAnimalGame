@@ -3,7 +3,9 @@ package game;
 import gamecontroller.*;
 
 /**
- *  The animal game, this class starts the game
+ *  This in the main class we created to start the game.
+ *
+ * @author Marcus, William, Ridah
  */
 
 public class Main {
