@@ -15,6 +15,9 @@ public class Game {
 
     }
 
+    public Game(SaveRunTimeGame loadSavedGame) {
+    }
+
     public void startMenu() {
         System.out.println("[ -  Welcome to the animal game  - ]");
         System.out.println("   1. New game      2. Load game");
