@@ -428,8 +428,6 @@ public class GameLogic implements Serializable {
                 FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
                 System.out.println("Exiting the game. See you next time");
 
-
-
         }
 
 
