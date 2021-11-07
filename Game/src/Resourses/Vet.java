@@ -1,10 +1,8 @@
 package Resourses;
 
 import Animals.Animal;
-import GameController.Player;
+import gamecontroller.Player;
 
-import java.sql.SQLOutput;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 

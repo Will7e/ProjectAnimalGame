@@ -1,4 +1,4 @@
-package GameController;
+package gamecontroller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,13 +8,13 @@ import java.io.ObjectOutputStream;
 public class FileUtilities {
 
 
-    public static SaveRunTimeGame loadSavedGame(String fileName) {
+    public static gamecontroller.SaveRunTimeGame loadSavedGame(String fileName) {
 
-        SaveRunTimeGame loadGame = null;
+        gamecontroller.SaveRunTimeGame loadGame = null;
         try {
             FileInputStream streamIn = new FileInputStream(fileName +".ser");
             ObjectInputStream oi = new ObjectInputStream(streamIn);
-            loadGame = (SaveRunTimeGame) oi.readObject();
+            loadGame = (gamecontroller.SaveRunTimeGame) oi.readObject();
 
 
             oi.close();
@@ -27,7 +27,7 @@ public class FileUtilities {
         return loadGame;
     }
 
-    public static void saveGameRunTime (SaveRunTimeGame saveRunTime, String fileName) {
+    public static void saveGameRunTime (gamecontroller.SaveRunTimeGame saveRunTime, String fileName) {
 
         try {
             FileOutputStream streamOut = new FileOutputStream(fileName + ".ser", false);
