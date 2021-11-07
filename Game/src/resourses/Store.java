@@ -2,7 +2,7 @@ package resourses;
 
 import animals.*;
 import food.Meat;
-import food.MixFood;
+import food.Mixfood;
 import food.Veggies;
 import gamecontroller.FormatHelp;
 import gamecontroller.Player;
@@ -415,7 +415,7 @@ public class Store implements Serializable {
 
                 } else {
                     for (int i = 0; i < input2; i++) {
-                        player.getFoodList().add(new MixFood());
+                        player.getFoodList().add(new Mixfood());
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
                     System.out.println("You've bought "+ input2 +" kilos of mixed food!");
@@ -453,7 +453,7 @@ public class Store implements Serializable {
         System.out.println("Welcome to the Store! Here you can buy some foods");
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
                 "2. Veggies " + " ( " + this.getVeggiesPrice() + " Coins / Kg )\n" +
-                "3. MixFood " + " ( " + this.getMixFoodPrice() + " Coins / Kg \n" +
+                "3. Mixfood " + " ( " + this.getMixFoodPrice() + " Coins / Kg \n" +
                 "4. Return to main menu.");
 
 

@@ -16,6 +16,12 @@ public abstract class Animal implements Serializable {
     protected String name; // Every animal are going to need a name.
     protected char gender; // As well as gender.
 
+
+    /**
+     * Constructor of Animal class
+     * @param name as name in field variable
+     * @param gender as gender in field variable
+     */
     public Animal(String name, char gender){
         this.name = name;
         this.gender = gender;

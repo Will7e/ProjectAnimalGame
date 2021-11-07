@@ -13,8 +13,8 @@ import java.io.Serializable;
 
 
 public class Meat extends Food implements Serializable {
-    protected String name = "Meat";
-    protected double healthIncrease = 1.1;
+    protected String name = "Meat"; // Name of this class.
+    protected double healthIncrease = 1.1; // 10% health increase.
 
     @Override
     public String getName() {

@@ -14,11 +14,18 @@ import java.io.Serializable;
  */
 
 public class Bear extends Animal implements Serializable {
-    protected final String className = "Bear";
-    protected double health = 100;
-    protected int maxAge = 50;
-    protected int priceToSell = 80;
-    protected int age = 0;
+    protected final String className = "Bear"; // Name of this class.
+    protected double health = 100; // Health to start with.
+    protected int maxAge = 50; // Max 'age' to reach.
+    protected int priceToSell = 80; // Price of Bear when sells.
+    protected int age = 0; // Age to start with.
+
+
+    /**
+     * Constructor for Bear class.
+     * @param name as name in field variable in super class
+     * @param gender as gender in field variable in super class
+     */
     public Bear(String name, char gender) {
         super(name, gender);
     }

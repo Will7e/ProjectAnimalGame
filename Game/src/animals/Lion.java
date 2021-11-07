@@ -14,11 +14,17 @@ import java.io.Serializable;
  */
 
 public class Lion extends Animal implements Serializable {
-    protected String className = "Lion";
-    protected double health = 100;
-    protected int maxAge = 100;
-    protected int priceToSell = 100;
-    protected int age = 0;
+    protected String className = "Lion"; // Name of this class
+    protected double health = 100; // Health to start with.
+    protected int maxAge = 100; // Max 'age' to reach.
+    protected int priceToSell = 100; // Price of lion when sells.
+    protected int age = 0; // Age to start with.
+
+    /**
+     * Constructor for Lion class.
+     * @param name as name in field variable in super class
+     * @param gender as gender in field variable in super class
+     */
     public Lion(String name, char gender) {
         super(name, gender);
     }
