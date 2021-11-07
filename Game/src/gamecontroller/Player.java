@@ -73,14 +73,14 @@ public class Player implements Serializable {
                 if (food.getName().equalsIgnoreCase("Veggies")) {
                     countVeggies += 1;
                 }
-                if (food.getName().equalsIgnoreCase("MixFood")) {
+                if (food.getName().equalsIgnoreCase("Mixfood")) {
                     countMixFood += 1;
                 }
             }
             System.out.println("---------------");
             System.out.println("Meat : " + countMeat + " / Kilos\n" +
                     "Veggies: " + countVeggies + " / Kilos\n" +
-                    "MixFood: " + countMixFood + " / Kilos");
+                    "Mixfood: " + countMixFood + " / Kilos");
         }
     }
 
@@ -112,6 +112,7 @@ public class Player implements Serializable {
         for (int i = 0; i < player.getAnimalList().size(); i++) {
             index = i;
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName)){
+                System.out.println("Remember:\n Bear, Lion [Meat] -|- Horse,Rabbit [Veggies] -|- Dog [Mixfood] ");
                 System.out.println("Type in name of the food you want to feed animal.");
                 System.out.println("[Meat]    [Veggies]    [Mixfood]");
                 String food = scan.nextLine();

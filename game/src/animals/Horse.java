@@ -14,11 +14,17 @@ import java.io.Serializable;
  */
 
 public class Horse extends Animal implements Serializable {
-    protected String className = "Horse";
-    protected double health = Math.round(100);
-    protected int maxAge = 25;
-    protected int priceToSell = 50;
-    protected int age = 0;
+    protected String className = "Horse"; // Name of this class.
+    protected double health = 100; // Health to start with.
+    protected int maxAge = 25; // Max 'age' to reach.
+    protected int priceToSell = 50; // Price of horse when sells.
+    protected int age = 0; // Age to start with.
+
+    /**
+     * Constructor for Horse class.
+     * @param name as name in field variable in super class
+     * @param gender as gender in field variable in super class
+     */
     public Horse(String name, char gender) {
         super(name, gender);
 
