@@ -98,10 +98,10 @@ public class Player implements Serializable {
             backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-
-
+            
+        }else {
+            checkAnimal(player, scanner);
         }
-        checkAnimal(player,console);
     }
 
 
