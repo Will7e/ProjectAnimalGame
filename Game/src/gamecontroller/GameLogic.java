@@ -28,6 +28,8 @@ public class GameLogic implements Serializable {
     private boolean gameRun = true;
     private int displayRounds = 0;
     private int index;
+    private int input;
+    private int userChoice;
 
 
         public GameLogic() {
@@ -69,7 +71,14 @@ public class GameLogic implements Serializable {
     // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
-        amountRounds = Integer.parseInt(scanner.nextLine());
+        try {
+            amountRounds = Integer.parseInt(scanner.nextLine());
+        }
+        catch (Exception e) {
+            System.out.println("Incorrect input. Enter a number");
+            startGame();
+        }
+
         if (amountRounds < 5 || amountRounds > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
@@ -84,7 +93,13 @@ public class GameLogic implements Serializable {
         // This method ask for how many players are going to play.
         do {
             System.out.println("How many players do you want to play? ");
-            playerAmount = Integer.parseInt(scanner.nextLine());
+            try {
+                playerAmount = Integer.parseInt(scanner.nextLine());
+            }
+            catch (Exception e) {
+                System.out.println("Incorrect input. Enter a number.");
+                askAmountPlayers();
+            }
             if (playerAmount < 2 || playerAmount > 4) {
                 System.out.println("Between 2 - 4");
             }
@@ -273,7 +288,12 @@ public class GameLogic implements Serializable {
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | " +
                 "[" + player.getCoins() + " Coins] | [Max round: " +amountRounds + "]");
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save and exit");
-        int input = Integer.parseInt(scanner.nextLine());
+        try {
+            input = Integer.parseInt(scanner.nextLine());
+        }
+        catch (Exception e){
+            System.out.println("Incorrect input, please enter a number!");
+        }
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
             playerChoice(player);
@@ -344,7 +364,13 @@ public class GameLogic implements Serializable {
                     case 6:
                     System.out.println("Do you want to save and exit the game?");
                     System.out.println("1. Yes. 2. No");
-                    int userChoice = Integer.parseInt(scanner.nextLine());
+                    try {
+                        userChoice = Integer.parseInt(scanner.nextLine());
+                    }
+                    catch(Exception e){
+                        System.out.println("Incorrect input, please enter a number between 1-2");
+                    }
+
                     switch (userChoice) {
                         case 1:
                             saveGame(player);
@@ -356,7 +382,7 @@ public class GameLogic implements Serializable {
                             playerChoice(player);
                             break;
                         default:
-                            System.out.println("Choose between 1 - 2");
+                            playerChoice(player);
                             break;
                     }
 

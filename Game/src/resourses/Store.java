@@ -23,7 +23,9 @@ public class Store implements Serializable {
     private int meatPrice = 10;
     private int mixFoodPrice = 5;
     private int veggiesPrice = 1;
+    private int input;
     private int input2;
+    private int userInput;
     private char gender;
     private String name;
     private boolean backToMenu;
@@ -31,7 +33,12 @@ public class Store implements Serializable {
     // Prints out animal choices for player. Add animal to player,
     public void animalToBuy(Player player) {
         animalPrice();
-        int input = Integer.parseInt(console.nextLine());
+        try {
+            input = Integer.parseInt(console.nextLine());
+        }
+        catch(Exception e){
+            System.out.println("Incorrect input, please enter a number.");
+        }
 
         switch (input) {
             case 1:
@@ -203,7 +210,7 @@ public class Store implements Serializable {
                 break;
 
             default:
-                System.out.println("Incorrect input. Try again.");
+                System.out.println();
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 animalToBuy(player);
@@ -227,7 +234,13 @@ public class Store implements Serializable {
             System.out.println("Welcome to the Store!");
             System.out.println("Do you want to sell animals?");
             System.out.println("1. Yes. 2. No");
-            int userInput = Integer.parseInt(console.nextLine());
+            try {
+                userInput = Integer.parseInt(console.nextLine());
+            }
+            catch (Exception e){
+                System.out.println("Incorrect input, please enter a number.");
+            }
+
             switch (userInput) {
                 case 1:
                     getAnimalsForSale(player);
@@ -245,7 +258,6 @@ public class Store implements Serializable {
                     break;
 
                 default:
-                    System.out.println("Invalid input. Try again.");
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
                     saleStart(player);
@@ -277,7 +289,6 @@ public class Store implements Serializable {
         System.out.println("Type in the name of the animal you want to sell.");
         String playerChoice = console.nextLine();
 
-
         for (int i = 0; i < player.getAnimalList().size(); i++) {
 
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice)) {
@@ -301,11 +312,14 @@ public class Store implements Serializable {
 
             public void sellMoreAnimals (Player player){
 
-
-
             System.out.println("Do you want to sell more animals?");
             System.out.println("1. Yes 2. No");
-                int userInput = Integer.parseInt(console.nextLine());
+            try {
+                userInput = Integer.parseInt(console.nextLine());
+            }
+            catch(Exception e){
+                System.out.println("Incorrect input, please enter either 1 or 2");
+            }
 
             switch(userInput) {
 
@@ -329,7 +343,13 @@ public class Store implements Serializable {
     public void buyFood(Player player) {
 
         foodPrice();
-        int input = Integer.parseInt(console.nextLine());
+        try {
+            input = Integer.parseInt(console.nextLine());
+        }
+        catch(Exception e) {
+            System.out.println("Incorrect input, please enter a number between 1-4.");
+        }
+
         switch (input) {
             case 1:
                 System.out.println("How many Kilos of meat do you want to buy ?");
@@ -427,14 +447,12 @@ public class Store implements Serializable {
                     break;
                 }
             case 4:
-
                 System.out.println("Return to main menu...");
                 backToMenu = true;
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 break;
             default:
-                System.out.println("Invalid input. Try again.");
                 buyFood(player);
         }
     }
