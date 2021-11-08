@@ -37,7 +37,7 @@ public class Store implements Serializable {
             input = Integer.parseInt(console.nextLine());
         }
         catch(Exception e){
-            System.out.println("Incorrect input, please enter a number.");
+            System.out.println("Incorrect input. Enter a number.");
         }
 
         switch (input) {
@@ -238,7 +238,7 @@ public class Store implements Serializable {
                 userInput = Integer.parseInt(console.nextLine());
             }
             catch (Exception e){
-                System.out.println("Incorrect input, please enter a number.");
+                System.out.println("Incorrect input. Enter a number.");
             }
 
             switch (userInput) {
@@ -318,7 +318,7 @@ public class Store implements Serializable {
                 userInput = Integer.parseInt(console.nextLine());
             }
             catch(Exception e){
-                System.out.println("Incorrect input, please enter either 1 or 2");
+                System.out.println("Incorrect input. Enter a number between 1 - 2.");
             }
 
             switch(userInput) {
@@ -347,7 +347,7 @@ public class Store implements Serializable {
             input = Integer.parseInt(console.nextLine());
         }
         catch(Exception e) {
-            System.out.println("Incorrect input, please enter a number between 1-4.");
+            System.out.println("Incorrect input. Enter a number between 1-4.");
         }
 
         switch (input) {

@@ -98,7 +98,7 @@ public class Player implements Serializable {
             backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-            
+
         }else {
             checkAnimal(player, scanner);
         }
@@ -137,8 +137,10 @@ public class Player implements Serializable {
             }
         } if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)){
             System.out.println("Name not found. Type again...");
+            backToMenu = true;
             FormatHelp.threadSleep();
-            checkAnimal(player, scan);
+            FormatHelp.emptyScreen();
+
         }
 
     }
