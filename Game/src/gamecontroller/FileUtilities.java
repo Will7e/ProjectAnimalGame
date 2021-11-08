@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Scanner;
 
 /**    A File Utility class that serves the purpose of writing and reading
  * instances of the SaveRunTimeGame class. With the help of this class
@@ -18,17 +17,11 @@ import java.util.Scanner;
 
 public class FileUtilities {
 
-    static Scanner console = new Scanner(System.in);
-
-
     /**
      * This method lets us load old GameLogic saved data.
      * @param fileName the filename from which we want to retrieve GameLogic data
      * @return the instance of SaveRunTimeGame we retrieved
      */
-
-
-
 
     public static SaveRunTimeGame loadSavedGame(String fileName) {
 
@@ -50,7 +43,7 @@ public class FileUtilities {
     }
 
     /**
-     *  ethod lets us save a new instance of SavedRunTimeGame to a chosen file.
+     * This method lets us save a new instance of SavedRunTimeGame to a chosen file.
      * @param saveRunTime the instance to write to a file
      * @param fileName the filename to where we want to write the file
      */

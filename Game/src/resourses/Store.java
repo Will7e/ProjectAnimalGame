@@ -2,7 +2,7 @@ package resourses;
 
 import animals.*;
 import food.Meat;
-import food.MixFood;
+import food.Mixfood;
 import food.Veggies;
 import gamecontroller.FormatHelp;
 import gamecontroller.Player;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
-// We should have a price to sell for animal because price in store for animal to buy can not change.
+
 
 public class Store implements Serializable {
     transient Scanner console = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     animalToBuy(player);
                     break;
                 }
@@ -73,7 +73,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     animalToBuy(player);
                     break;
                 }
@@ -106,7 +106,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     animalToBuy(player);
                     break;
                 }
@@ -138,7 +138,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     animalToBuy(player);
                     break;
                 }
@@ -169,7 +169,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     animalToBuy(player);
                     break;
                 }
@@ -267,8 +267,6 @@ public class Store implements Serializable {
         }
 
         sellAnimal(player);
-
-
     }
 
 
@@ -284,7 +282,7 @@ public class Store implements Serializable {
 
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice)) {
                 player.setCoins(player.getCoins() + player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done, your balance is now " + player.getCoins());
+                System.out.println("Sale done. Your current balance: " + player.getCoins() +" coins.");
                 player.getAnimalList().remove(i);
 
                 if (player.getAnimalList().size() >= 1) {
@@ -338,7 +336,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     buyFood(player);
                     break;
                 }
@@ -371,7 +369,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     buyFood(player);
                     break;
                 }
@@ -403,7 +401,7 @@ public class Store implements Serializable {
                 try {
                     input2 = Integer.parseInt(console.nextLine());
                 } catch (Exception e) {
-                    System.out.println("Wrong input, please enter a number");
+                    System.out.println("Incorrect input. Enter a number.");
                     buyFood(player);
                     break;
                 }
@@ -417,7 +415,7 @@ public class Store implements Serializable {
 
                 } else {
                     for (int i = 0; i < input2; i++) {
-                        player.getFoodList().add(new MixFood());
+                        player.getFoodList().add(new Mixfood());
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
                     System.out.println("You've bought "+ input2 +" kilos of mixed food!");
@@ -436,7 +434,7 @@ public class Store implements Serializable {
                 FormatHelp.emptyScreen();
                 break;
             default:
-                System.out.println("Invalid output. Try again.");
+                System.out.println("Invalid input. Try again.");
                 buyFood(player);
         }
     }
@@ -455,7 +453,7 @@ public class Store implements Serializable {
         System.out.println("Welcome to the Store! Here you can buy some foods");
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
                 "2. Veggies " + " ( " + this.getVeggiesPrice() + " Coins / Kg )\n" +
-                "3. MixFood " + " ( " + this.getMixFoodPrice() + " Coins / Kg \n" +
+                "3. Mixfood " + " ( " + this.getMixFoodPrice() + " Coins / Kg \n" +
                 "4. Return to main menu.");
 
 

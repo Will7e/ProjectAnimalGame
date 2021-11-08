@@ -2,15 +2,30 @@ package animals;
 
 
 import food.Food;
-import food.MixFood;
-import gamecontroller.FormatHelp;;import java.io.Serializable;
+import food.Mixfood;
+import gamecontroller.FormatHelp;
+import java.io.Serializable;
+
+/**
+ *This is the class where we created for this specific animal ( Dog ). This class is subclass arv from Animal (super).
+ * This class has specific stats for this type of animal, such as amount of health, price to sell, age, max age, class name.
+ * This class methods are exact same methods we have in super class Animal. But it has logics and implementations.
+ *
+ * @author William, Marcus, Ridah.
+ */
 
 public class Dog extends Animal implements Serializable {
-    protected String className = "Dog";
-    protected double health = 100;
-    protected int maxAge = 20;
-    protected int priceToSell = 30;
-    protected int age = 0;
+    protected String className = "Dog"; // Name of this class
+    protected double health = 100; // Health to start with.
+    protected int maxAge = 20; // Max 'age' to reach.
+    protected int priceToSell = 30; // Price of Dog when sells.
+    protected int age = 0; // Age to start with.
+
+    /**
+     * Constructor for Dog class.
+     * @param name as name in field variable in super class
+     * @param gender as gender in field variable in super class
+     */
     public Dog(String name, char gender) {
         super(name, gender);
     }
@@ -32,9 +47,14 @@ public class Dog extends Animal implements Serializable {
     }
 
     @Override
+    /**
+     * This method calculate the amount of health that are going to increase for this animal.
+     * In this case it's ( 10% of the current health). But only if the type of food pass in parameter is
+     * an object of Mixfood class.
+     */
     public void eatFood(Food foodToEat) {
         double amountHealthIncreased;
-        if  (foodToEat instanceof MixFood){
+        if  (foodToEat instanceof Mixfood){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
             System.out.println("You've use the food.");

@@ -8,7 +8,7 @@ import java.util.*;
 
 
 /**
- *  In this class the games logic exist
+ *
  */
 
 
@@ -30,13 +30,11 @@ public class GameLogic implements Serializable {
     private int index;
 
 
-    // konstruktorn
         public GameLogic() {
         vet = new Veterinary();
         store = new Store();
         playerList = new ArrayList<>();
         this.random = new Random();
-        this.counter = counter;
         startGame();
     }
 
@@ -193,7 +191,7 @@ public class GameLogic implements Serializable {
                 break;
             }
             if (player.playerCoins == 0 && player.getAnimalList().size() < 1) {
-                System.out.println("");
+                System.out.println();
                 System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game...");
                 playerList.remove(player);
                 checkWinner();
@@ -278,6 +276,7 @@ public class GameLogic implements Serializable {
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
+            playerChoice(player);
         } else {
             switch (input) {
                 case 1:
@@ -316,6 +315,7 @@ public class GameLogic implements Serializable {
                     break;
                 case 4:
                     player.feedAnimal(player);
+                    
                     if (player.getBackToMenu()) {
                         info(player);
                         playerChoice(player);
@@ -419,7 +419,6 @@ public class GameLogic implements Serializable {
         return this.index;
     }
 
-
     public void saveGame(Player player) {
 
                 System.out.print("Type in file name: ");
@@ -428,12 +427,6 @@ public class GameLogic implements Serializable {
                 System.out.println("Exiting the game. See you next time");
 
         }
-
-
-        public void setCounter(int counter) {
-            this.counter = counter;
-        }
-
 
         public int getCounter() {
         return this.counter;
