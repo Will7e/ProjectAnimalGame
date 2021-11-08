@@ -85,7 +85,7 @@ public class Player implements Serializable {
     }
 
     // Player choice to feed the animal
-    public void feedAnimal(Player player) {
+    public void feedAnimal(Player player, Scanner scanner) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
             System.out.println("Return to main menu...");
