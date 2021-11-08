@@ -276,6 +276,7 @@ public class GameLogic implements Serializable {
         int input = Integer.parseInt(scanner.nextLine());
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
+            playerChoice(player);
         } else {
             switch (input) {
                 case 1:
