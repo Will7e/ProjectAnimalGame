@@ -1,12 +1,14 @@
 package gamecontroller;
 
 
-import animals.*;
+import animals.Animal;
 import food.Food;
 import resourses.Store;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * The player should be able to store his money, his owned animals and the food he/she owns.
@@ -99,13 +101,13 @@ public class Player implements Serializable {
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
-
         }
-        checkAnimal(player,console);
+
     }
 
 
     public void checkAnimal(Player player, Scanner scan) {
+        feedAnimal(player);
         animalInfo(player);
         System.out.println("Type in the name of animal you want to feed.");
         animalName = scan.nextLine();
