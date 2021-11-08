@@ -120,8 +120,10 @@ public class Player implements Serializable {
                     if (food.equalsIgnoreCase(player.getFoodList().get(j).getName())) {
                         player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
                         player.getFoodList().remove(player.getFoodList().get(j));
+                        backToMenu = false;
+                        break;
                     }
-                    backToMenu = false;
+
 
                     if (!food.equalsIgnoreCase(player.getFoodList().get(j).getName())){
                         System.out.println("Wrong type of food for animal.\nReturn to main menu...");
