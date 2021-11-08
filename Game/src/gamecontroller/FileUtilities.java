@@ -37,7 +37,8 @@ public class FileUtilities {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            System.out.println( e.getMessage() );
+            // e.printStackTrace();
         }
         return loadGame;
     }

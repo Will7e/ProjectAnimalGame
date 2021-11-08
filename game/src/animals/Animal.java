@@ -14,7 +14,8 @@ import java.io.Serializable;
 
 public abstract class Animal implements Serializable {
     protected String name; // Every animal are going to need a name.
-    protected char gender; // As well as gender.
+    protected char gender; // As well as gender.'
+    public static boolean eatSuccess = true;
 
 
     /**

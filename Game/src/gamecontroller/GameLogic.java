@@ -92,7 +92,7 @@ public class GameLogic implements Serializable {
     private void askAmountPlayers() {
         // This method ask for how many players are going to play.
         do {
-            System.out.println("How many players do you want to play? ");
+            System.out.println("How many players do you want to play? 2 - 4.  ");
             try {
                 playerAmount = Integer.parseInt(scanner.nextLine());
             }

@@ -120,8 +120,14 @@ public class Player implements Serializable {
                 for (int j = 0; j < player.getFoodList().size(); j++) {
                     if (food.equalsIgnoreCase(player.getFoodList().get(j).getName())) {
                         player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
-                        player.getFoodList().remove(player.getFoodList().get(j));
-                        backToMenu = false;
+                        if (Animal.eatSuccess){
+                            player.getFoodList().remove(player.getFoodList().get(j));
+                            backToMenu = false;
+                            break;
+                        }else {
+                            backToMenu = true;
+                            break;
+                        }
 
                     }
                     else if (!food.equalsIgnoreCase(player.getFoodList().get(j).getName())){
@@ -129,8 +135,8 @@ public class Player implements Serializable {
                         backToMenu = true;
                         FormatHelp.threadSleep();
                         FormatHelp.emptyScreen();
+                        break;
                     }
-
                 }
                 break;
             }
@@ -141,7 +147,7 @@ public class Player implements Serializable {
             FormatHelp.emptyScreen();
 
         }
-        backToMenu = true;
+
     }
 
     public void animalInfo(Player player) {

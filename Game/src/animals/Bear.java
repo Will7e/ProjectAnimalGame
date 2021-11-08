@@ -3,6 +3,7 @@ package animals;
 import food.Food;
 import food.Meat;
 import gamecontroller.FormatHelp;
+
 import java.io.Serializable;
 
 /**
@@ -55,11 +56,14 @@ public class Bear extends Animal implements Serializable {
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
             System.out.println("Next player's turn...");
+            eatSuccess = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
+
         }else {
             System.out.println("Wrong type of food.");
             System.out.println("Return to main menu...");
+            eatSuccess = false;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
