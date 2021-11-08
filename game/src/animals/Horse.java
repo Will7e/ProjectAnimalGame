@@ -56,6 +56,11 @@ public class Horse extends Animal implements Serializable {
             System.out.println("Next player's turn...");
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
+        }else {
+            System.out.println("Wrong type of food.");
+            System.out.println("Return to main menu...");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
 
         }
 

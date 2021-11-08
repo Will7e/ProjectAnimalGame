@@ -4,6 +4,7 @@ package animals;
 import food.Food;
 import food.Mixfood;
 import gamecontroller.FormatHelp;
+
 import java.io.Serializable;
 
 /**
@@ -63,6 +64,13 @@ public class Dog extends Animal implements Serializable {
             System.out.println("Next player's turn...");
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
+
+        }else {
+            System.out.println("Wrong type of food.");
+            System.out.println("Return to main menu...");
+            FormatHelp.threadSleep();
+            FormatHelp.emptyScreen();
+
 
         }
     }

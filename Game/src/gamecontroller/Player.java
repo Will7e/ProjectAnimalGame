@@ -21,7 +21,7 @@ public class Player implements Serializable {
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
-    private boolean backToMenu;
+    public static boolean backToMenu;
     int index;
     String animalName;
 
@@ -122,18 +122,17 @@ public class Player implements Serializable {
                         player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
                         player.getFoodList().remove(player.getFoodList().get(j));
                         backToMenu = false;
-                        break;
+
                     }
-
-
-                    if (!food.equalsIgnoreCase(player.getFoodList().get(j).getName())){
+                    else if (!food.equalsIgnoreCase(player.getFoodList().get(j).getName())){
                         System.out.println("Wrong type of food for animal.\nReturn to main menu...");
                         backToMenu = true;
                         FormatHelp.threadSleep();
                         FormatHelp.emptyScreen();
-                        break;
                     }
+
                 }
+                break;
             }
         } if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)){
             System.out.println("Name not found. Type again...");
@@ -142,7 +141,7 @@ public class Player implements Serializable {
             FormatHelp.emptyScreen();
 
         }
-
+        backToMenu = true;
     }
 
     public void animalInfo(Player player) {
@@ -171,8 +170,8 @@ public class Player implements Serializable {
             }
         }
     }
-    public boolean getBackToMenu() {
-        return this.backToMenu;
+    public static boolean getBackToMenu() {
+        return backToMenu;
     }
 
 }
