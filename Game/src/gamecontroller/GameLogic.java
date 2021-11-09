@@ -137,7 +137,9 @@ public class GameLogic implements Serializable {
         Iterator<Player> iterator = playerList.listIterator(getIndex());
         while (iterator.hasNext()) {
             Player player = iterator.next();
-            checkWinner();
+            if (playerList.size() >1){
+                checkWinner();
+            }
             info(player);
             playerChoice(player);
         }
@@ -199,26 +201,27 @@ public class GameLogic implements Serializable {
     public void checkWinner() {
         for (Player player : playerList) {
             if (playerList.size() == 1) {
-                sellEveryThing(player);
                 System.out.println("Congrats " + player.getName() + "\nYou are the winner!! ");
-                gameRun = false;
+                gameRun = true;
                 gameRound();
                 break;
             }
-            if (player.playerCoins == 0 && player.getAnimalList().size() < 1) {
+            else if (player.playerCoins == 0 && player.getAnimalList().size() < 1) {
                 System.out.println();
                 System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game...");
                 playerList.remove(player);
-                checkWinner();
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    break;
                 }
+                gameRun = true;
+                gameRound();
+                break;
 
+            }else {
+                gameRun = true;
             }
-
             }
         }
 
@@ -245,7 +248,9 @@ public class GameLogic implements Serializable {
 
     public void findWinnerLastRound() {
         for (Player player : playerList) {
-            checkWinner();
+            if (playerList.size() >1){
+                checkWinner();
+            }
             sellEveryThing(player);
             findPlayerRank();
             break;
@@ -297,7 +302,7 @@ public class GameLogic implements Serializable {
             input = Integer.parseInt(scanner.nextLine());
         }
         catch (Exception e){
-            System.out.println("Incorrect input, please enter a number!");
+            System.out.println("Incorrect input. Enter a number!");
         }
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
@@ -350,8 +355,6 @@ public class GameLogic implements Serializable {
                    else{
                             setIndex(index += 1);
                     }
-
-
 
                     break;
                 case 5:
