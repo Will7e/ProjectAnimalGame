@@ -5,15 +5,9 @@ import resourses.Store;
 
 import java.io.Serializable;
 import java.util.*;
-
-
 /**
  *
  */
-
-
-
-
 public class GameLogic implements Serializable {
     transient Scanner scanner = new Scanner(System.in);
     private ArrayList<Player> playerList;
@@ -78,7 +72,6 @@ public class GameLogic implements Serializable {
             System.out.println("Incorrect input. Enter a number");
             startGame();
         }
-
         if (amountRounds < 5 || amountRounds > 30) {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
@@ -140,7 +133,6 @@ public class GameLogic implements Serializable {
             if (playerList.size() >1){
                 checkWinner();
             }
-
             info(player);
             playerChoice(player);
         }
@@ -223,12 +215,6 @@ public class GameLogic implements Serializable {
                    index--;
                }
                 gameRound();
-              //  playerInfos();
-
-
-
-
-
                 break;
 
             }else {
@@ -278,8 +264,6 @@ public class GameLogic implements Serializable {
             setDisplayRounds(displayRounds);
 
 
-
-
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
                 index = 0;
@@ -316,7 +300,7 @@ public class GameLogic implements Serializable {
             input = Integer.parseInt(scanner.nextLine());
         }
         catch (Exception e){
-            System.out.println("Incorrect input. Enter a number!");
+            System.out.println("Incorrect input. Enter a number 1 - 7!");
         }
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
@@ -358,8 +342,7 @@ public class GameLogic implements Serializable {
                     }
                     break;
                 case 4:
-                    player.feedAnimal(player, scanner);
-                    
+                    player.checkAnimalToFeed(player, scanner);
                     if (player.getBackToMenu()) {
                         info(player);
                         playerChoice(player);
@@ -385,12 +368,12 @@ public class GameLogic implements Serializable {
 
                     case 6:
                     System.out.println("Do you want to save and exit the game?");
-                    System.out.println("1. Yes. 2. No");
+                    System.out.println("1. Yes.   2. No");
                     try {
                         userChoice = Integer.parseInt(scanner.nextLine());
                     }
                     catch(Exception e){
-                        System.out.println("Incorrect input, please enter a number between 1-2");
+                        System.out.println("Incorrect input. Enter a number between 1 - 2");
                     }
 
                     switch (userChoice) {
@@ -420,7 +403,10 @@ public class GameLogic implements Serializable {
         System.out.println("Player: " + player.getName() +
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
-        player.animalInfo(player);
+        player.checkAnimalHealth(player);
+        if (counter >0){
+            amountHealthReduced(player);
+        }
         System.out.println("---------------");
         player.printFood();
         System.out.println();
@@ -434,7 +420,12 @@ public class GameLogic implements Serializable {
         }
 
     }
+    public void amountHealthReduced(Player player){
+        for (Animal animal: player.getAnimalList()){
+            System.out.println("["+animal.getName() + "] [Health reduced: " + healthReduce +"] [Age: + 5 ]" + "[Price reduced: "+priceReduce +"]");
+        }
 
+    }
     public int getPlayerAmount() {
         return this.playerAmount;
 
