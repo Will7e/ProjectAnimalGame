@@ -140,6 +140,7 @@ public class GameLogic implements Serializable {
             if (playerList.size() >1){
                 checkWinner();
             }
+
             info(player);
             playerChoice(player);
         }
@@ -216,7 +217,13 @@ public class GameLogic implements Serializable {
                     e.printStackTrace();
                 }
                 gameRun = true;
+                counter++;
                 gameRound();
+                playerInfos();
+
+
+
+
                 break;
 
             }else {
@@ -262,11 +269,12 @@ public class GameLogic implements Serializable {
     public void gameRound() {
         for (counter = getCounter(); counter < amountRounds; counter++) {
 
-           if (counter > 0) {
-               displayRounds++;
-               setDisplayRounds(displayRounds);
+            displayRounds++;
+            setDisplayRounds(displayRounds);
 
-           }
+
+
+
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
                 index = 0;
@@ -276,7 +284,7 @@ public class GameLogic implements Serializable {
                 if  ((counter+1) > 0){
                     animalStatsModify();
                 }
-                if ((counter+1) == (amountRounds-1)){
+                if ((counter+1) == (amountRounds - 1)){
                     System.out.println("Game end on next round. Make best decision.");
                     FormatHelp.threadSleep();
                 }
@@ -465,6 +473,10 @@ public class GameLogic implements Serializable {
 
         public int getCounter() {
         return this.counter;
+        }
+
+        public void setCounter(int counter) {
+            this.counter = counter;
         }
 
     }
