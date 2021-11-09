@@ -262,10 +262,11 @@ public class GameLogic implements Serializable {
     public void gameRound() {
         for (counter = getCounter(); counter < amountRounds; counter++) {
 
-            displayRounds++;
-            setDisplayRounds(displayRounds);
+           if (counter > 0) {
+               displayRounds++;
+               setDisplayRounds(displayRounds);
 
-
+           }
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
                 index = 0;
