@@ -270,6 +270,11 @@ public class GameLogic implements Serializable {
                 if  ((counter+1) > 0){
                     animalStatsModify();
                 }
+                if ((counter+1) == (amountRounds-1)){
+                    System.out.println("Game end on next round. Make best decision.");
+                    FormatHelp.threadSleep();
+                }
+                
                     if ((counter+1) == amountRounds) {
                         findWinnerLastRound();
                         break;

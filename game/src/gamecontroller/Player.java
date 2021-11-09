@@ -21,7 +21,7 @@ public class Player implements Serializable {
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
-    public static boolean backToMenu;
+    public boolean backToMenu;
     int index;
     String animalName;
 
@@ -109,33 +109,25 @@ public class Player implements Serializable {
         animalInfo(player);
         System.out.println("Type in the name of animal you want to feed.");
         animalName = scan.nextLine();
-        for (int i = 0; i < player.getAnimalList().size(); i++) {
+        for (int i = 0; i < player.animalList.size(); i++) {
             index = i;
-            if (player.getAnimalList().get(i).getName().equalsIgnoreCase(animalName)){
+            if (player.animalList.get(i).getName().equalsIgnoreCase(animalName)){
                 System.out.println("Remember:\n Bear, Lion [Meat] |Horse,Rabbit [Veggies] | Dog [Mixfood] ");
                 System.out.println("-".repeat(15));
                 System.out.println("Type in name of the food you want to feed animal.");
                 System.out.println("[Meat]    [Veggies]    [Mixfood]");
                 String food = scan.nextLine();
-                for (int j = 0; j < player.getFoodList().size(); j++) {
-                    if (food.equalsIgnoreCase(player.getFoodList().get(j).getName())) {
-                        player.getAnimalList().get(i).eatFood(player.getFoodList().get(j));
+                for (int j = 0; j < player.foodList.size(); j++) {
+                    if (food.equalsIgnoreCase(player.foodList.get(j).getName())) {
+                        player.animalList.get(i).eatFood(player.foodList.get(j));
                         if (Animal.eatSuccess){
-                            player.getFoodList().remove(player.getFoodList().get(j));
+                            player.foodList.remove(player.foodList.get(j));
                             backToMenu = false;
                             break;
                         }else {
                             backToMenu = true;
                             break;
                         }
-
-                    }
-                    else if (!food.equalsIgnoreCase(player.getFoodList().get(j).getName())){
-                        System.out.println("Wrong type of food for animal.\nReturn to main menu...");
-                        backToMenu = true;
-                        FormatHelp.threadSleep();
-                        FormatHelp.emptyScreen();
-                        break;
                     }
                 }
                 break;
@@ -176,7 +168,7 @@ public class Player implements Serializable {
             }
         }
     }
-    public static boolean getBackToMenu() {
+    public boolean getBackToMenu() {
         return backToMenu;
     }
 

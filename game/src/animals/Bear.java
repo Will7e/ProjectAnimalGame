@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Bear extends Animal implements Serializable {
     protected final String className = "Bear"; // Name of this class.
     protected double health = 100; // Health to start with.
-    protected int maxAge = 50; // Max 'age' to reach.
+    protected int maxAge = 125; // Max 'age' to reach.
     protected int priceToSell = 80; // Price of Bear when sells.
     protected int age = 0; // Age to start with.
 

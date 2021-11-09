@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Rabbit extends Animal implements Serializable {
     protected String className = "Rabbit"; // Name of this class
     protected double health = 100; // Health to start with.
-    protected int maxAge = 20;  // Max 'age' to reach.
+    protected int maxAge = 50;  // Max 'age' to reach.
     protected int priceToSell = 10; // Price of rabbit when sells.
     protected int age = 0; // Age to start with.
 
@@ -62,11 +62,13 @@ public class Rabbit extends Animal implements Serializable {
 
             System.out.println("Going back to main menu");
             System.out.println("Next player's turn...");
+            eatSuccess = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
         }else {
             System.out.println("Wrong type of food.");
             System.out.println("Return to main menu...");
+            eatSuccess = false;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
         }

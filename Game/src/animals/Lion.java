@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Lion extends Animal implements Serializable {
     protected String className = "Lion"; // Name of this class
     protected double health = 100; // Health to start with.
-    protected int maxAge = 100; // Max 'age' to reach.
+    protected int maxAge = 150; // Max 'age' to reach.
     protected int priceToSell = 100; // Price of lion when sells.
     protected int age = 0; // Age to start with.
 
@@ -60,11 +60,13 @@ public class Lion extends Animal implements Serializable {
             System.out.println("Health increased by " + (Math.floor(amountHealthIncreased)) +"\n" +
                     "Current health: " + getHealth());
             System.out.println("Next player's turn...");
+            eatSuccess = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
         }else {
             System.out.println("Wrong type of food.");
             System.out.println("Return to main menu...");
+            eatSuccess = false;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
