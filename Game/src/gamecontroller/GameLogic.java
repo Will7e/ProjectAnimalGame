@@ -218,8 +218,13 @@ public class GameLogic implements Serializable {
                 }
                 gameRun = true;
                 counter++;
+
+               if (playerList.size() > 2) {
+                   index--;
+               }
                 gameRound();
-                playerInfos();
+              //  playerInfos();
+
 
 
 
