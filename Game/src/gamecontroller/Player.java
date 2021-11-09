@@ -17,7 +17,7 @@ import java.util.*;
 public class Player implements Serializable {
     transient private Scanner console;
     private String name;
-    protected int playerCoins = 100;
+    protected int playerCoins = 500;
     private ArrayList<Animal> animalList; // ArrayList
     private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
     private Store store;
@@ -25,6 +25,11 @@ public class Player implements Serializable {
     int index;
     String animalName;
 
+    /**
+     * Constructor of player class
+     * @param name field variable for player
+     * Instantiating class "Store" in constructor
+     */
     public Player(String name) {
         this.store = new Store();
         this.name = name;
@@ -57,7 +62,10 @@ public class Player implements Serializable {
         return foodList;
     }
 
-    // Prints out list of players food and amounts.
+    /**
+     * This method prints out list of a players food and the amount of food.
+     */
+
     public void printFood() {
         System.out.println("Food list:");
         if (foodList.isEmpty()) {
@@ -84,8 +92,12 @@ public class Player implements Serializable {
         }
     }
 
-    // Player choice to feed the animal
-    public void feedAnimal(Player player, Scanner scanner) {
+    /**
+     * Checks if food available, if correct food and if animals are available to feed
+     * @param player takes players turn
+     * @param scanner reads user choice of what food to feed animal
+     */
+    public void checkAnimalToFeed(Player player, Scanner scanner) {
         if (foodList.isEmpty()) {
             System.out.println("You don't have any food, please come back after you buy some more");
             System.out.println("Return to main menu...");
@@ -100,13 +112,18 @@ public class Player implements Serializable {
             FormatHelp.emptyScreen();
 
         }else {
-            checkAnimal(player, scanner);
+            feedAnimal(player, scanner);
         }
     }
 
 
-    public void checkAnimal(Player player, Scanner scan) {
-        animalInfo(player);
+    /**
+     * Method to feed animal
+     * @param player takes players turn
+     * @param scan scans what animal player wishes to feed
+     */
+    public void feedAnimal(Player player, Scanner scan) {
+        checkAnimalHealth(player);
         System.out.println("Type in the name of animal you want to feed.");
         animalName = scan.nextLine();
         for (int i = 0; i < player.animalList.size(); i++) {
@@ -142,7 +159,11 @@ public class Player implements Serializable {
 
     }
 
-    public void animalInfo(Player player) {
+    /**
+     * Prints out players animals owned and removes if animal is too old / 0 health
+     * @param player takes players turn
+     */
+    public void checkAnimalHealth(Player player) {
         System.out.println("Animal list: ");
         if (animalList.isEmpty()) {
             System.out.println("[Empty]");
