@@ -255,7 +255,7 @@ public class GameLogic implements Serializable {
     }
 
     public void gameRound() {
-        for (counter = 0; counter < amountRounds; counter++) {
+        for (counter = getCounter(); counter < amountRounds; counter++) {
 
             displayRounds++;
             setDisplayRounds(displayRounds);
