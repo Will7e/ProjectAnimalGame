@@ -158,7 +158,9 @@ public class GameLogic implements Serializable {
         Iterator<Player> iterator = playerList.listIterator(getIndex());
         while (iterator.hasNext()) {
             Player player = iterator.next();
-            checkWinnerByCoins();
+            if (playerList.size() >1){
+                checkWinnerByCoins();
+            }
             printRoundInfo(player);
             gameMainMenu(player);
         }
@@ -234,7 +236,7 @@ public class GameLogic implements Serializable {
             if (playerList.size() == 1) {
                 sellEverything(player);
                 System.out.println("Congrats " + player.getName() + "\nYou are the winner!! ");
-                gameRun = false;
+                gameRun = true;
                 gameRound();
                 break;
             }
@@ -249,11 +251,16 @@ public class GameLogic implements Serializable {
                     e.printStackTrace();
                     break;
                 }
+                gameRun = true;
+                gameRound();
+                break;
 
+            }else {
+                gameRun = true;
             }
 
-            }
         }
+    }
 
     /**
      * @param player sells players ownings
@@ -286,7 +293,9 @@ public class GameLogic implements Serializable {
      */
     public void findWinner() {
         for (Player player : playerList) {
-            checkWinnerByCoins();
+            if (playerList.size() > 1){
+                checkWinnerByCoins();
+            }
             sellEverything(player);
             announceWinner();
             break;
@@ -301,10 +310,10 @@ public class GameLogic implements Serializable {
     public void gameRound() {
         for (counter = getCounter(); counter < amountRounds; counter++) {
 
-            displayRounds++;
-            setDisplayRounds(displayRounds);
-
-
+            if (counter > 0){
+                displayRounds++;
+                setDisplayRounds(displayRounds);
+            }
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
                 index = 0;
@@ -344,7 +353,7 @@ public class GameLogic implements Serializable {
             input = Integer.parseInt(scanner.nextLine());
         }
         catch (Exception e){
-            System.out.println("Incorrect input, please enter a number!");
+            System.out.println("Incorrect input. Enter a number!");
         }
         if (input < 1 || input > 7) {
             System.out.println("Choose between 1 - 7");
@@ -456,6 +465,9 @@ public class GameLogic implements Serializable {
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
         player.checkAnimalHealth(player);
+        if (counter >0){
+            amountHealthReduced(player);
+        }
         System.out.println("---------------");
         player.printFood();
         System.out.println();
@@ -472,7 +484,6 @@ public class GameLogic implements Serializable {
         }
 
     }
-
     public int getPlayerAmount() {
         return this.playerAmount;
 
@@ -521,7 +532,16 @@ public class GameLogic implements Serializable {
         return this.counter;
         }
 
+    public void amountHealthReduced(Player player){
+        for (Animal animal: player.getAnimalList()){
+            System.out.println("["+animal.getName() + "] [Health reduced: " + healthReduce +"] [Age: + 5 ]" + "[Price reduced: "+priceReduce +"]");
+        }
+
     }
+
+
+}
+
 
 
 
