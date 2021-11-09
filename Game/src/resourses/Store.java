@@ -12,6 +12,14 @@ import java.util.List;
 import java.util.Scanner;
 
 
+/**
+ * This is the store class where we have prices of animals. In this class we have methods for players to buy animal,
+ * buy foods and sell animals.
+ * Implements Serializable for save and load game.
+ *
+ * @author William, Marcus, Ridah
+ */
+
 
 public class Store implements Serializable {
     transient Scanner console = new Scanner(System.in);
@@ -30,7 +38,13 @@ public class Store implements Serializable {
     private String name;
     private boolean backToMenu;
 
-    // Prints out animal choices for player. Add animal to player,
+    /**
+     * This method start with calling another metod at start ( get the animalPrice method).
+     * This method is using Switch case. Take in player's input as choices.
+     * In this method can players choose which animal their want to buy and amount.
+     *
+     * @param player that is going to buy animal.
+     */
     public void animalToBuy(Player player) {
         animalPrice();
         try {
@@ -220,7 +234,12 @@ public class Store implements Serializable {
 
     }
 
-    // Sell animals
+    /**
+     * This method is ask for player's input and use it as switch case to support another method of selling animal.
+     * It checks whether if player has animals to start with if not player will not be able to sell animal
+     *
+     * @param player that is going to sell animal.
+     */
     public void saleStart(Player player) {
 
         if (player.getAnimalList().size() == 0) {
@@ -281,11 +300,7 @@ public class Store implements Serializable {
         sellAnimal(player);
     }
 
-
-
-
     public void sellAnimal(Player player) {
-
         System.out.println("Type in the name of the animal you want to sell.");
         String playerChoice = console.nextLine();
 
@@ -300,8 +315,6 @@ public class Store implements Serializable {
                     sellMoreAnimals(player);
                     return;
                 }
-
-
                 return;
 
             }

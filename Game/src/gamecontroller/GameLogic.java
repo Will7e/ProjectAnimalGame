@@ -408,9 +408,13 @@ public class GameLogic implements Serializable {
                 "\nCoins: " + player.getCoins());
         System.out.println("---------------");
         player.animalInfo(player);
+        if (counter > 0){
+            amountHealthReduced(player);
+        }
         System.out.println("---------------");
         player.printFood();
         System.out.println();
+
     }
 
     public void playerCoins() {
@@ -466,6 +470,13 @@ public class GameLogic implements Serializable {
         public int getCounter() {
         return this.counter;
         }
+        public void amountHealthReduced(Player player){
+            for (Animal animal: player.getAnimalList()){
+                System.out.println("["+animal.getName() + "] [Health reduced: " + healthReduce +"] [Age: + 5 ]" + "[Price reduced: "+priceReduce +"]");
+            }
+
+        }
+
 
     }
 
