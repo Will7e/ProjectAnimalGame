@@ -300,9 +300,8 @@ public class GameLogic implements Serializable {
     public void findWinnerLastRound() {
         for (Player player : playerList) {
             sellEveryThing(player);
-            findPlayerRank();
-            break;
         }
+        findPlayerRank();
         gameRun =false;
         gameRound();
     }
