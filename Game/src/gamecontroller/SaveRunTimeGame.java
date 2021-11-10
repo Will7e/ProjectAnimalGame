@@ -36,7 +36,6 @@ public class SaveRunTimeGame implements Serializable {
         
     }
 
-
     public int getPlayerAmount() {
         return playerAmount;
     }
