@@ -27,8 +27,9 @@ public class Player implements Serializable {
 
     /**
      * Constructor of player class
+     *
      * @param name field variable for player
-     * Instantiating class "Store" in constructor
+     *             Instantiating class "Store" in constructor
      */
     public Player(String name) {
         this.store = new Store();
@@ -94,7 +95,8 @@ public class Player implements Serializable {
 
     /**
      * Checks if food available, if correct food and if animals are available to feed
-     * @param player takes players turn
+     *
+     * @param player  takes players turn
      * @param scanner reads user choice of what food to feed animal
      */
     public void checkAnimalToFeed(Player player, Scanner scanner) {
@@ -111,7 +113,7 @@ public class Player implements Serializable {
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
 
-        }else {
+        } else {
             feedAnimal(player, scanner);
         }
     }
@@ -119,8 +121,9 @@ public class Player implements Serializable {
 
     /**
      * Method to feed animal
+     *
      * @param player takes players turn
-     * @param scan scans what animal player wishes to feed
+     * @param scan   scans what animal player wishes to feed
      */
     public void feedAnimal(Player player, Scanner scan) {
         checkAnimalHealth(player);
@@ -128,7 +131,7 @@ public class Player implements Serializable {
         animalName = scan.nextLine();
         for (int i = 0; i < player.animalList.size(); i++) {
             index = i;
-            if (player.animalList.get(i).getName().equalsIgnoreCase(animalName)){
+            if (player.animalList.get(i).getName().equalsIgnoreCase(animalName)) {
                 System.out.println("Remember:\n Bear, Lion [Meat] |Horse,Rabbit [Veggies] | Dog [Mixfood] ");
                 System.out.println("-".repeat(15));
                 System.out.println("Type in name of the food you want to feed animal.");
@@ -137,30 +140,30 @@ public class Player implements Serializable {
                 for (int j = 0; j < player.foodList.size(); j++) {
                     if (food.equalsIgnoreCase(player.foodList.get(j).getName())) {
                         player.animalList.get(i).eatFood(player.foodList.get(j));
-                        if (Animal.eatSuccess){
+                        if (Animal.eatSuccess) {
                             player.foodList.remove(player.foodList.get(j));
                             backToMenu = false;
-                            break;
-                        }else {
+                        } else {
                             backToMenu = true;
-                            break;
                         }
+                        break;
                     }
                 }
                 break;
             }
-        } if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)){
+        }
+        if (!player.animalList.get(index).getName().equalsIgnoreCase(animalName)) {
             System.out.println("Name not found. Type again...");
             backToMenu = true;
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-
         }
 
     }
 
     /**
      * Prints out players animals owned and removes if animal is too old / 0 health
+     *
      * @param player takes players turn
      */
     public void checkAnimalHealth(Player player) {
@@ -169,26 +172,28 @@ public class Player implements Serializable {
             System.out.println("[Empty]");
         }
         backToMenu = true;
-        for (int i = 0; i < player.getAnimalList().size(); i++) {
+        for (int i = 0; i < player.animalList.size(); i++) {
             System.out.println("-".repeat(15));
-            System.out.println("Type [" + player.getAnimalList().get(i).getClassName() + "]\n[Name: " + player.getAnimalList().get(i).getName() + "]" +
-                    "[Age: " + player.getAnimalList().get(i).getAge() + "] [Gender: " + player.getAnimalList().get(i).getGender() + " )" + "] " +
-                    "[Health: " + player.getAnimalList().get(i).getHealth() + "]");
+            System.out.println("[Type: " + player.animalList.get(i).getClassName() + "] " +
+                    "[Health: - " + player.animalList.get(i).getHealthReduced() + "] [Age: + 1]" +
+                    "\n[Name: " + player.animalList.get(i).getName() + "] " +
+                    "[Age: " + player.animalList.get(i).getAge() + "] [Gender: " + Character.toUpperCase(player.animalList.get(i).getGender())  + " )" + "] " +
+                    "[Health: " + player.animalList.get(i).getHealth() + "]\n");
 
-            if (player.getAnimalList().get(i).getAge() == player.getAnimalList().get(i).getMaxAge() ) {
+            if (player.animalList.get(i).getAge() == player.animalList.get(i).getMaxAge()) {
                 System.out.println("Animal is dead. Cause: Reached max age.");
-                player.getAnimalList().remove(player.getAnimalList().get(i));
+                player.getAnimalList().remove(player.animalList.get(i));
                 i--;
-            } else if (player.getAnimalList().get(i).getHealth() <= 0 ){
+            } else if (player.animalList.get(i).getHealth() <= 0) {
                 System.out.println("Animal is dead. Cause: Health reached 0.");
-                player.getAnimalList().remove(player.getAnimalList().get(i));
+                player.getAnimalList().remove(player.animalList.get(i));
                 i--;
-            }
-                else {
+            } else {
                 backToMenu = true;
             }
         }
     }
+
     public boolean getBackToMenu() {
         return backToMenu;
     }

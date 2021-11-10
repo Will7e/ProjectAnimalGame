@@ -173,7 +173,7 @@ public class Veterinary  implements Serializable {
     public void printAnimalList(Player player) {
         System.out.println("Your animal list: ");
         for (Animal animal : player.getAnimalList()) {
-            System.out.println("[Type: " + animal.getClassName() + "] [Name: " + animal.getName() + "] [Gender: " + animal.getGender() + "]");
+            System.out.println("[Type: " + animal.getClassName() + "] [Name: " + animal.getName() + "] [Gender: " + Character.toUpperCase(animal.getGender())  + "]");
         }
     }
 

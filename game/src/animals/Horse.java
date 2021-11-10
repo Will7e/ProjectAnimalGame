@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Horse extends Animal implements Serializable {
     protected String className = "Horse"; // Name of this class.
     protected double health = 100; // Health to start with.
-    protected int maxAge = 100; // Max 'age' to reach.
+    protected int maxAge = 20; // Max 'age' to reach.
     protected int priceToSell = 50; // Price of horse when sells.
     protected int age = 0; // Age to start with.
 
@@ -104,5 +104,26 @@ public class Horse extends Animal implements Serializable {
         this.priceToSell = priceToSell;
     }
 
+    @Override
+    public double getHealthReduced() {
+        return healthReduced;
+    }
+
+    @Override
+    public void setHealthReduced(double healthReduced) {
+        this.healthReduced = healthReduced;
+
+    }
+
+    @Override
+    public int getPriceReduced() {
+        return priceReduced;
+    }
+
+    @Override
+    public void setPriceReduced(int priceReduced) {
+        this.priceReduced = priceReduced;
+
+    }
 
 }

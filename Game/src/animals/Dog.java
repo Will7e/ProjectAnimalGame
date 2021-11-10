@@ -2,6 +2,7 @@ package animals;
 
 
 import food.Food;
+import food.Meat;
 import food.Mixfood;
 import gamecontroller.FormatHelp;
 
@@ -18,7 +19,7 @@ import java.io.Serializable;
 public class Dog extends Animal implements Serializable {
     protected String className = "Dog"; // Name of this class
     protected double health = 100; // Health to start with.
-    protected int maxAge = 75; // Max 'age' to reach.
+    protected int maxAge = 15; // Max 'age' to reach.
     protected int priceToSell = 30; // Price of Dog when sells.
     protected int age = 0; // Age to start with.
 
@@ -55,7 +56,7 @@ public class Dog extends Animal implements Serializable {
      */
     public void eatFood(Food foodToEat) {
         double amountHealthIncreased;
-        if  (foodToEat instanceof Mixfood){
+        if  (foodToEat instanceof Mixfood || foodToEat instanceof Meat){
             amountHealthIncreased = foodToEat.getHealthIncrease() * getHealth() - health;
             setHealth(getHealth() * foodToEat.getHealthIncrease());
             System.out.println("You've use the food.");
@@ -108,6 +109,26 @@ public class Dog extends Animal implements Serializable {
     public void setPriceToSell(int priceToSell) {
         this.priceToSell = priceToSell;
     }
+    @Override
+    public double getHealthReduced() {
+        return healthReduced;
+    }
 
+    @Override
+    public void setHealthReduced(double healthReduced) {
+        this.healthReduced = healthReduced;
+
+    }
+
+    @Override
+    public int getPriceReduced() {
+        return priceReduced;
+    }
+
+    @Override
+    public void setPriceReduced(int priceReduced) {
+        this.priceReduced = priceReduced;
+
+    }
 
 }

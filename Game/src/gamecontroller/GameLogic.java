@@ -5,6 +5,7 @@ import resourses.Store;
 
 import java.io.Serializable;
 import java.util.*;
+
 /**
  *
  */
@@ -16,8 +17,8 @@ public class GameLogic implements Serializable {
     private int playerAmount;
     private Random random;
     private int counter;
-    private double healthReduce;
-    private int priceReduce;
+    public static double healthReduce;
+    public static int priceReduce;
     private int amountRounds;
     private boolean gameRun = true;
     private int displayRounds = 0;
@@ -26,7 +27,7 @@ public class GameLogic implements Serializable {
     private int userChoice;
 
 
-        public GameLogic() {
+    public GameLogic() {
         vet = new Veterinary();
         store = new Store();
         playerList = new ArrayList<>();
@@ -39,7 +40,7 @@ public class GameLogic implements Serializable {
         this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
         this.amountRounds = loadSavedGame.getAmountRounds();
-        this.displayRounds = loadSavedGame.getDisplayRounds() -1;
+        this.displayRounds = loadSavedGame.getDisplayRounds() - 1;
         this.playerAmount = loadSavedGame.getPlayerAmount();
 
         this.counter = loadSavedGame.getCounter();
@@ -59,6 +60,13 @@ public class GameLogic implements Serializable {
         playerInfos();
 
 
+    }
+
+    public void saveGame(Player player) {
+        System.out.print("Type in file name: ");
+        String fileName = scanner.nextLine();
+        FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
+        System.out.println("Exiting the game. See you next time");
 
     }
 
@@ -67,8 +75,7 @@ public class GameLogic implements Serializable {
         System.out.println("How many rounds do you want to play? ");
         try {
             amountRounds = Integer.parseInt(scanner.nextLine());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Incorrect input. Enter a number");
             startGame();
         }
@@ -88,8 +95,7 @@ public class GameLogic implements Serializable {
             System.out.println("How many players do you want to play? 2 - 4.  ");
             try {
                 playerAmount = Integer.parseInt(scanner.nextLine());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Incorrect input. Enter a number.");
                 askAmountPlayers();
             }
@@ -117,189 +123,25 @@ public class GameLogic implements Serializable {
         // This method is checking if player's name already exist.
     }
 
-    public boolean hasThisName(List<Player> playerList, String givenName) {
-        for (Player player : playerList) {
-            if (player.getName().equalsIgnoreCase(givenName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void playerInfos() {
-        Iterator<Player> iterator = playerList.listIterator(getIndex());
-        while (iterator.hasNext()) {
-            Player player = iterator.next();
-            if (playerList.size() >1){
-                checkWinner();
-            }
-            info(player);
-            playerChoice(player);
-        }
-    }
-
-    public void animalStatsModify() {
-        for (Player player : playerList) {
-            if (!player.getAnimalList().isEmpty()){
-                healthPriceReduce(player);
-                for (Animal animal : player.getAnimalList()) {
-                    animal.setAge(animal.getAge() + 5);
-            }
-            }
-        }
-    }
-
-    // health reduce by random 10-30%
-    // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
-    public void healthPriceReduce(Player player) {
-        for (int i = 0; i < player.getAnimalList().size(); i++){
-           int rn = random.nextInt(3) + 1;
-            switch (rn) {
-                case 1:
-                    healthReduce = 0.1 * player.getAnimalList().get(i).getHealth();
-                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
-                    if (player.getAnimalList().get(i).getHealth() < 100) {
-                        priceChange(player, 0.1);
-                        break;
-                    }
-                case 2:
-                    healthReduce = 0.2 * player.getAnimalList().get(i).getHealth();
-                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
-                    if (player.getAnimalList().get(i).getHealth() < 100) {
-                        priceChange(player, 0.2);
-                        break;
-                    }
-
-                case 3:
-                    healthReduce = 0.3 * player.getAnimalList().get(i).getHealth();
-                    player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - healthReduce);
-                    if (player.getAnimalList().get(i).getHealth() < 100) {
-                        priceChange(player, 0.3);
-                        break;
-                    }
-                    break;
-            }
-        }
-
-
-    }
-
-    public void priceChange(Player player, double percentage) {
-        for (Animal animal : player.getAnimalList()) {
-            priceReduce = (int) (animal.getPriceToSell() * percentage);
-            animal.setPriceToSell((animal.getPriceToSell() - priceReduce));
-        }
-    }
-
-    public void checkWinner() {
-        for (Player player : playerList) {
-            if (playerList.size() == 1) {
-                System.out.println("Congrats " + player.getName() + "\nYou are the winner!! ");
-                gameRun = true;
-                gameRound();
-                break;
-            }
-            else if (player.playerCoins == 0 && player.getAnimalList().size() < 1) {
-                System.out.println();
-                System.out.println(player.getName() + " has lost. No coins and animal left. And now remove from the game...");
-                playerList.remove(player);
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                gameRun = true;
-                counter++;
-
-               if (playerList.size() > 2) {
-                   index--;
-               }
-                gameRound();
-                break;
-
-            }else {
-                gameRun = true;
-            }
-            }
-        }
-
-    public void sellEveryThing(Player player) {
-        for (Animal animal : player.getAnimalList()) {
-            player.setCoins(player.getCoins() + animal.getPriceToSell());
-        }
-    }
-
-    // can sort player rank from the highest coins to the lowest coin?
-    public void findPlayerRank() {
-        int max = 0;
-        String winner = "";
-        playerCoins();
-        for (int i = 0; i < playerList.size(); i++) {
-            if (playerList.get(i).getCoins() > max) {
-                max = playerList.get(i).getCoins();
-                winner = playerList.get(i).getName();
-            }
-        }
-
-        System.out.println("Congrats [" + winner +"]. You have won the game with highest coins. [" + max +" Coins]");
-    }
-
-    public void findWinnerLastRound() {
-        for (Player player : playerList) {
-            if (playerList.size() >1){
-                checkWinner();
-            }
-            sellEveryThing(player);
-            findPlayerRank();
-            break;
-        }
-        gameRun = false;
-        gameRound();
-    }
-
-    public void gameRound() {
-        for (counter = getCounter(); counter < amountRounds; counter++) {
-
-            displayRounds++;
-            setDisplayRounds(displayRounds);
-
-
-            if (getIndex() >= playerList.size()) {
-                setIndex(0);
-                index = 0;
-            }
-            if (gameRun) {
-                playerInfos();
-                if  ((counter+1) > 0){
-                    animalStatsModify();
-                }
-                if ((counter+1) == (amountRounds - 1)){
-                    System.out.println("Game end on next round. Make best decision.");
-                    FormatHelp.threadSleep();
-                }
-                
-                    if ((counter+1) == amountRounds) {
-                        findWinnerLastRound();
-                        break;
-
-                }
-            } else {
-                System.out.println("[ - Game Over - ] ");
-                System.exit(0);
-                break;
-            }
-            System.out.println();
-        }
+    public void info(Player player) {
+        System.out.println("---------------");
+        System.out.println("[Round: " + displayRounds + "]");
+        System.out.println("Player: " + player.getName() +
+                "\nCoins: " + player.getCoins());
+        System.out.println("---------------");
+        player.checkAnimalHealth(player);
+        System.out.println("---------------");
+        player.printFood();
+        System.out.println();
     }
 
     public void playerChoice(Player player) {
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | " +
-                "[" + player.getCoins() + " Coins] | [Max round: " +amountRounds + "]");
+                "[" + player.getCoins() + " Coins] | [Max round: " + amountRounds + "]");
         System.out.println("1. Buy animals    2. Buy food   3.Sell animal    4.Feed animal    5.Breed animal     6.Save and exit");
         try {
             input = Integer.parseInt(scanner.nextLine());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Incorrect input. Enter a number 1 - 7!");
         }
         if (input < 1 || input > 7) {
@@ -313,19 +155,17 @@ public class GameLogic implements Serializable {
                     if (store.returnMainMenu()) {
                         info(player);
                         playerChoice(player);
-                    }
-                    else {
+                    } else {
                         setIndex(index += 1);
                     }
-                        break;
+                    break;
                 case 2:
                     store.buyFood(player);
 
                     if (store.returnMainMenu()) {
                         info(player);
                         playerChoice(player);
-                    }
-                    else {
+                    } else {
                         setIndex(index += 1);
                     }
                     break;
@@ -335,8 +175,7 @@ public class GameLogic implements Serializable {
                     if (store.returnMainMenu()) {
                         info(player);
                         playerChoice(player);
-                    }
-                    else {
+                    } else {
 
                         setIndex(index += 1);
                     }
@@ -347,10 +186,8 @@ public class GameLogic implements Serializable {
                         info(player);
                         playerChoice(player);
                         break;
-
-                    }
-                   else{
-                            setIndex(index += 1);
+                    } else {
+                        setIndex(index += 1);
                     }
 
                     break;
@@ -359,20 +196,17 @@ public class GameLogic implements Serializable {
                     if (vet.getBackToMenu()) {
                         info(player);
                         playerChoice(player);
-                }
-                    else {
-
+                    } else {
                         setIndex(index += 1);
                     }
                     break;
 
-                    case 6:
+                case 6:
                     System.out.println("Do you want to save and exit the game?");
                     System.out.println("1. Yes.   2. No");
                     try {
                         userChoice = Integer.parseInt(scanner.nextLine());
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         System.out.println("Incorrect input. Enter a number between 1 - 2");
                     }
 
@@ -390,42 +224,151 @@ public class GameLogic implements Serializable {
                             playerChoice(player);
                             break;
                     }
-
-
                 default:
                     System.out.println(" Incorrect input ");
             }
         }
     }
-    public void info(Player player) {
-        System.out.println("---------------");
-        System.out.println("[Round: " + displayRounds + "]");
-        System.out.println("Player: " + player.getName() +
-                "\nCoins: " + player.getCoins());
-        System.out.println("---------------");
-        player.checkAnimalHealth(player);
-        if (counter >0){
-            amountHealthReduced(player);
+
+    public void playerInfos() {
+        Iterator<Player> iterator = playerList.listIterator(getIndex());
+        while (iterator.hasNext()) {
+            Player player = iterator.next();
+            if (player.getCoins() <= 0 && player.getAnimalList().size() <1){
+                System.out.println(player.getName() + " has no animal and coin. Now remove from the game.");
+                iterator.remove();
+                break;
+            }
+            info(player);
+            playerChoice(player);
+
         }
-        System.out.println("---------------");
-        player.printFood();
-        System.out.println();
     }
+
+    public void gameRound() {
+        for (counter = getCounter(); counter < amountRounds; counter++) {
+
+            displayRounds++;
+            setDisplayRounds(displayRounds);
+
+
+            if (getIndex() >= playerList.size()) {
+                setIndex(0);
+                index = 0;
+            }
+                playerInfos();
+                if ((counter + 1) > 0) {
+                    animalStatsModify();
+
+                if ((counter + 1) == (amountRounds - 1)) {
+                    System.out.println("Game end on next round. Make best decision.");
+                    FormatHelp.threadSleep();
+                }
+
+                if ((counter + 1) == amountRounds) {
+                    findWinnerLastRound();
+                    break;
+
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
+    public void sellEveryThing(Player player) {
+        for (Animal animal : player.getAnimalList()) {
+            player.setCoins(player.getCoins() + animal.getPriceToSell());
+        }
+    }
+    // can sort player rank from the highest coins to the lowest coin?
+    public void findPlayerRank() {
+        int max = 0;
+        String winner = "";
+        playerCoins();
+        for (int i = 0; i < playerList.size(); i++) {
+            if (playerList.get(i).getCoins() > max) {
+                max = playerList.get(i).getCoins();
+                winner = playerList.get(i).getName();
+            }
+        }
+
+        System.out.println("Congrats [" + winner + "]. You have won the game with highest coins. [" + max + " Coins]");
+    }
+
+    public void findWinnerLastRound() {
+        for (Player player : playerList) {
+            sellEveryThing(player);
+            findPlayerRank();
+            break;
+        }
+        gameRound();
+    }
+
+    public void animalStatsModify() {
+        for (Player player : playerList) {
+            if (!player.getAnimalList().isEmpty()) {
+                healthPriceReduce(player);
+            }else {
+                break;
+            }
+        }
+    }
+    // health reduce by random 10-30%
+    // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
+    public void healthPriceReduce(Player player) {
+        if (!player.getAnimalList().isEmpty()) {
+            for (int i = 0; i < player.getAnimalList().size(); i++) {
+                int rn = random.nextInt(3) + 1;
+                switch (rn) {
+                    case 1:
+                        player.getAnimalList().get(i).setHealthReduced(0.1 * player.getAnimalList().get(i).getHealth());
+                        player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
+                        player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
+                        priceChange(player.getAnimalList().get(i), 0.1);
+                        break;
+
+                    case 2:
+                        player.getAnimalList().get(i).setHealthReduced(0.2 * player.getAnimalList().get(i).getHealth());
+                        player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
+                        player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
+                        priceChange(player.getAnimalList().get(i), 0.2);
+                        break;
+
+                    case 3:
+                        player.getAnimalList().get(i).setHealthReduced(0.3 * player.getAnimalList().get(i).getHealth());
+                        player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
+                        player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
+                        priceChange(player.getAnimalList().get(i), 0.3);
+                        break;
+                }
+            }
+        }
+
+    }
+    public void priceChange(Animal animal, double percentage) {
+            animal.setPriceReduced((int) (animal.getPriceToSell() * percentage));
+            animal.setPriceToSell((animal.getPriceToSell() - animal.getPriceReduced()));
+    }
+
+
 
     public void playerCoins() {
         System.out.println("Last round reached!\nGame automatically end.\nSelling all player's animal...");
         System.out.println("Player's coins: ");
         for (Player player : playerList) {
-            System.out.println("[Name: " + player.getName() + "] [Coins: " + player.getCoins()+"]");
+            System.out.println("[Name: " + player.getName() + "] [Coins: " + player.getCoins() + "]");
         }
-
     }
-    public void amountHealthReduced(Player player){
-        for (Animal animal: player.getAnimalList()){
-            System.out.println("["+animal.getName() + "] [Health reduced: " + healthReduce +"] [Age: + 5 ]" + "[Price reduced: "+priceReduce +"]");
+    public boolean hasThisName(List<Player> playerList, String givenName) {
+        for (Player player : playerList) {
+            if (player.getName().equalsIgnoreCase(givenName)) {
+                return true;
+            }
         }
-
+        return false;
     }
+
     public int getPlayerAmount() {
         return this.playerAmount;
 
@@ -458,24 +401,11 @@ public class GameLogic implements Serializable {
         return this.index;
     }
 
-    public void saveGame(Player player) {
-
-                System.out.print("Type in file name: ");
-                String fileName = scanner.nextLine();
-                FileUtilities.saveGameRunTime(new SaveRunTimeGame(this), fileName);
-                System.out.println("Exiting the game. See you next time");
-
-        }
-
-        public int getCounter() {
+    public int getCounter() {
         return this.counter;
-        }
-
-        public void setCounter(int counter) {
-            this.counter = counter;
-        }
-
     }
+
+}
 
 
 
