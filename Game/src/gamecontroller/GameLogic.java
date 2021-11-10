@@ -256,10 +256,11 @@ public class GameLogic implements Serializable {
                 setIndex(0);
                 index = 0;
             }
+            if (gameRun) {
                 playerInfos();
                 if ((counter + 1) > 0) {
                     animalStatsModify();
-
+                }
                 if ((counter + 1) == (amountRounds - 1)) {
                     System.out.println("Game end on next round. Make best decision.");
                     FormatHelp.threadSleep();
@@ -270,11 +271,14 @@ public class GameLogic implements Serializable {
                     break;
 
                 }
+            } else {
+                System.out.println("[ - Game Over - ] ");
+                System.exit(0);
+                break;
             }
             System.out.println();
         }
     }
-
 
     public void sellEveryThing(Player player) {
         for (Animal animal : player.getAnimalList()) {
@@ -302,6 +306,7 @@ public class GameLogic implements Serializable {
             findPlayerRank();
             break;
         }
+        gameRun =false;
         gameRound();
     }
 
