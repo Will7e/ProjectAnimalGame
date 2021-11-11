@@ -17,8 +17,6 @@ public class GameLogic implements Serializable {
     private int playerAmount;
     private Random random;
     private int counter;
-    public static double healthReduce;
-    public static int priceReduce;
     private int amountRounds;
     private boolean gameRun = true;
     private int displayRounds = 0;
@@ -104,7 +102,6 @@ public class GameLogic implements Serializable {
             }
         } while (playerAmount < 2 || playerAmount > 4);
     }
-
     // This method is for adding players to the list
     // Players can input names without having duplicate names.
     public void addPlayer() {
@@ -319,9 +316,8 @@ public class GameLogic implements Serializable {
     public void findWinnerLastRound() {
         for (Player player : playerList) {
             sellEveryThing(player);
-            findPlayerRank();
-            break;
         }
+        findPlayerRank();
         gameRun =false;
         gameRound();
     }
@@ -367,12 +363,11 @@ public class GameLogic implements Serializable {
         }
 
     }
+
     public void priceChange(Animal animal, double percentage) {
             animal.setPriceReduced((int) (animal.getPriceToSell() * percentage));
             animal.setPriceToSell((animal.getPriceToSell() - animal.getPriceReduced()));
     }
-
-
 
     public void playerCoins() {
         System.out.println("Last round reached!\nGame automatically end.\nSelling all player's animal...");
@@ -381,6 +376,7 @@ public class GameLogic implements Serializable {
             System.out.println("[Name: " + player.getName() + "] [Coins: " + player.getCoins() + "]");
         }
     }
+
     public boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player player : playerList) {
             if (player.getName().equalsIgnoreCase(givenName)) {
@@ -416,7 +412,6 @@ public class GameLogic implements Serializable {
     public int getDisplayRounds() {
         return this.displayRounds;
     }
-
 
     public int getIndex() {
         return this.index;

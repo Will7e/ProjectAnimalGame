@@ -93,7 +93,6 @@ public class Veterinary  implements Serializable {
                 FormatHelp.threadSleep();
                 FormatHelp.emptyScreen();
                 backToMenu = true;
-                return;
             } else {
                 if (random.nextBoolean()) {
                     for (int i = 0; i < player.getAnimalList().size(); i++) {
