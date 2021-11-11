@@ -6,6 +6,8 @@ import java.util.ArrayList;
 /**
  *  Here we store important data and write objects of this class to a file.
  *  Information stored here must be used to get a game up and running.
+ *
+ *
  */
 
 

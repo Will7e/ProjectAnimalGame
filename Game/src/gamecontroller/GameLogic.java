@@ -50,6 +50,7 @@ public class GameLogic implements Serializable {
 
         this.counter = loadSavedGame.getCounter();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
+
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players: " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more informations.");
@@ -69,7 +70,7 @@ public class GameLogic implements Serializable {
     }
 
     /**
-     * This method is where the game going to start. It asks for round, call for ask amount of player and add player method.
+     * This method is where the game going to start. It asks for round, calls for ask amount of player and add player method.
      * Try catch for incorrect input.
      */
     public void startGame() {
@@ -150,7 +151,8 @@ public class GameLogic implements Serializable {
 
 
     /**
-     * This method
+     * This method is where player takes turn and have their choices. Each player have their own turn
+     * if one has nothing left, it removes that player from the game.
      */
     public void playerInfos() {
         Iterator<Player> iterator = playerList.listIterator(getIndex());
@@ -166,8 +168,6 @@ public class GameLogic implements Serializable {
 
         }
     }
-
-
     /**
      * This method is the menu choice for player's. It displays options for player.
      * @param player to decide for which options they're going to go for.
@@ -267,6 +267,10 @@ public class GameLogic implements Serializable {
         }
     }
 
+    /**
+     * This method is where the game round runs till reach max round. In this method we set condition to controlls
+     * what are going to happen each round or what happen when it ends.
+     */
     public void gameRound() {
         for (counter = getCounter(); counter < amountRounds; counter++) {
 
@@ -302,6 +306,11 @@ public class GameLogic implements Serializable {
         }
     }
 
+
+    /**
+     * This method is where game 
+     * @param player that receives coins
+     */
     public void sellEveryThing(Player player) {
         for (Animal animal : player.getAnimalList()) {
             player.setCoins(player.getCoins() + animal.getPriceToSell());
