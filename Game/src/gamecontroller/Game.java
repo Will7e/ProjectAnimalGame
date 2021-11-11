@@ -46,7 +46,7 @@ public class Game {
                     this.game = new GameLogic(loadSavedGame);
                 } else {
 
-                    System.out.println("Something went wrong. Try again");
+
                     startMenu();
 
                 }

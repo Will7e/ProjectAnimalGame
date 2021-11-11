@@ -36,6 +36,11 @@ public class GameLogic implements Serializable {
         startGame();
     }
 
+    /**
+     *
+     * @param loadSavedGame
+     */
+
     public GameLogic(SaveRunTimeGame loadSavedGame) {
         this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
@@ -45,14 +50,9 @@ public class GameLogic implements Serializable {
 
         this.counter = loadSavedGame.getCounter();
         System.out.println("Welcome back to the game! " + loadSavedGame.getPlayerListHistory().get(loadSavedGame.getIndex()).getName());
-
-        System.out.println("Welcome back to the game! ");
-
-
         System.out.println("Loaded old save game with the following information: ");
         System.out.println("Amount of players: " + loadSavedGame.getPlayerAmount());
         System.out.println("See below for more informations.");
-        System.out.println(counter);
         store = new Store();
         veterinary = new Veterinary();
         this.random = new Random();

@@ -37,7 +37,7 @@ public class FileUtilities {
 
         } catch (Exception e) {
 
-            System.out.println( e.getMessage() );
+            System.out.println("File not found, please enter another filename");
             // e.printStackTrace();
         }
         return loadGame;
