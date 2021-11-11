@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  *     Helping class for the game
  *     Contains features for output in the game
+ *     author marcus, William, Ridah
  */
 public class FormatHelp implements Serializable {
 
