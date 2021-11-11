@@ -3,6 +3,7 @@ package gamecontroller;
 import animals.Animal;
 import resourses.Store;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.*;
 
@@ -166,6 +167,8 @@ public class GameLogic implements Serializable {
             if (player.getCoins() <= 0 && player.getAnimalList().size() <1){
                 System.out.println(player.getName() + " has no animal and coin. Now remove from the game.");
                 iterator.remove();
+                FormatHelp.threadSleep();
+                FormatHelp.emptyScreen();
                 break;
             }
             info(player);
