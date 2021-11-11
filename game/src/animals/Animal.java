@@ -15,9 +15,9 @@ import java.io.Serializable;
 public abstract class Animal implements Serializable {
     protected String name; // Every animal are going to need a name.
     protected char gender; // As well as gender.'
-    protected double healthReduced;
-    protected int priceReduced;
-    public static boolean eatSuccess = true;
+    protected double healthReduced; // Animal health reduce each round.
+    protected int priceReduced; // Price reduces each round
+    public static boolean eatSuccess = true; // Check if animal be able to eat the right food
 
 
     /**
@@ -107,7 +107,7 @@ public abstract class Animal implements Serializable {
     public abstract char getGender();
 
     /**
-     * Abtract method to get animal's sell price.
+     * Abstract method to get animal's sell price.
      *
      * @return animal's price.
      */
@@ -118,17 +118,43 @@ public abstract class Animal implements Serializable {
      *
      * @param priceToSell as price going to change.
      */
+
+
+    /**
+     * Abstract method to set the price of animal that is going to sell. Pass in int type data in parameter.
+     *
+     * @param priceToSell as the price going to change
+     */
     public abstract void setPriceToSell(int priceToSell);
 
+
+    /**
+     * Abstract method to get amount of health reduced.
+     *
+     * @return amount of health reduce.
+     */
     public abstract double getHealthReduced();
 
 
+    /**
+     * Abstract method to set the health of animal that is going to reduce. Pass in double type data in parameter.
+     *
+     * @param healthReduced as the health that we're going to get.
+     */
     public abstract void setHealthReduced(double healthReduced);
 
-
+    /**
+     * Abstract method to get amount of price reduced.
+     *
+     * @return amount of price reduce.
+     */
     public abstract int getPriceReduced();
 
-
+    /**
+     * Abstract method to set the price of animal that is going to reduce. Pass in int type data in parameter.
+     *
+     * @param priceReduced as the price that we're going to get.
+     */
     public abstract void setPriceReduced(int priceReduced);
 
 }

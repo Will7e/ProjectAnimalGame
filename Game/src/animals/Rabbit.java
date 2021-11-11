@@ -63,15 +63,13 @@ public class Rabbit extends Animal implements Serializable {
             System.out.println("Going back to main menu");
             System.out.println("Next player's turn...");
             eatSuccess = true;
-            FormatHelp.threadSleep();
-            FormatHelp.emptyScreen();
         }else {
             System.out.println("Wrong type of food.");
             System.out.println("Return to main menu...");
             eatSuccess = false;
-            FormatHelp.threadSleep();
-            FormatHelp.emptyScreen();
         }
+        FormatHelp.threadSleep();
+        FormatHelp.emptyScreen();
     }
     @Override
     public double getHealth() {

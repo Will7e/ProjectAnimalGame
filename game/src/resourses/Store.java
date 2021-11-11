@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public class Store implements Serializable {
     transient Scanner console = new Scanner(System.in);
-    private int dogPrice = 30;
+    private int dogPrice = 30; // Initialize price for animals
     private int bearPrice = 80;
     private int horsePrice = 50;
     private int lionPrice = 100;
@@ -31,26 +31,25 @@ public class Store implements Serializable {
     private int meatPrice = 10;
     private int mixFoodPrice = 5;
     private int veggiesPrice = 1;
-    private int input;
-    private int input2;
-    private int userInput;
-    private char gender;
-    private String name;
-    private boolean backToMenu;
+    private int input; // Player's input
+    private int input2; // Player's input
+    private int userInput; // Player's input
+    private char gender; // Animal's gender
+    private String name; // Animal's name
+    private boolean backToMenu; // boolean = true;
 
     /**
      * This method start with calling another metod at start ( get the animalPrice method).
      * This method is using Switch case. Take in player's input as choices.
      * In this method can players choose which animal their want to buy and amount.
-     *
-     * @param player that is going to buy animal.
+     * It reduces player's coins as player gets the animal he has bought.
+     * @param player who chooses to buy animal.
      */
     public void animalToBuy(Player player) {
         animalPrice();
         try {
             input = Integer.parseInt(console.nextLine());
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Incorrect input. Enter a number.");
         }
 
@@ -225,8 +224,6 @@ public class Store implements Serializable {
 
             default:
                 System.out.println();
-                FormatHelp.threadSleep();
-                FormatHelp.emptyScreen();
                 animalToBuy(player);
                 break;
         }
@@ -238,7 +235,7 @@ public class Store implements Serializable {
      * This method is ask for player's input and use it as switch case to support another method of selling animal.
      * It checks whether if player has animals to start with if not player will not be able to sell animal
      *
-     * @param player that is going to sell animal.
+     * @param player who chooses to sell animal.
      */
     public void saleStart(Player player) {
 
@@ -255,8 +252,7 @@ public class Store implements Serializable {
             System.out.println("1. Yes. 2. No");
             try {
                 userInput = Integer.parseInt(console.nextLine());
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Incorrect input. Enter a number.");
             }
 
@@ -269,7 +265,7 @@ public class Store implements Serializable {
                     FormatHelp.emptyScreen();
                     break;
 
-                    case 2:
+                case 2:
                     System.out.println("Return to main menu...");
                     backToMenu = true;
                     FormatHelp.threadSleep();
@@ -286,6 +282,12 @@ public class Store implements Serializable {
         }
     }
 
+
+    /**
+     * This method prints out the animal that player current own in the list.
+     *
+     * @param player who chooses to sell animal.
+     */
     public void getAnimalsForSale(Player player) {
 
         System.out.println(player.getName() + " Your animals list: ");
@@ -300,6 +302,12 @@ public class Store implements Serializable {
         sellAnimal(player);
     }
 
+
+    /**
+     * This method allow player to type in the name of animal he/she wants to sell. If the name is match with the name in
+     * the list that player owns. Then the animal remove from his list, and he receives its price.
+     * @param player choose to sell animal.
+     */
     public void sellAnimal(Player player) {
         System.out.println("Type in the name of the animal you want to sell.");
         String playerChoice = console.nextLine();
@@ -308,7 +316,7 @@ public class Store implements Serializable {
 
             if (player.getAnimalList().get(i).getName().equalsIgnoreCase(playerChoice)) {
                 player.setCoins(player.getCoins() + player.getAnimalList().get(i).getPriceToSell());
-                System.out.println("Sale done. Your current balance: " + player.getCoins() +" coins.");
+                System.out.println("Sale done. Your current balance: " + player.getCoins() + " coins.");
                 player.getAnimalList().remove(i);
 
                 if (player.getAnimalList().size() >= 1) {
@@ -321,45 +329,54 @@ public class Store implements Serializable {
         }
         System.out.println("Animal doesn't exist. Try again.");
         sellAnimal(player);
-                }
-
-            public void sellMoreAnimals (Player player){
-
-            System.out.println("Do you want to sell more animals?");
-            System.out.println("1. Yes 2. No");
-            try {
-                userInput = Integer.parseInt(console.nextLine());
-            }
-            catch(Exception e){
-                System.out.println("Incorrect input. Enter a number between 1 - 2.");
-            }
-
-            switch(userInput) {
-
-                case 1:
-                    getAnimalsForSale(player);
-                    break;
-
-                case 2:
-                    break;
+    }
 
 
-                default:
-                    System.out.println("Invalid input. Choose 1 - 2.");
-                    sellMoreAnimals(player);
+    /**
+     * This metod ask player if he wants to sell more animals. If yes then start the selling methods again. Else its next
+     * player's turn.
+     * @param player who chooses to sell animal.
+     */
+    public void sellMoreAnimals(Player player) {
 
-            }
+        System.out.println("Do you want to sell more animals?");
+        System.out.println("1. Yes 2. No");
+        try {
+            userInput = Integer.parseInt(console.nextLine());
+        } catch (Exception e) {
+            System.out.println("Incorrect input. Enter a number between 1 - 2.");
+        }
+
+        switch (userInput) {
+
+            case 1:
+                getAnimalsForSale(player);
+                break;
+
+            case 2:
+                break;
+
+
+            default:
+                System.out.println("Invalid input. Choose 1 - 2.");
+                sellMoreAnimals(player);
+
+        }
 
     }
 
-             //Prints out food to buy for players. Then add to list.
+
+    /**
+     * This method allow player to buy the food and the amount of it as he wants. It adds food to player's list and
+     * reduces player's coins as amount he has bought.
+     * @param player who chooses to buy food.
+     */
     public void buyFood(Player player) {
 
         foodPrice();
         try {
             input = Integer.parseInt(console.nextLine());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Incorrect input. Enter a number between 1-4.");
         }
 
@@ -387,13 +404,12 @@ public class Store implements Serializable {
                         player.getFoodList().add(new Meat());
                     }
                     player.setCoins(player.getCoins() - getMeatPrice() * input2);
-                    System.out.println("You've bought "+input2+" kilos of meat!");
+                    System.out.println("You've bought " + input2 + " kilos of meat!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
                     FormatHelp.threadSleep();
                     FormatHelp.emptyScreen();
-
 
                 }
                 break;
@@ -420,7 +436,7 @@ public class Store implements Serializable {
                         player.getFoodList().add(new Veggies());
                     }
                     player.setCoins(player.getCoins() - getVeggiesPrice() * input2);
-                    System.out.println("You've bought "+ input2 +" kilos of veggies!");
+                    System.out.println("You've bought " + input2 + " kilos of veggies!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn...");
                     backToMenu = false;
@@ -442,23 +458,20 @@ public class Store implements Serializable {
                     System.out.println("Not enough coins. You only have " + player.getCoins() + " coins.");
                     System.out.println("Return to main menu...");
                     backToMenu = true;
-                    FormatHelp.threadSleep();
-                    FormatHelp.emptyScreen();
-                    break;
 
                 } else {
                     for (int i = 0; i < input2; i++) {
                         player.getFoodList().add(new Mixfood());
                     }
                     player.setCoins(player.getCoins() - getMixFoodPrice() * input2);
-                    System.out.println("You've bought "+ input2 +" kilos of mixed food!");
+                    System.out.println("You've bought " + input2 + " kilos of mixed food!");
                     System.out.println("You have : " + player.getCoins() + " coins left.");
                     System.out.println("Next player's turn");
                     backToMenu = false;
-                    FormatHelp.threadSleep();
-                    FormatHelp.emptyScreen();
-                    break;
                 }
+                FormatHelp.threadSleep();
+                FormatHelp.emptyScreen();
+                break;
             case 4:
                 System.out.println("Return to main menu...");
                 backToMenu = true;
@@ -470,6 +483,10 @@ public class Store implements Serializable {
         }
     }
 
+
+    /**
+     * This method prints out the price of animals that players need to know.
+     */
     public void animalPrice() {
         System.out.println("Welcome to the store!");
         System.out.println("Here is a list of animals you can buy");
@@ -480,6 +497,10 @@ public class Store implements Serializable {
                 "5. Rabbit " + " ( " + this.getRabbitPrice() + " Coins )\n" +
                 "6. Return to main menu");
     }
+
+    /**
+     * This method prints out the price of foods that players need to know.
+     */
     public void foodPrice() {
         System.out.println("Welcome to the Store! Here you can buy some foods");
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
@@ -490,6 +511,11 @@ public class Store implements Serializable {
 
     }
 
+
+    /**
+     * This method controls player input when he chooses animal gender.
+     * @return M or F as gender for animal.
+     */
     public char setGender() {
         System.out.println("Gender (M / F): ");
         gender = console.nextLine().charAt(0);
@@ -500,6 +526,12 @@ public class Store implements Serializable {
         return setGender();
     }
 
+
+    /**
+     * This method let player to names his/her animal.
+     * @param player who buy animal.
+     * @return name of animal
+     */
     public String setName(Player player) {
         System.out.print("Namn: ");
         name = console.nextLine();
@@ -510,6 +542,12 @@ public class Store implements Serializable {
         return name;
     }
 
+    /**
+     * This method check if the name is already exist in his animal list.
+     * @param animalList current animal list that player owns.
+     * @param givenName the name player is going to name his/her animal
+     * @return true or false.
+     */
     public boolean hasThisName(List<Animal> animalList, String givenName) {
         for (Animal animal : animalList) {
             if (animal.getName().equalsIgnoreCase(givenName)) {
@@ -520,42 +558,76 @@ public class Store implements Serializable {
     }
 
 
+    /**
+     * This method helps player to return to main menu if he wants to make another choice.
+     * @return as true;
+     */
     public boolean returnMainMenu() {
         return this.backToMenu;
     }
 
+
+    /**
+     * Get dog's price that has been initialized
+     * @return dog price
+     */
     public int getDogPrice() {
         return dogPrice;
     }
 
+    /**
+     * Get bear's price that has been initialized
+     * @return bear price
+     */
     public int getBearPrice() {
         return bearPrice;
     }
-
+    /**
+     * Get horse's price that has been initialized
+     * @return horse price
+     */
     public int getHorsePrice() {
         return horsePrice;
     }
 
+    /**
+     * Get lion's price that has been initialized
+     * @return lion price
+     */
     public int getLionPrice() {
         return lionPrice;
     }
 
+    /**
+     * Get rabbit's price that has been initialized
+     * @return rabbit price
+     */
     public int getRabbitPrice() {
         return rabbitPrice;
     }
 
+    /**
+     * Get meat's price that has been initialized
+     * @return meat price
+     */
     public int getMeatPrice() {
         return meatPrice;
     }
 
+    /**
+     * Get mixfood's price that has been initialized
+     * @return mixfood price
+     */
     public int getMixFoodPrice() {
         return mixFoodPrice;
     }
-
+    /**
+     * Get veggies's price that has been initialized
+     * @return veggies price
+     */
     public int getVeggiesPrice() {
         return veggiesPrice;
     }
-
 
 
 }

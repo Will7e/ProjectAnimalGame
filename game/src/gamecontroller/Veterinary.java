@@ -7,23 +7,37 @@ import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Veterinary  implements Serializable {
-    private Scanner console;
-    private Random random;
-    private Store store;
-    private int index1;
-    private int index2;
-    private char gender;
-    private String name;
-    String animalName;
-    private boolean backToMenu;
+/**
+ * This is the class where we create for animal to breed with each other. In this we have difference method and logic
+ * that if player have animals so he/she can breed to get more of those animals.
+ *
+ * @author William, Marcus, Ridah
+ */
 
+public class Veterinary  implements Serializable {
+    private Scanner console; // Scanner for player's input
+    private Random random; // Randomize chances of animals breed and gender
+    private Store store; // To use a method that exist in Store class.
+    private int index1; // To retrieve the index of animal to breed
+    private int index2;// To retrieve the index of second animal to breed
+    private char gender; // To store gender as Character.
+    private String name; // store name.
+    private String animalName; // store animal name to compare within the arraylist.
+    private boolean backToMenu; // For player to return to main menu if he/she types in wrong.
+
+    /**
+     * Constructor for this class.
+     */
     public Veterinary() {
-        this.console = new Scanner(System.in);
-        this.random = new Random();
-        this.store = new Store();
+        this.console = new Scanner(System.in); // Initialize Scanner.
+        this.random = new Random();// Initialize Random.
+        this.store = new Store();// Initialize Store.
     }
 
+    /**
+     * This method we create to get the gender that randomize when animals success breed.
+     * @return M or F as gender.
+     */
     public char randomGender() {
         if (random.nextBoolean()) {
             return 'M';
@@ -31,11 +45,20 @@ public class Veterinary  implements Serializable {
         return 'F';
     }
 
+    /**
+     * This method prints if animals success breed. As message to let player knows.
+     */
     public void successMessage() {
         System.out.println("[Name : " + name + "]\n" +
                 "[Gender: " + gender + "]");
     }
 
+
+    /**
+     * This method check if the name of animal player types in is correct or exist in his animal list.
+     * @param player who types in.
+     * @return index of the animal that is existed in his animal list.
+     */
     public int checkAnimal(Player player) {
         System.out.println("(1).Type in animal name you want to breed.");
         animalName = console.nextLine();
@@ -51,6 +74,11 @@ public class Veterinary  implements Serializable {
         return index1;
     }
 
+    /**
+     * This method check if the name of animal player types in is correct or exist in his animal list.
+     * @param player who types in.
+     * @return index of the animal that is existed in his animal list.
+     */
     public int checkAnimal2(Player player) {
         System.out.println("(2).Type in animal name you want to breed with [" + animalName +"].");
         String animalName2 = console.nextLine();
@@ -66,15 +94,19 @@ public class Veterinary  implements Serializable {
         return index2;
     }
 
+
+    /**
+     * This method is the logic behind breed animal as whole. It checks possibility of those animal that player types in.
+     * It randomizes the chances of any to have baby as 50/50. If success this adds those new animals to player animal list.
+     * @param player that choose to breed animal.
+     */
     public void breedAnimal(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
             System.out.println("Return to main menu...");
             backToMenu= true;
-            setBackToMenu(true);
             FormatHelp.threadSleep();
             FormatHelp.emptyScreen();
-
 
         } else {
             printAnimalList(player);
@@ -159,6 +191,12 @@ public class Veterinary  implements Serializable {
         }
     }
 
+
+    /**
+     * This method let player name animal that he/she successes to breed.
+     * @param player that success the breed and name animal.
+     * @return animal's name
+     */
     public String nameAnimal(Player player) {
         System.out.print("Name your animal: ");
         name = console.nextLine();
@@ -169,6 +207,11 @@ public class Veterinary  implements Serializable {
         return name;
     }
 
+
+    /**
+     * This method prints animal list for player to know what animals he/she has.
+     * @param player that choose to breed animal.
+     */
     public void printAnimalList(Player player) {
         System.out.println("Your animal list: ");
         for (Animal animal : player.getAnimalList()) {
@@ -176,10 +219,10 @@ public class Veterinary  implements Serializable {
         }
     }
 
-    public void setBackToMenu(boolean backToMenu) {
-        this.backToMenu = backToMenu;
-    }
-
+    /**
+     * This method is to call from GameLogic for recursion of return to main menu
+     * @return boolean as true or false.
+     */
     public boolean getBackToMenu() {
         return this.backToMenu;
     }

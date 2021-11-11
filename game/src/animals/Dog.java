@@ -64,15 +64,13 @@ public class Dog extends Animal implements Serializable {
                     "Current health: " + getHealth());
             System.out.println("Next player's turn...");
             eatSuccess = true;
-            FormatHelp.threadSleep();
-            FormatHelp.emptyScreen();
         }else {
             System.out.println("Wrong type of food.");
             System.out.println("Return to main menu...");
             eatSuccess = false;
-            FormatHelp.threadSleep();
-            FormatHelp.emptyScreen();
         }
+        FormatHelp.threadSleep();
+        FormatHelp.emptyScreen();
     }
 
     @Override

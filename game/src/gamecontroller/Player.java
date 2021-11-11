@@ -1,12 +1,13 @@
 package gamecontroller;
 
 
-import animals.*;
+import animals.Animal;
 import food.Food;
-import resourses.Store;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * The player should be able to store his money, his owned animals and the food he/she owns.
@@ -15,42 +16,46 @@ import java.util.*;
  * @author william, ridah, marcus
  */
 public class Player implements Serializable {
-    transient private Scanner console;
-    private String name;
+    private String name; // Player's name
     protected int playerCoins = 500;
-    private ArrayList<Animal> animalList; // ArrayList
-    private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of ...
-    private Store store;
+    private ArrayList<Animal> animalList; // ArrayList, use size() to retrieve total amount of animal
+    private ArrayList<Food> foodList; // ArrayList, use size() to retrieve total amount of food
     public boolean backToMenu;
     int index;
-    String animalName;
+    protected String animalName;
 
     /**
-     * Constructor of player class
-     *
+     * Constructor of player class.
      * @param name field variable for player
      *             Instantiating class "Store" in constructor
      */
     public Player(String name) {
-        this.store = new Store();
         this.name = name;
-        console = new Scanner(System.in);
         this.animalList = new ArrayList<>();
         this.foodList = new ArrayList<>();
     }
 
+    /**
+     * Getter for player's name.
+     * @return player's name.
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Getter for player's coins.
+     * @return coins that player owns.
+     */
     public int getCoins() {
         return playerCoins;
     }
 
+
+    /**
+     * Setter for player's coin
+     * @param playerCoins
+     */
     public void setCoins(int playerCoins) {
         this.playerCoins = playerCoins;
     }
@@ -59,6 +64,10 @@ public class Player implements Serializable {
         return animalList;
     }
 
+    /**
+     * Getter for foodList.
+     * @return food list.
+     */
     public List<Food> getFoodList() {
         return foodList;
     }
@@ -66,7 +75,6 @@ public class Player implements Serializable {
     /**
      * This method prints out list of a players food and the amount of food.
      */
-
     public void printFood() {
         System.out.println("Food list:");
         if (foodList.isEmpty()) {
@@ -96,7 +104,7 @@ public class Player implements Serializable {
     /**
      * Checks if food available, if correct food and if animals are available to feed
      *
-     * @param player  takes players turn
+     * @param player  choose to feed animal.
      * @param scanner reads user choice of what food to feed animal
      */
     public void checkAnimalToFeed(Player player, Scanner scanner) {
@@ -120,10 +128,12 @@ public class Player implements Serializable {
 
 
     /**
-     * Method to feed animal
+     * This method let player types in name he/she wants to feed. Then checks if that animal exist in his/her animal list.
+     * If correct then it let player to types in which kind of food he wants to use. If correct food animal health increase,
+     * if player mistakenly type in wrong type of food for animal, he/she has the chance to do it again.
      *
-     * @param player takes players turn
-     * @param scan   scans what animal player wishes to feed
+     * @param player choose to feed animal.
+     * @param scan  player's input.
      */
     public void feedAnimal(Player player, Scanner scan) {
         checkAnimalHealth(player);
@@ -132,7 +142,7 @@ public class Player implements Serializable {
         for (int i = 0; i < player.animalList.size(); i++) {
             index = i;
             if (player.animalList.get(i).getName().equalsIgnoreCase(animalName)) {
-                System.out.println("Remember:\n Bear, Lion [Meat] |Horse,Rabbit [Veggies] | Dog [Mixfood] ");
+                System.out.println("Reminder:\n  Bear,Lion [Meat] -:- Horse,Rabbit [Veggies] -:- Dog [Mixfood][Meat] ");
                 System.out.println("-".repeat(15));
                 System.out.println("Type in name of the food you want to feed animal.");
                 System.out.println("[Meat]    [Veggies]    [Mixfood]");
@@ -164,7 +174,7 @@ public class Player implements Serializable {
     /**
      * Prints out players animals owned and removes if animal is too old / 0 health
      *
-     * @param player takes players turn
+     * @param player takes turn.
      */
     public void checkAnimalHealth(Player player) {
         System.out.println("Animal list: ");
@@ -194,6 +204,11 @@ public class Player implements Serializable {
         }
     }
 
+
+    /**
+     * Getter for boolean variable backToMenu.
+     * @return true
+     */
     public boolean getBackToMenu() {
         return backToMenu;
     }

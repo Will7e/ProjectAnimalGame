@@ -11,30 +11,32 @@ import java.util.*;
  */
 public class GameLogic implements Serializable {
     transient Scanner scanner = new Scanner(System.in);
-    private ArrayList<Player> playerList;
-    private Veterinary vet;
-    private Store store;
-    private int playerAmount;
-    private Random random;
-    private int counter;
-    private int amountRounds;
-    private boolean gameRun = true;
-    private int displayRounds = 0;
-    private int index;
-    private int input;
-    private int userChoice;
+    protected ArrayList<Player> playerList;
+    protected Veterinary veterinary;
+    protected Store store;
+    protected int playerAmount; // Amount of player
+    protected Random random;
+    protected int counter; // Start value of for loop.
+    protected int amountRounds; // Amount max round for loop to end
+    protected boolean gameRun = true; // Check if loop still run.
+    protected int displayRounds = 0; // This let player know which round player are in
+    protected int index;
+    protected int input;
+    protected int userChoice;
 
 
+    /**
+     * Constructor for this class.
+     */
     public GameLogic() {
-        vet = new Veterinary();
-        store = new Store();
-        playerList = new ArrayList<>();
-        this.random = new Random();
+        veterinary = new Veterinary(); // Initialize Veterinary
+        store = new Store();// Initialize Store
+        playerList = new ArrayList<>();// Initialize player list
+        this.random = new Random(); // Initialize Random
         startGame();
     }
 
     public GameLogic(SaveRunTimeGame loadSavedGame) {
-
         this.playerList = loadSavedGame.getPlayerListHistory();
         this.index = loadSavedGame.getIndex();
         this.amountRounds = loadSavedGame.getAmountRounds();
@@ -52,11 +54,9 @@ public class GameLogic implements Serializable {
         System.out.println("See below for more informations.");
         System.out.println(counter);
         store = new Store();
-        vet = new Veterinary();
+        veterinary = new Veterinary();
         this.random = new Random();
         gameRound();
-        playerInfos();
-
 
     }
 
@@ -68,7 +68,10 @@ public class GameLogic implements Serializable {
 
     }
 
-    // This method for player's choice how many rounds they want to play.  5- 30 rounds with do-while loop.
+    /**
+     * This method is where the game going to start. It asks for round, call for ask amount of player and add player method.
+     * Try catch for incorrect input.
+     */
     public void startGame() {
         System.out.println("How many rounds do you want to play? ");
         try {
@@ -87,6 +90,11 @@ public class GameLogic implements Serializable {
         }
     }
 
+
+    /**
+     * This method is for player to decide how many players going to player this game. But with limitation.
+     * Try catch for incorrect input and while loop to limit amount of players ( 2-4)
+     */
     private void askAmountPlayers() {
         // This method ask for how many players are going to play.
         do {
@@ -102,8 +110,11 @@ public class GameLogic implements Serializable {
             }
         } while (playerAmount < 2 || playerAmount > 4);
     }
-    // This method is for adding players to the list
-    // Players can input names without having duplicate names.
+
+    /**
+     * This method is where the game add players. Player can decide their name, but not duplicated.
+     * This method allow the game to add as amount player as we decide on.
+     */
     public void addPlayer() {
         int i = 1;
         do {
@@ -120,6 +131,11 @@ public class GameLogic implements Serializable {
         // This method is checking if player's name already exist.
     }
 
+    /**
+     * This method is to display which round the game start with and which player's turn it is.
+     * This method is calling for another method in Player class to let player know what he/she has.
+     * @param player turn.
+     */
     public void info(Player player) {
         System.out.println("---------------");
         System.out.println("[Round: " + displayRounds + "]");
@@ -132,6 +148,30 @@ public class GameLogic implements Serializable {
         System.out.println();
     }
 
+
+    /**
+     * This method
+     */
+    public void playerInfos() {
+        Iterator<Player> iterator = playerList.listIterator(getIndex());
+        while (iterator.hasNext()) {
+            Player player = iterator.next();
+            if (player.getCoins() <= 0 && player.getAnimalList().size() <1){
+                System.out.println(player.getName() + " has no animal and coin. Now remove from the game.");
+                iterator.remove();
+                break;
+            }
+            info(player);
+            playerChoice(player);
+
+        }
+    }
+
+
+    /**
+     * This method is the menu choice for player's. It displays options for player.
+     * @param player to decide for which options they're going to go for.
+     */
     public void playerChoice(Player player) {
         System.out.println("What do you want to do? [Player: " + player.getName() + "] | [Round: " + displayRounds + "] | " +
                 "[" + player.getCoins() + " Coins] | [Max round: " + amountRounds + "]");
@@ -189,8 +229,8 @@ public class GameLogic implements Serializable {
 
                     break;
                 case 5:
-                    vet.breedAnimal(player);
-                    if (vet.getBackToMenu()) {
+                    veterinary.breedAnimal(player);
+                    if (veterinary.getBackToMenu()) {
                         info(player);
                         playerChoice(player);
                     } else {
@@ -227,43 +267,11 @@ public class GameLogic implements Serializable {
         }
     }
 
-    public void playerInfos() {
-        Iterator<Player> iterator = playerList.listIterator(getIndex());
-        while (iterator.hasNext()) {
-            Player player = iterator.next();
-            if (player.getCoins() <= 0 && player.getAnimalList().size() <1){
-                System.out.println(player.getName() + " has no animal and coin. Now remove from the game.");
-
-                if (playerAmount == 2 && index == 0) {
-                    counter--;
-                    displayRounds--;
-                }
-                else if (playerAmount == 3 && index == 0 || index == 1) {
-                    counter--;
-                    displayRounds--;
-                }
-
-                else if (playerAmount == 4 && index == 0 || index == 2) {
-                    counter--;
-                    displayRounds--;
-                }
-
-
-                iterator.remove();
-                break;
-            }
-            info(player);
-            playerChoice(player);
-
-        }
-    }
-
     public void gameRound() {
         for (counter = getCounter(); counter < amountRounds; counter++) {
 
             displayRounds++;
             setDisplayRounds(displayRounds);
-
 
             if (getIndex() >= playerList.size()) {
                 setIndex(0);
@@ -272,6 +280,7 @@ public class GameLogic implements Serializable {
             if (gameRun) {
                 playerInfos();
                 if ((counter + 1) > 0) {
+                    playerInfos();
                     animalStatsModify();
                 }
                 if ((counter + 1) == (amountRounds - 1)) {
