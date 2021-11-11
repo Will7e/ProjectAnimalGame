@@ -38,7 +38,8 @@ public class GameLogic implements Serializable {
 
     /**
      *
-     * @param loadSavedGame
+     * This is the constructor that starts the game when loading a saved game.
+     * @param loadSavedGame loading saved game from file.
      */
 
     public GameLogic(SaveRunTimeGame loadSavedGame) {
@@ -61,6 +62,10 @@ public class GameLogic implements Serializable {
 
     }
 
+    /**
+     * saveGame method
+     * @param player , saves the game
+     */
     public void saveGame(Player player) {
         System.out.print("Type in file name: ");
         String fileName = scanner.nextLine();

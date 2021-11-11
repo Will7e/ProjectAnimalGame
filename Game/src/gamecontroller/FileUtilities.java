@@ -22,7 +22,6 @@ public class FileUtilities {
      * @param fileName the filename from which we want to retrieve GameLogic data
      * @return the instance of SaveRunTimeGame we retrieved
      */
-
     public static SaveRunTimeGame loadSavedGame(String fileName) {
 
         SaveRunTimeGame loadGame = null;
