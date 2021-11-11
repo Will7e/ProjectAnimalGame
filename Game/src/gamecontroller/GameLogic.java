@@ -236,6 +236,22 @@ public class GameLogic implements Serializable {
             Player player = iterator.next();
             if (player.getCoins() <= 0 && player.getAnimalList().size() <1){
                 System.out.println(player.getName() + " has no animal and coin. Now remove from the game.");
+
+                if (playerAmount == 2 && index == 0) {
+                    counter--;
+                    displayRounds--;
+                }
+                else if (playerAmount == 3 && index == 0 || index == 1) {
+                    counter--;
+                    displayRounds--;
+                }
+
+                else if (playerAmount == 4 && index == 0 || index == 2) {
+                    counter--;
+                    displayRounds--;
+                }
+
+
                 iterator.remove();
                 break;
             }
