@@ -2,6 +2,10 @@ package gamecontroller;
 
 import java.util.Scanner;
 
+/**
+ * The Game class, the class presents the player with two choices, to start a new game or load a saved game.
+ * @author William, Marcus, Ridah
+ */
 public class Game {
 
 

@@ -8,10 +8,16 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
+ *  This is the GameLogic class and as the name implies, here is how the games logic is built up.
+ *  The class keeps track of players in the game and which round the player, players are on.
+ *  The player get to choose between all the options in the game from this class.
+ * @author William, Marcus, Ridah
  *
  */
+
+
 public class GameLogic implements Serializable {
-    transient Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in); // transient so that we can be able send the class to  SaveRunTimeGame
     protected ArrayList<Player> playerList;
     protected Veterinary veterinary;
     protected Store store;
