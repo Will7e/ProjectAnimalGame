@@ -75,7 +75,7 @@ public class Player implements Serializable {
     /**
      * This method prints out list of a players food and the amount of food.
      */
-    public void printFood() {
+    public void printFoodOwn() {
         System.out.println("Food list:");
         if (foodList.isEmpty()) {
             System.out.println("--------------- \n[Empty]");

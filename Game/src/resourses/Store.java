@@ -46,7 +46,7 @@ public class Store implements Serializable {
      * @param player who chooses to buy animal.
      */
     public void animalToBuy(Player player) {
-        animalPrice();
+        printAnimalsPrice();
         try {
             input = Integer.parseInt(console.nextLine());
         } catch (Exception e) {
@@ -258,7 +258,7 @@ public class Store implements Serializable {
 
             switch (userInput) {
                 case 1:
-                    getAnimalsForSale(player);
+                    printAnimalsOwn(player);
                     System.out.println("Return to main menu...");
                     backToMenu = false;
                     FormatHelp.threadSleep();
@@ -288,7 +288,7 @@ public class Store implements Serializable {
      *
      * @param player who chooses to sell animal.
      */
-    public void getAnimalsForSale(Player player) {
+    public void printAnimalsOwn(Player player) {
 
         System.out.println(player.getName() + " Your animals list: ");
         for (int i = 0; i < player.getAnimalList().size(); i++) {
@@ -298,7 +298,6 @@ public class Store implements Serializable {
                     "[Value: " + player.getAnimalList().get(i).getPriceToSell() + "]");
 
         }
-
         sellAnimal(player);
     }
 
@@ -350,7 +349,7 @@ public class Store implements Serializable {
         switch (userInput) {
 
             case 1:
-                getAnimalsForSale(player);
+                printAnimalsOwn(player);
                 break;
 
             case 2:
@@ -365,7 +364,6 @@ public class Store implements Serializable {
 
     }
 
-
     /**
      * This method allow player to buy the food and the amount of it as he wants. It adds food to player's list and
      * reduces player's coins as amount he has bought.
@@ -373,7 +371,7 @@ public class Store implements Serializable {
      */
     public void buyFood(Player player) {
 
-        foodPrice();
+        printFoodPrice();
         try {
             input = Integer.parseInt(console.nextLine());
         } catch (Exception e) {
@@ -483,11 +481,10 @@ public class Store implements Serializable {
         }
     }
 
-
     /**
      * This method prints out the price of animals that players need to know.
      */
-    public void animalPrice() {
+    public void printAnimalsPrice() {
         System.out.println("Welcome to the store!");
         System.out.println("Here is a list of animals you can buy");
         System.out.println("1. Bear " + "   ( " + this.getBearPrice() + " Coins )\n" +
@@ -501,7 +498,7 @@ public class Store implements Serializable {
     /**
      * This method prints out the price of foods that players need to know.
      */
-    public void foodPrice() {
+    public void printFoodPrice() {
         System.out.println("Welcome to the Store! Here you can buy some foods");
         System.out.println("1. Meat " + "   ( " + this.getMeatPrice() + " Coins / Kg )\n" +
                 "2. Veggies " + " ( " + this.getVeggiesPrice() + " Coins / Kg )\n" +

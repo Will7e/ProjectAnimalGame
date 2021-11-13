@@ -59,7 +59,7 @@ public class Veterinary  implements Serializable {
      * @param player who types in.
      * @return index of the animal that is existed in his animal list.
      */
-    public int checkAnimal(Player player) {
+    public int checkFirstAnimal(Player player) {
         System.out.println("(1).Type in animal name you want to breed.");
         animalName = console.nextLine();
         for (int i = 0; i < player.getAnimalList().size(); i++) {
@@ -69,7 +69,7 @@ public class Veterinary  implements Serializable {
         }
         if (!player.getAnimalList().get(index1).getName().equalsIgnoreCase(animalName)) {
             System.out.println(animalName + " does not exist in animal list.");
-            checkAnimal(player);
+            checkFirstAnimal(player);
         }
         return index1;
     }
@@ -79,7 +79,7 @@ public class Veterinary  implements Serializable {
      * @param player who types in.
      * @return index of the animal that is existed in his animal list.
      */
-    public int checkAnimal2(Player player) {
+    public int checkSecondAnimal(Player player) {
         System.out.println("(2).Type in animal name you want to breed with [" + animalName +"].");
         String animalName2 = console.nextLine();
         for (int i = 0; i < player.getAnimalList().size(); i++) {
@@ -89,7 +89,7 @@ public class Veterinary  implements Serializable {
         }
         if (!player.getAnimalList().get(index2).getName().equalsIgnoreCase(animalName2)) {
             System.out.println(animalName2 + " does not exist in animal list.");
-            checkAnimal2(player);
+            checkSecondAnimal(player);
         }
         return index2;
     }
@@ -100,7 +100,7 @@ public class Veterinary  implements Serializable {
      * It randomizes the chances of any to have baby as 50/50. If success this adds those new animals to player animal list.
      * @param player that choose to breed animal.
      */
-    public void breedAnimal(Player player) {
+    public void animalBreeding(Player player) {
         if (player.getAnimalList().isEmpty() || player.getAnimalList().size() < 2) {
             System.out.println("You don't have enough animal in your list");
             System.out.println("Return to main menu...");
@@ -110,8 +110,8 @@ public class Veterinary  implements Serializable {
 
         } else {
             printAnimalList(player);
-            checkAnimal(player);
-            checkAnimal2(player);
+            checkFirstAnimal(player);
+            checkSecondAnimal(player);
             if (!player.getAnimalList().get(index1).getClassName().equalsIgnoreCase(player.getAnimalList().get(index2).getClassName())) {
                 System.out.println("Animal need to be same race.");
                 System.out.println();
@@ -131,7 +131,7 @@ public class Veterinary  implements Serializable {
                         if (player.getAnimalList().get(index1).getClassName().equalsIgnoreCase("Bear")) {
                             System.out.println("Congrats! You succeed with Bear's breeding.");
                             gender = randomGender();
-                            name = nameAnimal(player);
+                            name = giveAnimalName(player);
                             player.getAnimalList().add(new Bear(name, gender));
                             successMessage();
                             break;
@@ -141,7 +141,7 @@ public class Veterinary  implements Serializable {
                             for (int j = 0; j < 2; j++) {
                                 System.out.println("Dog: " + (j+1));
                                 gender = randomGender();
-                                name = nameAnimal(player);
+                                name = giveAnimalName(player);
                                 player.getAnimalList().add(new Dog(name, gender));
                                 successMessage();
                             }
@@ -150,7 +150,7 @@ public class Veterinary  implements Serializable {
                         if (player.getAnimalList().get(index1).getClassName().equalsIgnoreCase("Horse")) {
                             System.out.println("Congrats! You succeed with Horse's breeding.");
                             gender = randomGender();
-                            name = nameAnimal(player);
+                            name = giveAnimalName(player);
                             player.getAnimalList().add(new Horse(name, gender));
                             successMessage();
                             break;
@@ -158,7 +158,7 @@ public class Veterinary  implements Serializable {
                         if (player.getAnimalList().get(index1).getClassName().equalsIgnoreCase("Lion")) {
                             System.out.println("Congrats! You succeed with Lion's breeding.");
                             gender = randomGender();
-                            name = nameAnimal(player);
+                            name = giveAnimalName(player);
                             player.getAnimalList().add(new Lion(name, gender));
                             successMessage();
                             break;
@@ -168,7 +168,7 @@ public class Veterinary  implements Serializable {
                             for (int j = 0; j < 4; j++) {
                                 System.out.println("Rabbit: " + (j+1));
                                 gender = randomGender();
-                                name = nameAnimal(player);
+                                name = giveAnimalName(player);
                                 player.getAnimalList().add(new Rabbit(name, gender));
                                 successMessage();
                             }
@@ -197,16 +197,15 @@ public class Veterinary  implements Serializable {
      * @param player that success the breed and name animal.
      * @return animal's name
      */
-    public String nameAnimal(Player player) {
+    public String giveAnimalName(Player player) {
         System.out.print("Name your animal: ");
         name = console.nextLine();
         if (store.hasThisName(player.getAnimalList(), name)) {
             System.out.println("This name already exist. Choose another name. ");
-            return nameAnimal(player);
+            return giveAnimalName(player);
         }
         return name;
     }
-
 
     /**
      * This method prints animal list for player to know what animals he/she has.

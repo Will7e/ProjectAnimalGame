@@ -3,7 +3,6 @@ package gamecontroller;
 import animals.Animal;
 import resourses.Store;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.*;
 
@@ -14,7 +13,6 @@ import java.util.*;
  * @author William, Marcus, Ridah
  *
  */
-
 
 public class GameLogic implements Serializable {
     transient Scanner scanner = new Scanner(System.in); // transient so that we can be able send the class to  SaveRunTimeGame
@@ -97,7 +95,7 @@ public class GameLogic implements Serializable {
             System.out.println("Between 5 - 30 rounds.");
             startGame();
         } else {
-            askAmountPlayers();
+            requestPlayersAmount();
             addPlayer();
             gameRound();
         }
@@ -108,7 +106,7 @@ public class GameLogic implements Serializable {
      * This method is for player to decide how many players going to player this game. But with limitation.
      * Try catch for incorrect input and while loop to limit amount of players ( 2-4)
      */
-    private void askAmountPlayers() {
+    private void requestPlayersAmount() {
         // This method ask for how many players are going to play.
         do {
             System.out.println("How many players do you want to play? 2 - 4.  ");
@@ -116,7 +114,7 @@ public class GameLogic implements Serializable {
                 playerAmount = Integer.parseInt(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Incorrect input. Enter a number.");
-                askAmountPlayers();
+                requestPlayersAmount();
             }
             if (playerAmount < 2 || playerAmount > 4) {
                 System.out.println("Between 2 - 4");
@@ -149,7 +147,7 @@ public class GameLogic implements Serializable {
      * This method is calling for another method in Player class to let player know what he/she has.
      * @param player turn.
      */
-    public void info(Player player) {
+    public void playerDisplay(Player player) {
         System.out.println("---------------");
         System.out.println("[Round: " + displayRounds + "]");
         System.out.println("Player: " + player.getName() +
@@ -157,7 +155,7 @@ public class GameLogic implements Serializable {
         System.out.println("---------------");
         player.checkAnimalHealth(player);
         System.out.println("---------------");
-        player.printFood();
+        player.printFoodOwn();
         System.out.println();
     }
 
@@ -166,7 +164,7 @@ public class GameLogic implements Serializable {
      * This method is where player takes turn and have their choices. Each player have their own turn
      * if one has nothing left, it removes that player from the game.
      */
-    public void playerInfos() {
+    public void playerTakesTurn() {
         Iterator<Player> iterator = playerList.listIterator(getIndex());
         while (iterator.hasNext()) {
             Player player = iterator.next();
@@ -177,7 +175,7 @@ public class GameLogic implements Serializable {
                 FormatHelp.emptyScreen();
                 break;
             }
-            info(player);
+            playerDisplay(player);
             playerChoice(player);
 
         }
@@ -204,7 +202,7 @@ public class GameLogic implements Serializable {
                     store.animalToBuy(player);
 
                     if (store.returnMainMenu()) {
-                        info(player);
+                        playerDisplay(player);
                         playerChoice(player);
                     } else {
                         setIndex(index += 1);
@@ -214,7 +212,7 @@ public class GameLogic implements Serializable {
                     store.buyFood(player);
 
                     if (store.returnMainMenu()) {
-                        info(player);
+                        playerDisplay(player);
                         playerChoice(player);
                     } else {
                         setIndex(index += 1);
@@ -224,7 +222,7 @@ public class GameLogic implements Serializable {
                     store.saleStart(player);
 
                     if (store.returnMainMenu()) {
-                        info(player);
+                        playerDisplay(player);
                         playerChoice(player);
                     } else {
 
@@ -234,7 +232,7 @@ public class GameLogic implements Serializable {
                 case 4:
                     player.checkAnimalToFeed(player, scanner);
                     if (player.getBackToMenu()) {
-                        info(player);
+                        playerDisplay(player);
                         playerChoice(player);
                         break;
                     } else {
@@ -243,9 +241,9 @@ public class GameLogic implements Serializable {
 
                     break;
                 case 5:
-                    veterinary.breedAnimal(player);
+                    veterinary.animalBreeding(player);
                     if (veterinary.getBackToMenu()) {
-                        info(player);
+                        playerDisplay(player);
                         playerChoice(player);
                     } else {
                         setIndex(index += 1);
@@ -268,7 +266,7 @@ public class GameLogic implements Serializable {
                             break;
 
                         case 2:
-                            info(player);
+                            playerDisplay(player);
                             playerChoice(player);
                             break;
                         default:
@@ -296,9 +294,9 @@ public class GameLogic implements Serializable {
                 index = 0;
             }
             if (gameRun) {
-                playerInfos();
+                playerTakesTurn();
                 if ((counter + 1) > 0) {
-                    playerInfos();
+                    playerTakesTurn();
                     animalStatsModify();
                 }
                 if ((counter + 1) == (amountRounds - 1)) {
@@ -307,7 +305,7 @@ public class GameLogic implements Serializable {
                 }
 
                 if ((counter + 1) == amountRounds) {
-                    findWinnerLastRound();
+                    findGameWinner();
                     break;
 
                 }
@@ -322,7 +320,8 @@ public class GameLogic implements Serializable {
 
 
     /**
-     * This method is where game 
+     * This method is when the game end. Player receives all coins that he/she can get by selling animals.
+     * This method loop through every animal in player animal list and add to his current coins.
      * @param player that receives coins
      */
     public void sellEveryThing(Player player) {
@@ -330,11 +329,13 @@ public class GameLogic implements Serializable {
             player.setCoins(player.getCoins() + animal.getPriceToSell());
         }
     }
-    // can sort player rank from the highest coins to the lowest coin?
-    public void findPlayerRank() {
+    /**
+     * This method loop through player list. Finding the player who has most coins in the list.
+     */
+    public void playerWithHighestCoins() {
         int max = 0;
         String winner = "";
-        playerCoins();
+        gameEndMessage();
         for (int i = 0; i < playerList.size(); i++) {
             if (playerList.get(i).getCoins() > max) {
                 max = playerList.get(i).getCoins();
@@ -345,27 +346,39 @@ public class GameLogic implements Serializable {
         System.out.println("Congrats [" + winner + "]. You have won the game with highest coins. [" + max + " Coins]");
     }
 
-    public void findWinnerLastRound() {
+
+    /**
+     * This method uses when the game reach last game. Player are going sell everything and finding who has most coins.
+     * Then game end.
+     */
+    public void findGameWinner() {
         for (Player player : playerList) {
             sellEveryThing(player);
         }
-        findPlayerRank();
+        playerWithHighestCoins();
         gameRun =false;
         gameRound();
     }
-
+    /**
+     * This method is for change health and price of every animal in player's animal list.
+     */
     public void animalStatsModify() {
         for (Player player : playerList) {
             if (!player.getAnimalList().isEmpty()) {
-                healthPriceReduce(player);
+                reduceAnimalHealthNPrice(player);
             }else {
                 break;
             }
         }
     }
-    // health reduce by random 10-30%
-    // if health reduce by 10%  = price reduce 10% ( can change as if it wants)
-    public void healthPriceReduce(Player player) {
+
+    /**
+     * This method randomize the amount of animal health that reduces. It's between 10 - 30%
+     * Within this method it calls for the price change method as well as the health reduced.
+     *
+     * @param player takes turn.
+     */
+    public void reduceAnimalHealthNPrice(Player player) {
         if (!player.getAnimalList().isEmpty()) {
             for (int i = 0; i < player.getAnimalList().size(); i++) {
                 int rn = random.nextInt(3) + 1;
@@ -374,21 +387,21 @@ public class GameLogic implements Serializable {
                         player.getAnimalList().get(i).setHealthReduced(0.1 * player.getAnimalList().get(i).getHealth());
                         player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
                         player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
-                        priceChange(player.getAnimalList().get(i), 0.1);
+                        animalPriceChange(player.getAnimalList().get(i), 0.1);
                         break;
 
                     case 2:
                         player.getAnimalList().get(i).setHealthReduced(0.2 * player.getAnimalList().get(i).getHealth());
                         player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
                         player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
-                        priceChange(player.getAnimalList().get(i), 0.2);
+                        animalPriceChange(player.getAnimalList().get(i), 0.2);
                         break;
 
                     case 3:
                         player.getAnimalList().get(i).setHealthReduced(0.3 * player.getAnimalList().get(i).getHealth());
                         player.getAnimalList().get(i).setHealth(player.getAnimalList().get(i).getHealth() - player.getAnimalList().get(i).getHealthReduced());
                         player.getAnimalList().get(i).setAge(player.getAnimalList().get(i).getAge() + 1);
-                        priceChange(player.getAnimalList().get(i), 0.3);
+                        animalPriceChange(player.getAnimalList().get(i), 0.3);
                         break;
                 }
             }
@@ -396,12 +409,20 @@ public class GameLogic implements Serializable {
 
     }
 
-    public void priceChange(Animal animal, double percentage) {
+    /**
+     * This method reduce the price to sell of each animals
+     * @param animal price to reduce.
+     * @param percentage as amount that reduces.
+     */
+    public void animalPriceChange(Animal animal, double percentage) {
             animal.setPriceReduced((int) (animal.getPriceToSell() * percentage));
             animal.setPriceToSell((animal.getPriceToSell() - animal.getPriceReduced()));
     }
 
-    public void playerCoins() {
+    /**
+     * This method prints out players and their coins when the game end
+     */
+    public void gameEndMessage() {
         System.out.println("Last round reached!\nGame automatically end.\nSelling all player's animal...");
         System.out.println("Player's coins: ");
         for (Player player : playerList) {
@@ -409,6 +430,12 @@ public class GameLogic implements Serializable {
         }
     }
 
+    /**
+     *This method check either if the name is already exist in player list
+     * @param playerList each player in list
+     * @param givenName name that player input
+     * @return true or false.
+     */
     public boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player player : playerList) {
             if (player.getName().equalsIgnoreCase(givenName)) {
@@ -417,16 +444,27 @@ public class GameLogic implements Serializable {
         }
         return false;
     }
-
+    /**
+     * This get amount of players.
+     * @return amount of players.
+     */
     public int getPlayerAmount() {
         return this.playerAmount;
 
     }
 
+    /**
+     * This get player list.
+     * @return list of player
+     */
     public ArrayList<Player> getPlayerListHistory() {
         return this.playerList;
     }
 
+    /**
+     * This get amount of game rounds.
+     * @return amount of rounds.
+     */
     public int getAmountRounds() {
         return this.amountRounds;
     }
@@ -436,11 +474,20 @@ public class GameLogic implements Serializable {
 
     }
 
+
+    /**
+     * This set the rounds that going to show to player
+     * @param displayRounds is the round at the game start.
+     */
     public void setDisplayRounds(int displayRounds) {
         this.displayRounds = displayRounds;
 
     }
 
+    /**
+     * This get the rounds that display to players
+     * @return game round players are in.
+     */
     public int getDisplayRounds() {
         return this.displayRounds;
     }
@@ -449,6 +496,10 @@ public class GameLogic implements Serializable {
         return this.index;
     }
 
+    /**
+     * Get the round that game start with as it increase each round
+     * @return game round that player are playing.
+     */
     public int getCounter() {
         return this.counter;
     }
