@@ -1,7 +1,8 @@
-package gamecontroller;
+package resourses;
 
 import animals.*;
-import resourses.Store;
+import gamecontroller.FormatHelp;
+import gamecontroller.Player;
 
 import java.io.Serializable;
 import java.util.Random;

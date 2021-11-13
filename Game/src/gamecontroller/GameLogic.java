@@ -2,6 +2,7 @@ package gamecontroller;
 
 import animals.Animal;
 import resourses.Store;
+import resourses.Veterinary;
 
 import java.io.Serializable;
 import java.util.*;
